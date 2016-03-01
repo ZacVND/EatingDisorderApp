@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane ng-controller="namesCtrl">
+      <ion-header-bar class="bar-positive">
+        <h1 class="title">Logs</h1>
+      </ion-header-bar>
+      <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+          <i class="icon ion-calendar placeholder-icon"></i>
+          <input type="date" id="datePicker" ng-model="selectedDate" ng-change="dateFilter()">
+        </label>
+      </div>
+      <ion-content class="has-subheader">
+        <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs">
+          <div class="item item-divider">
+            {{day.date + " " + selectedDate}}
+          </div>
+          <ion-item ng-repeat="item in day.entries">
+
+              <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
+              <p>{{ item.food }}</p>
+              <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
+              <ion-option-button class="button-positive ion-edit">
+              <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
+              <!-- this needs fixing -->
+              </ion-delete-button>
+
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
