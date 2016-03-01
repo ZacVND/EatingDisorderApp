@@ -30,15 +30,15 @@
       <div class="bar bar-subheader item-input-inset bar-light">
         <label class="item-input-wrapper">
           <i class="icon ion-calendar placeholder-icon"></i>
-          <input type="date" id="datePicker" ng-model="selectedDate" ng-change="dateFilter()">
+          <input type="text" id="datePicker" ng-model="selectedDate">
         </label>
       </div>
       <ion-content class="has-subheader">
-        <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs">
+        <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true">
           <div class="item item-divider">
             {{day.date + " " + selectedDate}}
           </div>
-          <ion-item ng-repeat="item in day.entries">
+          <ion-item ng-repeat="item in day.entries | orderBy:'time'">
 
               <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
               <p>{{ item.food }}</p>

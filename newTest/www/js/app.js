@@ -25,22 +25,32 @@ angular.module('starter', ['ionic'])
 
 .controller('namesCtrl', function($scope) {
     $scope.logs = [
-        {date:'2016-02-28',entries:[
+
+        {date:'15/01/2015',entries:[
           {time:'07:06',meal:'Breakfast',food:'Cereal, milk, orange juice',thoughts:'Feeling quite nervous'},
           {time:'13:25',meal:'Lunch',food:'Ham sandwich, crisps, apple'},
           {time:'19:02',meal:'Dinner',food:'Pasta and pesto',thoughts:'Proud of myself for eating 3 meals today'}
         ]},
 
-        {date:'2016-02-27',entries:[
+        {date:'28/02/2016',entries:[
+          {time:'07:06',meal:'Breakfast',food:'Cereal, milk, orange juice',thoughts:'Feeling quite nervous'},
+          {time:'13:25',meal:'Lunch',food:'Ham sandwich, crisps, apple'},
+          {time:'19:02',meal:'Dinner',food:'Pasta and pesto',thoughts:'Proud of myself for eating 3 meals today'},
+          {time:'15:59',meal:'Afternoon Snack',food:'Packet of crisps'}
+        ]},
+
+        {date:'27/02/2016',entries:[
           {time:'09:15',meal:'Breakfast',food:'Toast, jam, milk',thoughts:'So tired'},
           {time:'17:39',meal:'Dinner',food:'Pizza and chips',thoughts:'Feel so bad'}
         ]},
 
-        {date:'2016-02-25',entries:[
+        {date:'25/02/2016',entries:[
           {time:'08:42',meal:'Breakfast',food:'Pancakes with butter',thoughts:'Upset I had a big breakfast'},
           {time:'17:39',meal:'Afternoon Snack',food:'6 sausage rolls',thoughts:'Feel like a pig for having so many sausage rolls'}
         ]}   
     ];
+
+    $scope.dayToFilter = "28/02/2016";
 
     $scope.onItemDelete = function(dayIndex, item) {
       $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
