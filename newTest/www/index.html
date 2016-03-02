@@ -22,35 +22,9 @@
     <script src="js/app.js"></script>
   </head>
   <body ng-app="starter">
-
-    <ion-pane ng-controller="namesCtrl">
-      <ion-header-bar class="bar-positive">
-        <h1 class="title">Logs</h1>
-      </ion-header-bar>
-      <div class="bar bar-subheader item-input-inset bar-light">
-        <label class="item-input-wrapper">
-          <i class="icon ion-calendar placeholder-icon"></i>
-          <input type="text" id="datePicker" ng-model="selectedDate">
-        </label>
-      </div>
-      <ion-content class="has-subheader">
-        <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true">
-          <div class="item item-divider">
-            {{day.date + " " + selectedDate}}
-          </div>
-          <ion-item ng-repeat="item in day.entries | orderBy:'time'">
-
-              <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
-              <p>{{ item.food }}</p>
-              <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
-              <ion-option-button class="button-positive ion-edit">
-              <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
-              <!-- this needs fixing -->
-              </ion-delete-button>
-
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-pane>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view></ion-nav-view>
   </body>
 </html>

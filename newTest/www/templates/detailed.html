@@ -1,0 +1,20 @@
+<ion-header-bar class="bar-positive">
+	
+</ion-header-bar>
+
+<ion-view>
+	<ion-content>
+		<ion-list class="list" ng-repeat="day in logs">
+			<ion-item class="item-text-wrap" ng-repeat="item in day.entries | filter: { id: whichEntry }">
+				<h1>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h1>
+				<h2>Food &amp; Drink</h2>
+		        <p>{{ item.food }}</p>
+		        <br ng-show="item.thoughts"/>
+		        <h2 ng-show="item.thoughts">Thoughts</h2>
+		        <p ng-show="item.thoughts">{{ item.thoughts }}</p>
+		        <br ng-show="item.location"/>
+		        <h2 ng-show="item.location">Location</h2>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>
