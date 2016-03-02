@@ -9,11 +9,25 @@
 				<h1>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h1>
 				<h2>Food &amp; Drink</h2>
 		        <p>{{ item.food }}</p>
+
 		        <br ng-show="item.thoughts"/>
 		        <h2 ng-show="item.thoughts">Thoughts</h2>
 		        <p ng-show="item.thoughts">{{ item.thoughts }}</p>
+
 		        <br ng-show="item.location"/>
 		        <h2 ng-show="item.location">Location</h2>
+		        <p ng-show="item.location">{{ item.location }}</p>
+
+		        <br ng-show="item.people"/>
+		        <h2 ng-show="item.people">Who you ate with</h2>
+		        <p ng-show="item.people">{{ item.people }}</p>
+
+		        <br ng-show="item.binge"/>
+		        <p ng-show="item.binge"><i class="ion-alert"></i>Binge</p>
+
+		        <br ng-show="item.purge"/>
+		        <p ng-show="item.purge"><i class="ion-alert"></i>Purge</p>
+
 			</ion-item>
 		</ion-list>
 	</ion-content>
