@@ -66,6 +66,8 @@ angular.module('starter', ['ionic'])
 .controller('namesCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.whichEntry = $state.params.aId;
 
+    $scope.timeOther = false;
+
     $scope.logs = [
 
         {date:'15/01/2015',entries:[

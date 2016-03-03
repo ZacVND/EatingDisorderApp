@@ -1,9 +1,62 @@
-<ion-header-bar class="bar-positive">
+<ion-header-bar class="bar-positive" title="Add entry">
 	
 </ion-header-bar>
 
 <ion-view>
 	<ion-content>
 		
+
+		<ion-list class="list">
+			<!-- Meal -->
+			<div class="item item-divider">
+	        	<h2>Which meal did you eat?</h2>
+	     	</div>
+	     	<div id="mealRadio">
+	     		<ion-radio ng-value="'Breakfast'">Breakfast</ion-radio>
+				<ion-radio ng-value="'Morning Snack'">Morning Snack</ion-radio>
+				<ion-radio ng-value="'Lunch'">Lunch</ion-radio>
+				<ion-radio ng-value="'Afternoon Snack'">Afternoon Snack</ion-radio>
+				<ion-radio ng-value="'Dinner'">Dinner</ion-radio>
+				<ion-radio ng-value="'Evening Snack'">Evening Snack</ion-radio>
+	    	</div>
+
+	    	<!-- Time -->
+	    	<div class="item item-divider">
+	        	<h2>When did you eat?</h2>
+	     	</div>
+	     	<div class="button-bar">
+				<a class="button" ng-click="timeOther=false">10 mins ago</a>
+				<a class="button" ng-click="timeOther=false">30 mins ago</a>
+				<a class="button" ng-click="timeOther=true">Other</a>
+			</div>
+			<label class="item-input-wrapper" ng-show="timeOther==true">
+		     	<i class="icon ion-calendar placeholder-icon"></i>
+		     	<input type="time" id="timePicker">
+		    </label>
+
+		    <!-- Food and drink -->
+			<div class="item item-divider">
+	        	<h2>What did you eat and drink?</h2>
+	     	</div>
+	     	<ion-item>
+	     		<textarea rows="2" style="width:100%;">
+	     		</textarea>
+	     	</ion-item>
+
+	     	<!-- Location -->
+	     	<div class="item item-divider">
+	        	<h2>Where did you eat?</h2>
+	     	</div>
+	     	<div id="locationRadio">
+	     		<ion-radio ng-value="Home">Home</ion-radio>
+				<ion-radio ng-value="School, college, uni">School, college, uni</ion-radio>
+				<ion-radio ng-value="Work">Work</ion-radio>
+				<ion-radio ng-value="Friend's House">Friend's House</ion-radio>
+				<ion-radio ng-value="Restaurant, cafe, etc.">Restaurant, cafe, etc.</ion-radio>
+				<ion-radio ng-value="Other">Other</ion-radio>
+	    	</div> 
+		    
+		    
+		</ion-list>
 	</ion-content>
 </ion-view>
