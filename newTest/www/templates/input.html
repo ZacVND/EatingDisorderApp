@@ -43,6 +43,13 @@
 	     		</textarea>
 	     	</ion-item>
 
+	     	<!-- Binge -->
+	     	<ion-item>
+	     		<p class="padding">Would you class this as an excessive amount?</p>
+	     		<ion-toggle toggle-class="toggle-calm">Binge</ion-toggle>
+	     	</ion-item>
+	        
+
 	     	<!-- Location -->
 	     	<div class="item item-divider">
 	        	<h2>Where did you eat?</h2>
@@ -54,9 +61,38 @@
 				<ion-radio ng-value="Friend's House">Friend's House</ion-radio>
 				<ion-radio ng-value="Restaurant, cafe, etc.">Restaurant, cafe, etc.</ion-radio>
 				<ion-radio ng-value="Other">Other</ion-radio>
-	    	</div> 
+	    	</div>
+
+	    	<!-- People -->
+	     	<div class="item item-divider">
+	        	<h2>Who did you eat with?</h2>
+	     	</div>
+	     	<div id="locationRadio">
+	     		<ion-radio ng-value="Alone">Alone</ion-radio>
+				<ion-radio ng-value="Parents">Parents</ion-radio>
+				<ion-radio ng-value="Friends">Friends</ion-radio>
+				<ion-radio ng-value="Other">Other</ion-radio>
+	    	</div>
+
+	    	<!-- Purge -->
+	     	<div class="item item-divider">
+	        	<h2>Did this meal cause you to purge?</h2>
+	     	</div>
+	     	<ion-toggle toggle-class="toggle-calm">Purge</ion-toggle>
 		    
-		    
+		    <!-- Thoughts -->
+			<div class="item item-divider">
+	        	<h2>Any thoughts?</h2>
+	     	</div>
+	     	<ion-item>
+	     		<textarea rows="2" style="width:100%;">
+	     		</textarea>
+	     	</ion-item>
 		</ion-list>
+
+		<!-- Submit -->
+		<button class="button button-block button-positive">
+			Submit
+		</button>
 	</ion-content>
 </ion-view>
