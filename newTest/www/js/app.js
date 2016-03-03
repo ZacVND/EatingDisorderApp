@@ -41,6 +41,16 @@ angular.module('starter', ['ionic'])
       }
     })
 
+    .state('menu.input', {
+      url: '/input',
+      views: {
+        'input-page' : {
+          templateUrl: 'templates/input.html',
+          controller: 'namesCtrl'
+        }
+      }
+    })
+
     .state('menu.detailed', {
       url: '/logs/:aId',
       views: {
