@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.logs', {
       url: '/logs',
       views: {
-        'logs-page' : {
+        'menuContent' : {
           templateUrl: 'templates/logs.html',
           controller: 'namesCtrl'
         }
@@ -44,7 +44,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.input', {
       url: '/input',
       views: {
-        'input-page' : {
+        'menuContent' : {
           templateUrl: 'templates/input.html',
           controller: 'namesCtrl'
         }
@@ -54,7 +54,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.detailed', {
       url: '/logs/:aId',
       views: {
-        'logs-page' : {
+        'menuContent' : {
           templateUrl: 'templates/detailed.html',
           controller: 'namesCtrl'
         }
@@ -64,7 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.help', {
       url: '/help',
       views: {
-        'help-page' : {
+        'menuContent' : {
           templateUrl: 'templates/help.html',
           controller: 'namesCtrl'
         }
@@ -74,7 +74,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.home', {
       url: '/home',
       views: {
-        'home-page' : {
+        'menuContent' : {
           templateUrl: 'templates/home.html',
           controller: 'namesCtrl'
         }
@@ -84,7 +84,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.settings', {
       url: '/settings',
       views: {
-        'settings-page' : {
+        'menuContent' : {
           templateUrl: 'templates/settings.html',
           controller: 'namesCtrl'
         }
@@ -94,7 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.goals', {
       url: '/goals',
       views: {
-        'goals-page' : {
+        'menuContent' : {
           templateUrl: 'templates/goals.html',
           controller: 'namesCtrl'
         }

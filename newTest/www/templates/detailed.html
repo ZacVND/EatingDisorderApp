@@ -2,7 +2,7 @@
 	
 </ion-header-bar>
 
-<ion-view>
+<ion-view title="Entry">
 	<ion-content>
 		<ion-list class="list" ng-repeat="(dayIndex, day) in logs">
 			<ion-item class="item-text-wrap" ng-repeat="item in day.entries | filter: { id: whichEntry }">

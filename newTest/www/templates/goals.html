@@ -1,5 +1,8 @@
 <ion-view view-title="Your Goals">
-	<ion-content has-subheader="false">
+	<ion-nav-buttons side="left">
+    	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+	<ion-content class="has-header">
 		<ion-list class = "list-inset">
 			<ion-item class = "item-text-wrap" ng-repeat = "item in goals">
 				<h2>{{ "Your meal: " + item.meal }}</h2>
