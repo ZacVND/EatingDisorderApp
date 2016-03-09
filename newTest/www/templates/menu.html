@@ -1,54 +1,3 @@
-<!-- <ion-side-menus ng-controller="MainCtrl">
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-
-      <ion-nav-buttons side="left">
-        	<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-      </ion-nav-buttons>
-      	<ion-nav-buttons side="secondary">
-	        <button class="button button-icon icon ion-ios-gear" ui-sref="menu.settings">
-	        	<ion-nav-view name = "settings-page"></ion-nav-view>
-	        </button>
-      	</ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-nav-view name="home-page"></ion-nav-view>
-  </ion-side-menu-content>
-
-  <ion-side-menu side="left">
-    <ion-list>
-        <ion-item menu-close href="#/menu/home">
-          Home
-        </ion-item>
-        <ion-item menu-close href="#/menu/help">
-          Help
-        </ion-item>
-        <ion-item menu-close ui-sref="menu.settings">
-          Settings
-        </ion-item>
-        <ion-item menu-close href="#/menu/goals">
-          Goals
-        </ion-item>
-      </ion-list>
-  </ion-side-menu>
-</ion-side-menus>
-
-<ion-tabs class="tabs-icon-top tabs-positive">
-    <ion-tab title="Home" icon = "ion-ios-home" href = "#/menu/home">
-    <ion-nav-view name="home-page"> </ion-tab>
-
-	<ion-tab title="Logs" icon="ion-android-list" href="#/menu/logs">
-	<ion-nav-view name="logs-page"></ion-tab>
-
-	<ion-tab title="Input" icon="ion-edit" href="#/menu/input">
-	<ion-nav-view name="input-page"></ion-tab>
-
-	<ion-tab title="Settings" icon = "ion-ios-gear" href = "#/menu/settings">
-    <ion-nav-view name="settings-page"></ion-tab>
-</ion-tabs> -->
-
 <ion-side-menus>
 
   <ion-side-menu-content>
@@ -60,27 +9,27 @@
 
   <ion-side-menu side="left">
     <header class="bar bar-header bar-positive">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Eating Disorders</h1>
     </header>
     <ion-content class="has-header">
       <ion-list>
         <ion-item menu-close href="#/menu/home">
-          Home
+          <i class="icon ion-home"></i> Home
         </ion-item>
         <ion-item menu-close href="#/menu/logs">
-          Logs
+          <i class="icon ion-clipboard"></i> Logs
         </ion-item>
         <ion-item menu-close href="#/menu/goals">
-          Goals
+          <i class="icon ion-ribbon-b"></i> Goals
         </ion-item>
         <ion-item menu-close href="#/menu/input">
-          Input
+          <i class="icon ion-edit"></i> Input
         </ion-item>
         <ion-item menu-close href="#/menu/help">
-          Help
+          <i class="icon ion-help-buoy"></i> Help
         </ion-item>
-        <ion-item menu-close href="#/menu/goals">
-          Goals
+        <ion-item menu-close href="#/menu/settings">
+          <i class="icon ion-gear-a"></i> Settings
         </ion-item>
       </ion-list>
     </ion-content>
