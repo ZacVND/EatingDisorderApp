@@ -60,5 +60,45 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    $urlRouterProvider.otherwise('/menu/logs');
+
+    .state('menu.help', {
+      url: '/help',
+      views: {
+        'help-page' : {
+          templateUrl: 'templates/help.html',
+          controller: 'namesCtrl'
+        }
+      }
+    })
+
+    .state('menu.home', {
+      url: '/home',
+      views: {
+        'home-page' : {
+          templateUrl: 'templates/home.html',
+          controller: 'namesCtrl'
+        }
+      }
+    })
+
+    .state('menu.settings', {
+      url: '/settings',
+      views: {
+        'settings-page' : {
+          templateUrl: 'templates/settings.html',
+          controller: 'namesCtrl'
+        }
+      }
+    })
+
+    .state('menu.goals', {
+      url: '/goals',
+      views: {
+        'goals-page' : {
+          templateUrl: 'templates/goals.html',
+          controller: 'namesCtrl'
+        }
+      }
+    })
+    $urlRouterProvider.otherwise('/menu/home');
 });

@@ -1,0 +1,50 @@
+<ion-view view-title = "Home">
+<!-- <ion-content has-subheader="false">
+		<div class = "item item-divider center-text">
+	    	Today's Goal: Eat 3 Meals
+	   	</div>
+	   	<div class="list card">
+    		<div class="item item-divider">7:06
+     			<a href="#" class="item-icon-right">
+    				<i class="icon ion-plus"></i>
+  				</a>
+    		</div>
+    		<div class = "item item-body">
+    			<b>Breakfast:</b></br>
+    			Cereal</br>
+    			Crisps</br>
+    			Banana</br>
+    		</div>
+	     </div>
+   	</ion-content> -->
+
+   	<ion-content>
+   	<div class = "item item-divider center-text">
+	    	<h3>Today's Goal: Eat {{ sumMeals() }} Meals</h3>
+   	</div>
+    <ion-list ng-repeat="(dayIndex, day) in logs | orderBy:'date':true">
+    <div class = "list card">
+      <div class="item item-divider item-button-right">
+        {{day.date + " " + selectedDate}}
+        <a href="#" class="item-icon-right" ng-click = "expandv = !expandv">
+            <i class="icon ion-plus"></i>
+            <!-- <i class="icon ion-minus" ng-show = "expandv == true"></i> -->
+        </a>
+      </div>
+      <ion-item ng-repeat="item in day.entries | orderBy:'time'" ng-show = "expandv == true">
+
+          <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
+          <p>{{ item.food }}</p>
+          <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
+          <ion-option-button class="button-positive ion-edit">
+          <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
+          <!-- this needs fixing -->
+          </ion-delete-button>
+      </ion-item>
+
+      </div>
+    </ion-list>
+  </ion-content>
+
+
+</ion-view>

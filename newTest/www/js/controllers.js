@@ -26,8 +26,34 @@ angular.module('starter.controllers', [])
         {date:'25/02/2016',entries:[
           {id:'250216b',time:'08:42',meal:'Breakfast',food:'Pancakes with butter',thoughts:'Upset I had a big breakfast',location:'Home',people:'Parents'},
           {id:'250216a',time:'17:39',meal:'Afternoon Snack',food:'6 sausage rolls',thoughts:'Feel like a pig for having so many sausage rolls',location:'Outside',people:'Alone',binge:true}
+        ]},
+
+        {date:'25/02/2016',entries:[
+          {id:'250216b',time:'08:42',meal:'Breakfast',food:'Pancakes with butter',thoughts:'Upset I had a big breakfast',location:'Home',people:'Parents'},
+          {id:'250216a',time:'17:39',meal:'Afternoon Snack',food:'6 sausage rolls',thoughts:'Feel like a pig for having so many sausage rolls',location:'Outside',people:'Alone',binge:true}
+        ]},
+
+        {date:'09/03/2016',entries:[
+          {id:'280216b',time:'07:06',meal:'Breakfast',food:'Cereal, milk, orange juice',thoughts:'Feeling quite nervous',location:'Home',people:'Alone'},
+          {id:'280216l',time:'13:25',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'Home',people:'Alone'},
+          {id:'280216d',time:'19:02',meal:'Dinner',food:'Pasta and pesto',thoughts:'Proud of myself for eating 3 meals today',location:'Restaurant, cafe'},
+          {id:'280216a',time:'15:59',meal:'Afternoon Snack',food:'Packet of crisps'}
         ]}   
     ];
+
+    $scope.goals = [
+          {id:'bf01',meal:'Breakfast',food:'Cereal, milk, orange juice',location:'Home',people:'Alone'},
+          {id:'lu01',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'School, college, uni',people:'Friends'},
+          {id:'di01',meal:'Dinner',food:'Pasta and pesto',location:'Home',people:'Parents'}
+    ];
+
+    $scope.sumMeals = function() {
+      var total = 0;
+        for(var i = 0; i <= $scope.goals.length; i++){
+            total = i;
+        }
+      return total;
+    }
 
     $scope.dayToFilter = "28/02/2016";
 

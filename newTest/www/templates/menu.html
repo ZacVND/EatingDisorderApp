@@ -1,47 +1,55 @@
+<!-- <ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
 
-<ion-side-menus>
-    <!-- Center content -->
-    <div>
-        <ion-side-menu-content>
-            <ion-header-bar style="background-color:#B90028">
-                <div >
-                    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-                    <h1 class="title">www.tutorialsplane.com</h1>
-                </div>
- 
-            </ion-header-bar>
- 
-            <ion-content scroll="true" >
- 
-                <div class='content'>  
-                    <h2> Main Content </h2>
-                    <p>Dummy Content...</p>
-                </div>
- 
- 
- 
-            </ion-content>
-        </ion-side-menu-content>
-        <ion-side-menu>
-            <div class="menu-wrapper ">
-                <ul class="list">
-                    <li class="item">Item 1</li>
-                    <li class="item">Item 2</li>
-                    <li class="item">Item 3</li>
-                    <li class="item">Item 4</li>
-                    <li class="item">Item 5</li>
-                    <li class="item">Item 6</li>
-                    <li class="item">Item 7</li>
-                </ul>
-            </div>
-        </ion-side-menu>
-</ion-side-menus>
+      <ion-nav-buttons side="left">
+        	<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+      	<ion-nav-buttons side="secondary">
+	        <button class="button button-icon icon ion-ios-gear" ui-sref="menu.settings">
+	        	<ion-nav-view name = "settings-page"></ion-nav-view>
+	        </button>
+      	</ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="home-page"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Left</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close href="#/menu/home">
+          Home
+        </ion-item>
+        <ion-item menu-close href="#/menu/help">
+          Help
+        </ion-item>
+        <ion-item menu-close ui-sref="menu.settings">
+          Settings
+        </ion-item>
+        <ion-item menu-close href="#/menu/goals">
+          Goals
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus> -->
 
 <ion-tabs class="tabs-icon-top tabs-positive">
+    <ion-tab title="Home" icon = "ion-ios-home" href = "#/menu/home">
+    <ion-nav-view name="home-page"> </ion-tab>
+
 	<ion-tab title="Logs" icon="ion-android-list" href="#/menu/logs">
-	<ion-nav-view name="logs-page">
+	<ion-nav-view name="logs-page"></ion-tab>
 
 	<ion-tab title="Input" icon="ion-edit" href="#/menu/input">
-	<ion-nav-view name="input-page">
-</ion-tabs>
+	<ion-nav-view name="input-page"></ion-tab>
 
+	<ion-tab title="Settings" icon = "ion-ios-gear" href = "#/menu/settings">
+    <ion-nav-view name="settings-page"></ion-tab>
+</ion-tabs>
