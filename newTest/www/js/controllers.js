@@ -57,12 +57,8 @@ angular.module('starter.controllers', [])
     }
 
     $scope.todaysDate = function(separator) {
-      var d = new Date();
-      var str = "";
-      str += d.getFullYear() + separator; // Append the year and the first / to the string
-      str += append0(d.getMonth() + 1) + separator; // Append the month and the second /
-      str += append0(d.getDate());
-      return str; 
+      var d = new moment();
+      return d.format('YYYY' + separator + 'MM' + separator + 'DD');
     }
 
     $scope.dateFilter = function() {
@@ -71,102 +67,18 @@ angular.module('starter.controllers', [])
       {
         return "";
       }
-      var d = new Date(date);
+      var d = new moment(date);
 
-      var year = d.getFullYear();
-      var month = append0(d.getMonth() + 1);
-      var day = append0(d.getDate());
-      
-      return year + "/" + month + "/" + day;
+      return d.format('YYYY/MM/DD');
     }
 
     $scope.getDisplayDate = function(date) {
-      var d = new Date(date);
-      var now = new Date();
+      var d = new moment(date);
 
-      var day = getDayString(d.getDay());
-      var date = d.getDate();
-      var month = getMonthString(d.getMonth());
-
-      if(d.getFullYear() != now.getFullYear()) {
-        return day + " " + date + " " + month + " " + d.getFullYear();
+      if(d.year() != moment().year()) {
+        return d.format('dddd Do MMMM YYYY');
       }
-      return day + " " + date + " " + month;
-    }
-
-    getDayString = function(dayNum) {
-      switch(dayNum) {
-        case 0:
-          return "Sunday";
-          break;
-        case 1:
-          return "Monday";
-          break;
-        case 2:
-          return "Tuesday";
-          break;
-        case 3:
-          return "Wednesday";
-          break;
-        case 4:
-          return "Thursday";
-          break;
-        case 5:
-          return "Friday";
-          break;
-        case 6:
-          return "Saturday";
-          break;
-      }
-    }
-
-    getMonthString = function(monthNum) {
-      switch(monthNum) {
-        case 0:
-          return "January";
-          break;
-        case 1:
-          return "February";
-          break;
-        case 2:
-          return "March";
-          break;
-        case 3:
-          return "April";
-          break;
-        case 4:
-          return "May";
-          break;
-        case 5:
-          return "June";
-          break;
-        case 6:
-          return "July";
-          break;
-        case 7:
-          return "August";
-          break;
-        case 8:
-          return "September";
-          break;
-        case 9:
-          return "October";
-          break;
-        case 10:
-          return "November";
-          break;
-        case 11:
-          return "December";
-          break;
-      }
-    }
-
-    append0 = function(val) {
-      if(val < 10) {
-        return "0" + (val); // If less than 10, an extra 0 must be added
-      } else {
-        return val;
-      }
+      return d.format('dddd Do MMMM');
     }
 
     $scope.onItemDelete = function(dayIndex, item) {
