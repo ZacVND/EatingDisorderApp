@@ -81,6 +81,11 @@ angular.module('starter.controllers', [])
       return d.format('dddd Do MMMM');
     }
 
+    $scope.getTimeAgo = function(date) {
+      var d = moment($scope.todaysDate('-'));
+      return moment(date, "YYYY/MM/DD").from(d);
+    }
+
     $scope.onItemDelete = function(dayIndex, item) {
       $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
     };
