@@ -65,6 +65,63 @@ angular.module('starter.controllers', [])
       return str; 
     }
 
+    $scope.dateFilter = function() {
+      var date = String($scope.selectedDate);
+      if(date == "undefined" || date == "null")
+      {
+        return "";
+      }
+
+      var year = date.slice(11, 15);
+      var day = date.slice(8, 10);
+      var month = strToMonth(date.slice(4,7));
+      return year + "/" + month + "/" + day;
+    }
+
+    strToMonth = function(str) {
+      switch(str) {
+        case "Jan":
+          return "01";
+          break;
+        case "Feb":
+          return "02";
+          break;
+        case "Mar":
+          return "03";
+          break;
+        case "Apr":
+          return "04";
+          break;
+        case "May":
+          return "05";
+          break;
+        case "Jun":
+          return "06";
+          break;
+        case "Jul":
+          return "07";
+          break;
+        case "Aug":
+          return "08";
+          break;
+        case "Sep":
+          return "09";
+          break;
+        case "Oct":
+          return "10";
+          break;
+        case "Nov":
+          return "11";
+          break;
+        case "Dec":
+          return "12";
+          break;
+        default:
+          return "01";
+          break;
+      }
+    }
+
     append0 = function(val) {
       if(val < 10) {
         return "0" + (val); // If less than 10, an extra 0 must be added

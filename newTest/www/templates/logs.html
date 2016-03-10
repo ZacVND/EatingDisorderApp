@@ -9,9 +9,9 @@
     </label>
   </div>
   <ion-content class="has-subheader">
-    <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:selectedDate">
+    <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:dateFilter()">
       <div class="item item-divider">
-        {{day.date + " " + selectedDate}}
+        {{day.date}}
       </div>
       <ion-item ng-repeat="item in day.entries | orderBy:'time'" href="#/menu/logs/{{item.id}}">
 
