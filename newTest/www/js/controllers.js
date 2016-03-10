@@ -56,7 +56,22 @@ angular.module('starter.controllers', [])
       return total;
     }
 
-    $scope.dayToFilter = "28/02/2016";
+    $scope.todaysDate = function() {
+      var d = new Date();
+      var str = "";
+      str += d.getFullYear() + "/"; // Append the year and the first / to the string
+      str += append0(d.getMonth() + 1) + "/"; // Append the month and the second /
+      str += append0(d.getDate());
+      return str; 
+    }
+
+    append0 = function(val) {
+      if(val < 10) {
+        return "0" + (val); // If less than 10, an extra 0 must be added
+      } else {
+        return val;
+      }
+    }
 
     $scope.onItemDelete = function(dayIndex, item) {
       $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
