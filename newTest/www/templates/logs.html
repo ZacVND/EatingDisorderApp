@@ -5,11 +5,11 @@
   <div class="bar bar-subheader item-input-inset bar-light">
     <label class="item-input-wrapper">
       <i class="icon ion-calendar placeholder-icon"></i>
-      <input type="text" id="datePicker" ng-model="selectedDate">
+      <input type="date" id="datePicker" ng-model="selectedDate" max="{{ todaysDate('-') }}">
     </label>
   </div>
   <ion-content class="has-subheader">
-    <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true">
+    <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:selectedDate">
       <div class="item item-divider">
         {{day.date + " " + selectedDate}}
       </div>

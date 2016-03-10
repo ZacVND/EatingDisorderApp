@@ -56,11 +56,11 @@ angular.module('starter.controllers', [])
       return total;
     }
 
-    $scope.todaysDate = function() {
+    $scope.todaysDate = function(separator) {
       var d = new Date();
       var str = "";
-      str += d.getFullYear() + "/"; // Append the year and the first / to the string
-      str += append0(d.getMonth() + 1) + "/"; // Append the month and the second /
+      str += d.getFullYear() + separator; // Append the year and the first / to the string
+      str += append0(d.getMonth() + 1) + separator; // Append the month and the second /
       str += append0(d.getDate());
       return str; 
     }
