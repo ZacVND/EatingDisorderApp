@@ -23,6 +23,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
+
+// Page Routing
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('menu', {
@@ -34,7 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.logs', {
       url: '/logs',
       views: {
-        'menuContent' : {
+        'menuContent' : { // menuContent is the name of the nav-view used by the menu
           templateUrl: 'templates/logs.html',
           controller: 'namesCtrl'
         }
@@ -44,7 +46,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('menu.input', {
       url: '/input',
       views: {
-        'menuContent' : {
+        'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input.html',
           controller: 'namesCtrl'
         }
@@ -100,5 +102,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    $urlRouterProvider.otherwise('/menu/home');
+    $urlRouterProvider.otherwise('/menu/home'); // App opens up on the home page
 });
