@@ -82,7 +82,30 @@ angular.module('starter.controllers', ['starter.services', 'ngCordova'])
       return total;
     };
 
-    $scope.dayToFilter = "28/02/2016";
+    $scope.todaysDate = function(separator) {
+      var d = new moment();
+      return d.format('YYYY' + separator + 'MM' + separator + 'DD');
+    }
+
+    $scope.dateFilter = function() {
+      var date = String($scope.selectedDate);
+      if(date == "undefined" || date == "null")
+      {
+        return "";
+      }
+      var d = new moment(date);
+
+      return d.format('YYYY/MM/DD');
+    }
+
+    $scope.getDisplayDate = function(date) {
+      var d = new moment(date);
+
+      if(d.year() != moment().year()) {
+        return d.format('dddd Do MMMM YYYY');
+      }
+      return d.format('dddd Do MMMM');
+    }
 
     $scope.onItemDelete = function(dayIndex, item) {
       $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
