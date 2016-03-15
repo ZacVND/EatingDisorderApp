@@ -40,13 +40,16 @@
 	     		</textarea>
 	     	</ion-item>
 
+	     	<div class = "item item-divider" ng-controller = "MyCtrl">
+	     		<h3>Add a picture?</h3>
+	     		<button ng-click = "takePicture()" class="button icon ion-camera button-positive"></button>
+	     	</div>
+
 	     	<!-- Binge -->
 	     	<ion-item>
 	     		<p class="padding">Would you class this as an excessive amount?</p>
 	     		<ion-toggle toggle-class="toggle-calm">Binge</ion-toggle>
 	     	</ion-item>
-	        
-
 	     	<!-- Location -->
 	     	<div class="item item-divider">
 	        	<h2>Where did you eat?</h2>

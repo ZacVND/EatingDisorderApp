@@ -1,10 +1,36 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services', 'ngCordova'])
+
+.config(function($compileProvider){
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+})
 
 .controller('mainCtrl', function($scope, $ionicSideMenuDelegate) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   }
 })
+
+.controller('MyCtrl', function($scope, Camera) {
+
+   $scope.takePicture = function (options) {
+  
+      var options = {
+         quality : 75,
+         targetWidth: 200,
+         targetHeight: 200,
+         sourceType: 1
+      };
+
+      Camera.getPicture(options).then(function(imageData) {
+         $scope.picture = imageData;;
+      }, function(err) {
+         console.log(err);
+      });
+    
+   };
+
+})
+
 
 .controller('namesCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.whichEntry = $state.params.aId;
@@ -54,11 +80,12 @@ angular.module('starter.controllers', [])
             total = i;
         }
       return total;
-    }
+    };
 
     $scope.dayToFilter = "28/02/2016";
 
     $scope.onItemDelete = function(dayIndex, item) {
       $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
     };
+
 }]);
