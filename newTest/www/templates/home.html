@@ -21,15 +21,18 @@
           <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
           <p>{{ item.food }}</p>
           <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
-          <ion-option-button class="button-positive ion-edit">
-          <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
-          <!-- this needs fixing -->
-          </ion-delete-button>
       </ion-item>
 
       </div>
     </ion-list>
   </ion-content>
+  <div class = "bar" style="position: absolute; bottom: 0px; width: 100%">
+  <div class="button-bar">
+    <a class="button button-positive button-outline icon ion-chatbubble-working" href = "#/">Thoughts</a>
+    <a class="button button-icon button-positive button-outline icon ion-fork" href = "#/menu/input">Add Entry</a>
+    <a class="button button-positive button-outline icon ion-sad" href = "#/">Purge</a>
+  </div>
+</div>
 
 
 </ion-view>
