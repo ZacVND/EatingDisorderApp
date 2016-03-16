@@ -48,7 +48,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input.html',
-          controller: 'namesCtrl'
+          controller: 'inputCtrl'
         }
       }
     })
