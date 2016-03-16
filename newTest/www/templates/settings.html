@@ -4,35 +4,21 @@
     </ion-nav-buttons>
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Colorblind Mode
-    </ion-toggle>
+        <div class = "item item-divider">Clinician Details</div>
+        <ion-item>
+            <h3>{{ "Name: " + clinician.name }}</h3>
+            <h3>{{ "Address: " + clinician.address }}</h3>
+            <h3>{{ "Landline: " + clinician.Landline }}</h3>
+            <h3>{{ "Mobile: " + clinician.mobile }}</h3>
+            <h3>{{ "Office Hours: " + clinician.office }}</h3>
+            <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/input';">
+        </ion-item>
+        <div class = "item item-divider">App Details</div>
+        <ion-item class = "item-text-center">
+            <h2>Version: Pre-Alpha</h2>
+            <h2>Created by: Zac and Alasdair</h2>
+            <h2>{{ getDisplayDate(day.date) }}</h2>
+        </ion-item>
     </ion-list>
-
-    <div class = "card">
-    	<div class = "item item-divider">
-    		About
-    	</div>
-    	<div class = "item item-text-wrap">
-    		App version: Pre-Alpha
-    	</br>
-    		Device: Browser
-    		</br>
-    		Something... something...
-    	</div>
-    </div>
-
-    <div class = "card">
-    	<div class = "item item-divider">
-    		Clinician
-    	</div>
-    	<div class = "item item-text-wrap">
-    		Name: Dr. John Watson
-    	</br>
-    		Address: Baker Street
-		</br>
-    		Landline: 1234567
-    	</div>
-    </div>
   </ion-content>
 </ion-view>

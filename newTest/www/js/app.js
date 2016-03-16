@@ -101,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/goals.html',
-          controller: 'goalInputCtrl'
+          controller: 'namesCtrl'
         }
       }
     })
@@ -111,7 +111,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/goals_input.html',
-          controller: 'goalInputCtrl'
+          controller: 'namesCtrl'
         }
       }
     })
