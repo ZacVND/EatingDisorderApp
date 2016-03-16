@@ -11,14 +11,21 @@
   <ion-content class="has-subheader">
     <ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:dateFilter()">
       <div class="item item-divider">
-        {{ getDisplayDate(day.date) }}
+        <div class="row">
+          <div class="col-75">
+            {{ getDisplayDate(day.date) }}
+          </div>
+          <div class="col-25">
+            <p style="text-align:right;">{{getTimeAgo(day.date)}}</p>
+          </div>
+        </div>
       </div>
       <ion-item ng-repeat="item in day.entries | orderBy:'time'" href="#/menu/logs/{{item.id}}">
 
           <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
           <p>{{ item.food }}</p>
           <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
-          <ion-option-button class="button-positive ion-edit" href="#/menu/input">
+          <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/input';">
           <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
           <!-- this needs fixing -->
           </ion-delete-button>
