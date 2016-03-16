@@ -1,0 +1,71 @@
+<ion-view view-title="New Goals">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+	<ion-list class = "list">
+	    	<!-- Time -->
+	    	<div class="item item-divider">
+	        	<h2>Choose a date:</h2>
+	     	</div>
+	     	<div class="button-bar">
+				<a class="button button-assertive" ng-click="timeOther=false">Today</a>
+				<a class="button button-balanced" ng-click="timeOther=false">Tomorrow</a>
+				<a class="button button-royal" ng-click="timeOther=true">Other</a>
+			</div>
+			<label class="item item-input" ng-show="timeOther==true">
+		     	<span class="input-label">Date</span>
+  				<input type="date">
+		    </label>
+			
+			<div class="item item-divider">
+	        	<h2>Which meal will you eat?</h2>
+	     	</div>
+	     	<div id="mealRadio">
+	     		<ion-radio ng-value="'Breakfast'">Breakfast</ion-radio>
+				<ion-radio ng-value="'Morning Snack'">Morning Snack</ion-radio>
+				<ion-radio ng-value="'Lunch'">Lunch</ion-radio>
+				<ion-radio ng-value="'Afternoon Snack'">Afternoon Snack</ion-radio>
+				<ion-radio ng-value="'Dinner'">Dinner</ion-radio>
+				<ion-radio ng-value="'Evening Snack'">Evening Snack</ion-radio>
+	    	</div>
+
+
+		    <!-- Food and drink -->
+			<div class="item item-divider">
+	        	<h2>What will you eat and drink?</h2>
+	     	</div>
+	     	<ion-item>
+	     		<textarea rows="2" style="width:100%;">
+	     		</textarea>
+	     	</ion-item>
+
+	     	<!-- Location -->
+	     	<div class="item item-divider">
+	        	<h2>Which location are you planning to eat?</h2>
+	     	</div>
+	     	<div id="locationRadio">
+	     		<ion-radio ng-value="Home">Home</ion-radio>
+				<ion-radio ng-value="School, college, uni">School, college, uni</ion-radio>
+				<ion-radio ng-value="Work">Work</ion-radio>
+				<ion-radio ng-value="Friend's House">Friend's House</ion-radio>
+				<ion-radio ng-value="Restaurant, cafe, etc.">Restaurant, cafe, etc.</ion-radio>
+				<ion-radio ng-value="Other">Other</ion-radio>
+	    	</div>
+
+	    	<!-- People -->
+	     	<div class="item item-divider">
+	        	<h2>Who are you planning to eat with?</h2>
+	     	</div>
+	     	<div id="locationRadio">
+	     		<ion-radio ng-value="Alone">Alone</ion-radio>
+				<ion-radio ng-value="Parents">Parents</ion-radio>
+				<ion-radio ng-value="Friends">Friends</ion-radio>
+				<ion-radio ng-value="Other">Other</ion-radio>
+	    	</div>
+		</ion-list>
+	</ion-list>
+
+  	<button class="button button-block button-positive" ng-click= "submit()">Submit</button>
+  </ion-content>
+</ion-view>
