@@ -13,23 +13,8 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
-        <ion-item menu-close href="#/menu/home">
-          <i class="icon ion-home"></i> Home
-        </ion-item>
-        <ion-item menu-close href="#/menu/logs">
-          <i class="icon ion-clipboard"></i> Logs
-        </ion-item>
-        <ion-item menu-close href="#/menu/goals">
-          <i class="icon ion-ribbon-b"></i> Goals
-        </ion-item>
-        <ion-item menu-close href="#/menu/input">
-          <i class="icon ion-edit"></i> Input
-        </ion-item>
-        <ion-item menu-close href="#/menu/help">
-          <i class="icon ion-help-buoy"></i> Help
-        </ion-item>
-        <ion-item menu-close href="#/menu/settings">
-          <i class="icon ion-gear-a"></i> Settings
+        <ion-item menu-close ng-repeat="item in menuItems" href="#/menu/{{item.page}}">
+          <i class="icon ion-{{item.icon}}"></i> {{item.title}}
         </ion-item>
       </ion-list>
     </ion-content>

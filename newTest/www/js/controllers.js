@@ -4,12 +4,20 @@ angular.module('starter.controllers', [])
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   }
+
+  $scope.menuItems = [
+    {title:"Home",icon:"home",page:"home"},
+    {title:"Logs",icon:"clipboard",page:"logs"},
+    {title:"Goals",icon:"ribbon-b",page:"goals"},
+    {title:"Help",icon:"help-buoy",page:"help"},
+    {title:"Settings",icon:"gear-a",page:"settings"}
+  ];
 })
 
 .controller('inputCtrl', ['$scope', '$state', function($scope, $state) {
   $scope.meals = ["Breakfast","Morning Snack","Lunch","Afternoon Snack","Dinner","Evening Snack"];
 
-  $scope.timeButtons = ["10 mins ago", "30 mins ago", "Other"]
+  $scope.timeButtons = ["10 mins ago", "30 mins ago", "Other"];
 
   $scope.activeButton = 0;
   $scope.setActiveButton = function(index) {
@@ -23,12 +31,12 @@ angular.module('starter.controllers', [])
     } else {
       $scope.timeOther = true;
     }
-  }
+  };
 
   $scope.getCurrentTime = function() {
     var t = new moment();
     return t.format('HH:mm');
-  }
+  };
 
   $scope.locations = ["Home","School, college, uni","Work","Friend's House","Restaurant, cafe, etc.","Other"];
 
