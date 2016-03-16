@@ -24,6 +24,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 })
 
 
+
 // Page Routing
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

@@ -5,33 +5,46 @@
 <ion-view title="Entry">
 	<ion-content>
 		<ion-list class="list" ng-repeat="(dayIndex, day) in logs">
-			<ion-item class="item-text-wrap" ng-repeat="item in day.entries | filter: { id: whichEntry }">
-				<h1>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h1>
-				<h2>Food &amp; Drink</h2>
-		        <p>{{ item.food }}</p>
+			<div class="list card" ng-repeat="item in day.entries | filter: { id: whichEntry }">
+				<ion-item class="item-icon-left">
+		          <i class="icon ion-fork"></i>
+		          <h2>{{ item.meal }}</h2>
+		          <p>{{ item.time }}</p>
+		        </ion-item>
+		        	
+		        <ion-item ng-show="item.food">
+		        	<h3>Food &amp; Drink</h3>
+		        	<p>{{ item.food }}</p>
+		    	</ion-item>
 
-		        <br ng-show="item.thoughts"/>
-		        <h2 ng-show="item.thoughts">Thoughts</h2>
-		        <p ng-show="item.thoughts">{{ item.thoughts }}</p>
+		    	<ion-item ng-show="item.thoughts">
+		        	<h3>Thoughts</h3>
+		        	<p>{{ item.thoughts }}</p>
+		    	</ion-item>
 
-		        <br ng-show="item.location"/>
-		        <h2 ng-show="item.location">Location</h2>
-		        <p ng-show="item.location">{{ item.location }}</p>
+		    	<ion-item ng-show="item.location">
+		        	<h3>Location</h3>
+		        	<p>{{ item.location }}</p>
+		    	</ion-item>
 
-		        <br ng-show="item.people"/>
-		        <h2 ng-show="item.people">Who you ate with</h2>
-		        <p ng-show="item.people">{{ item.people }}</p>
+		    	<ion-item ng-show="item.people">
+		        	<h3>Who you ate with</h3>
+		        	<p>{{ item.people }}</p>
+		    	</ion-item>
 
-		        <br ng-show="item.binge"/>
-		        <p ng-show="item.binge"><i class="ion-alert"></i>Binge</p>
+		    	<ion-item ng-show="item.binge">
+		        	<p><i class="ion-alert"></i>Binge</p>
+		    	</ion-item>
 
-		        <br ng-show="item.purge"/>
-		        <p ng-show="item.purge"><i class="ion-alert"></i>Purge</p>
+		    	<ion-item ng-show="item.purge">
+		        	<p><i class="ion-alert"></i>Purge</p>
+		    	</ion-item>
 
-		        <br/>
-		        <button class="button button-icon icon ion-edit" onclick="window.location.href='#/menu/input';"> Edit</button>
-		        <button class="button button-icon icon ion-trash-b" ng-click="onItemDelete(dayIndex, item)" style="float: right;"> Delete</button>
-			</ion-item>
+		    	<ion-item>
+		        	<button class="button button-icon icon ion-edit" onclick="window.location.href='#/menu/input';"></button>
+		        	<button class="button button-icon icon ion-trash-b" ng-click="onItemDelete(dayIndex, item)" style="float: right;"></button>
+		    	</ion-item>
+			</div>
 		</ion-list>
 	</ion-content>
 </ion-view>
