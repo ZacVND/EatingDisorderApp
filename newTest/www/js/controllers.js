@@ -17,6 +17,10 @@ angular.module('starter.controllers', [])
           {id:'150115d',time:'19:02',meal:'Dinner',food:'Pasta and pesto',thoughts:'Proud of myself for eating 3 meals today',location:'Home',people:'Parents'}
         ]},
 
+        {date:'2016/03/16',entries:[
+          
+        ]},
+
         {date:'2016/02/28',entries:[
           {id:'280216b',time:'07:06',meal:'Breakfast',food:'Cereal, milk, orange juice',thoughts:'Feeling quite nervous',location:'Home',people:'Alone'},
           {id:'280216l',time:'13:25',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'Home',people:'Alone'},

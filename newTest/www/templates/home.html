@@ -7,29 +7,25 @@
    	<div class = "item item-divider center-text">
 	    	<h3>Today's Goal: Eat {{ sumMeals() }} Meals</h3>
    	</div>
-    <ion-list ng-repeat="(dayIndex, day) in logs | orderBy:'date':true">
-    <div class = "list card">
-      <div class="item item-divider item-button-right">
-        {{day.date + " " + selectedDate}}
-        <a href="#" class="item-icon-right" ng-click = "expandv = !expandv">
-            <i class="icon ion-plus"></i>
-            <!-- <i class="icon ion-minus" ng-show = "expandv == true"></i> -->
-        </a>
-      </div>
-      <ion-item ng-repeat="item in day.entries | orderBy:'time'" ng-show = "expandv == true">
-
+    <ion-list ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:todaysDate('/')">
+    <div class = "list card">      
+      <ion-item ng-repeat="item in day.entries | orderBy:'time'">
           <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
           <p>{{ item.food }}</p>
           <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
       </ion-item>
+      <ion-item ng-show="!day.entries.length" class="item-text-wrap">
+        <p>No entries added today. Click the button below to add an entry.</p>
+      </ion-item>
+      
+    </div>
 
-      </div>
     </ion-list>
   </ion-content>
   <div class = "bar" style="position: absolute; bottom: 0px; width: 100%">
   <div class="button-bar">
     <a class="button button-positive button-outline icon ion-chatbubble-working" href = "#/">Thoughts</a>
-    <a class="button button-icon button-positive button-outline icon ion-fork" href = "#/menu/input">Add Entry</a>
+    <a class="button button-positive button-outline icon ion-fork" href = "#/menu/input">Add Entry</a>
     <a class="button button-positive button-outline icon ion-sad" href = "#/">Purge</a>
   </div>
 </div>
