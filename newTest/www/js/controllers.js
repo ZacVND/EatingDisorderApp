@@ -9,8 +9,8 @@ angular.module('starter.controllers', [])
     {title:"Home",icon:"home",page:"home"},
     {title:"Logs",icon:"clipboard",page:"logs"},
     {title:"Goals",icon:"ribbon-b",page:"goals"},
-    {title:"Help",icon:"help-buoy",page:"help"},
-    {title:"Settings",icon:"gear-a",page:"settings"}
+    {title:"Settings",icon:"gear-a",page:"settings"},
+    {title:"Help",icon:"help-buoy",page:"help"}
   ];
 })
 
@@ -45,6 +45,22 @@ angular.module('starter.controllers', [])
 
 .controller('namesCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.whichEntry = $state.params.aId;
+
+    $scope.createDayLog = function() {
+      var d = new moment();
+      if(!isDateInLogs(d.format('YYYY/MM/DD'))) {
+        $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
+      }
+    }
+
+    isDateInLogs = function(d) {
+      for(var i = 0; i < $scope.logs.length; i++) {
+        if($scope.logs[i].date == d) {
+          return true;
+        }
+      }
+      return false;
+    }
 
     $scope.logs = [
 
