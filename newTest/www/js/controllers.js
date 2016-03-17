@@ -46,22 +46,6 @@ angular.module('starter.controllers', [])
 .controller('namesCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.whichEntry = $state.params.aId;
 
-    $scope.createDayLog = function() {
-      var d = new moment();
-      if(!isDateInLogs(d.format('YYYY/MM/DD'))) {
-        $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
-      }
-    }
-
-    isDateInLogs = function(d) {
-      for(var i = 0; i < $scope.logs.length; i++) {
-        if($scope.logs[i].date == d) {
-          return true;
-        }
-      }
-      return false;
-    }
-
     $scope.logs = [
 
         {date:'2015/01/15',entries:[
@@ -104,6 +88,24 @@ angular.module('starter.controllers', [])
           {id:'lu01',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'School, college, uni',people:'Friends'},
           {id:'di01',meal:'Dinner',food:'Pasta and pesto',location:'Home',people:'Parents'}
     ];
+
+    isDateInLogs = function(d) {
+      for(var i = 0; i < $scope.logs.length; i++) {
+        if($scope.logs[i].date == d) {
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    createDayLog = function() {
+      var d = new moment();
+      if(!isDateInLogs(d.format('YYYY/MM/DD'))) {
+        $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
+      }
+    }
+
+    createDayLog();
 
     $scope.sumMeals = function() {
       var total = 0;
