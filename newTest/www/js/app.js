@@ -115,5 +115,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         }
       }
     })
+
+    .state('menu.settingsEdit', {
+      url: '/settingsEdit',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/settingsEdit.html',
+          controller: 'namesCtrl'
+        }
+      }
+    })
     $urlRouterProvider.otherwise('/menu/home'); // App opens up on the home page
 });

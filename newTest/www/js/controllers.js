@@ -39,7 +39,8 @@ angular.module('starter.controllers', ['starter.services', 'ngCordova'])
         "address": "14B Baker Street",
         "Landline": "1234567",
         "mobile": "0283124893275",
-        "office": "Weekdays only"
+        "office": "Weekdays only",
+        "email": "j.watson69@yahoo.com"
     };
 
     $http.get('js/data.json').success(function(data) {

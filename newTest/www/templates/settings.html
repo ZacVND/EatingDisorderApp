@@ -4,15 +4,28 @@
     </ion-nav-buttons>
   <ion-content>
     <ion-list>
-        <div class = "item item-divider">Clinician Details</div>
+        <div class = "item item-divider item-button-right">Clinician Details
+        </div>
         <ion-item>
             <h3>{{ "Name: " + clinician.name }}</h3>
             <h3>{{ "Address: " + clinician.address }}</h3>
             <h3>{{ "Landline: " + clinician.Landline }}</h3>
             <h3>{{ "Mobile: " + clinician.mobile }}</h3>
             <h3>{{ "Office Hours: " + clinician.office }}</h3>
-            <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/input';">
+            <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/settingsEdit';">
         </ion-item>
+
+        <div class = "item item-divider item-button-right">Your  Details
+        </div>
+        <ion-item>
+            <h3>{{ "Name: " + clinician.name }}</h3>
+            <h3>{{ "Address: " + clinician.address }}</h3>
+            <h3>{{ "Landline: " + clinician.Landline }}</h3>
+            <h3>{{ "Mobile: " + clinician.mobile }}</h3>
+            <h3>{{ "Office Hours: " + clinician.office }}</h3>
+            <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/settingsEdit';">
+        </ion-item>
+
         <div class = "item item-divider">App Details</div>
         <ion-item class = "item-text-center">
             <h2>Version: Pre-Alpha</h2>
