@@ -39,7 +39,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : { // menuContent is the name of the nav-view used by the menu
           templateUrl: 'templates/logs.html',
-          controller: 'namesCtrl'
+          controller: 'logsCtrl'
         }
       }
     })
@@ -59,7 +59,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/detailed.html',
-          controller: 'namesCtrl'
+          controller: 'logsCtrl'
         }
       }
     })
@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/help.html',
-          controller: 'namesCtrl'
+          controller: 'logsCtrl'
         }
       }
     })
@@ -79,7 +79,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/home.html',
-          controller: 'namesCtrl'
+          controller: 'logsCtrl'
         }
       }
     })
@@ -89,7 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/settings.html',
-          controller: 'namesCtrl'
+          controller: 'logsCtrl'
         }
       }
     })
@@ -99,7 +99,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/goals.html',
-          controller: 'namesCtrl'
+          controller: 'logsCtrl'
+        }
+      }
+    })
+
+    .state('menu.goals_input', {
+      url: '/goals',
+      views: {
+        'menuContent' : {
+          templateUrl: 'templates/goals.html',
+          controller: 'goalsCtrl'
         }
       }
     })

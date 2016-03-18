@@ -1,0 +1,31 @@
+<ion-view view-title="New Goals">
+  <ion-content>
+	<ion-list class = "list">
+
+			<div class="item item-divider">
+	        	<h2>What is your goal?</h2>
+	     	</div>
+	     	<ion-item>
+	     		<textarea rows="3" style="width:100%;">
+	     		</textarea>
+	     	</ion-item>
+	     	
+	    	<!-- Date -->
+	    	<div class="item item-divider">
+	        	<h2>When?</h2>
+	     	</div>
+	     	<div class="button-bar">
+				<a class="button button-assertive" ng-click="timeOther=false">Today</a>
+				<a class="button button-balanced" ng-click="timeOther=false">Tomorrow</a>
+				<a class="button button-royal" ng-click="timeOther=true">Other</a>
+			</div>
+			<label class="item item-input" ng-show="timeOther==true">
+		     	<i class="icon ion-calendar placeholder-icon"></i>
+  				<input type="date">
+		    </label>
+		</ion-list>
+	</ion-list>
+
+  	<button class="button button-block button-positive" ng-click= "submit()">Submit</button>
+  </ion-content>
+</ion-view>

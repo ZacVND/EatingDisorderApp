@@ -6,11 +6,11 @@
   <ion-content class="has-header">
     <ion-list ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:todaysDate('/')">
 
-      <div class="list card">
+      <div class="list card" ng-repeat="date in goals | filter:todaysDate('/')">
         <ion-item class="item-icon-left" href="#/menu/goals">
           <i class="icon ion-ribbon-a"></i>
           <h2>Today's Goals</h2>
-          <p>Eat {{ sumMeals() }} Meals</p>
+          <p ng-repeat="item in date.goals">{{ item.goal }}</p>
         </ion-item>
       </div>
 

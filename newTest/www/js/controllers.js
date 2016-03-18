@@ -43,7 +43,9 @@ angular.module('starter.controllers', [])
   $scope.people = ["Alone","Parents","Friends","Other"];
 }])
 
-.controller('namesCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
+
+
+.controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.whichEntry = $state.params.aId;
 
     $http.get('js/data.json').success(function(data) {
@@ -52,12 +54,17 @@ angular.module('starter.controllers', [])
       if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
         $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
       }
+      data.logs = JSON.stringify($scope.logs);
     });
 
     $scope.goals = [
-          {id:'bf01',meal:'Breakfast',food:'Cereal, milk, orange juice',location:'Home',people:'Alone'},
-          {id:'lu01',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'School, college, uni',people:'Friends'},
-          {id:'di01',meal:'Dinner',food:'Pasta and pesto',location:'Home',people:'Parents'}
+          {"date":"2016/03/18","goals":[
+            {"id":"20160318g1","goal":"Eat my 5 a day","completed":"false"},
+            {"id":"20160318g2","goal":"No binges today","completed":"false"}
+          ]},
+          {"date":"2016/03/06","goals":[
+            {"id":"20160306g1","goal":"Don't make myself throw up after dinner","completed":"true"}
+          ]}
     ];
     
     $scope.sumMeals = function() {
@@ -67,6 +74,7 @@ angular.module('starter.controllers', [])
         }
       return total;
     }
+    
 
     $scope.todaysDate = function(separator) {
       var d = new moment();
