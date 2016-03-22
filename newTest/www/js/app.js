@@ -54,6 +54,36 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+    .state('menu.input_thoughts', {
+      url: '/input_thoughts',
+      views: {
+        'menuContent' : { // all pages are part of menuContent
+          templateUrl: 'templates/input_thoughts.html',
+          controller: 'inputCtrl'
+        }
+      }
+    })
+
+    .state('menu.input_purge', {
+      url: '/input_purge',
+      views: {
+        'menuContent' : { // all pages are part of menuContent
+          templateUrl: 'templates/input_purge.html',
+          controller: 'inputCtrl'
+        }
+      }
+    })
+
+    .state('menu.success', {
+      url: '/success',
+      views: {
+        'menuContent' : { // all pages are part of menuContent
+          templateUrl: 'templates/success.html',
+          controller: 'logsCtrl'
+        }
+      }
+    })
+
     .state('menu.detailed', {
       url: '/logs/:aId',
       views: {

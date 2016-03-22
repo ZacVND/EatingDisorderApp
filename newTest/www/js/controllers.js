@@ -57,6 +57,12 @@ angular.module('starter.controllers', [])
       data.logs = JSON.stringify($scope.logs);
     });
 
+    $http.get('js/cuteanimals.json').success(function(data) {
+      $scope.animals = data.photos.photo;
+      $scope.photo = $scope.animals[Math.floor(Math.random()*$scope.animals.length)];
+    });
+
+
     $scope.goals = [
           {"date":"2016/03/21","goals":[
             {"id":"20160318g1","goal":"Eat my 5 a day","completed":"false"},
@@ -64,6 +70,8 @@ angular.module('starter.controllers', [])
           ]},
           {"date":"2016/03/06","goals":[
             {"id":"20160306g1","goal":"Don't make myself throw up after dinner","completed":"true"}
+          ]},
+          {"date":"2016/03/22","goals":[
           ]}
     ];
     

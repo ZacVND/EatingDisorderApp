@@ -11,7 +11,7 @@
           <i class="icon ion-ribbon-a"></i>
           <h2>Today's Goals</h2>
         </ion-item>
-        <ion-item>
+        <ion-item ng-show="date.goals.length">
           <p ng-repeat="item in date.goals">{{ item.goal }}</p>
         </ion-item>
         <ion-item ng-show="!date.goals.length" href="#/menu/goals">
@@ -20,7 +20,7 @@
       </div>
 
       <div class = "list card">
-        <ion-item class="item-icon-left">
+        <ion-item class="item-icon-left" href="#/menu/logs">
           <i class="icon ion-fork"></i>
           <h2>Today's Entries</h2>
         </ion-item>
@@ -38,9 +38,9 @@
   </ion-content>
   <div class = "bar" style="position: absolute; bottom: 0px; width: 100%">
     <div class="button-bar">
-      <a class="button button-positive button-outline icon icon-left ion-chatbubble-working" href = "#/">Thoughts</a>
+      <a class="button button-positive button-outline icon icon-left ion-chatbubble-working" href = "#/menu/input_thoughts">Thoughts</a>
       <a class="button button-positive button-outline icon icon-left ion-fork" href = "#/menu/input">Add Entry</a>
-      <a class="button button-positive button-outline icon icon-left ion-sad" href = "#/">Purge</a>
+      <a class="button button-positive button-outline icon icon-left ion-sad" href = "#/menu/input_purge">Purge</a>
     </div>
   </div>
 </ion-view>
