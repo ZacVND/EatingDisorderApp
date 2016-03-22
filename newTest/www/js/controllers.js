@@ -58,7 +58,7 @@ angular.module('starter.controllers', [])
     });
 
     $scope.goals = [
-          {"date":"2016/03/18","goals":[
+          {"date":"2016/03/21","goals":[
             {"id":"20160318g1","goal":"Eat my 5 a day","completed":"false"},
             {"id":"20160318g2","goal":"No binges today","completed":"false"}
           ]},

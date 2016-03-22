@@ -7,10 +7,15 @@
     <ion-list ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:todaysDate('/')">
 
       <div class="list card" ng-repeat="date in goals | filter:todaysDate('/')">
-        <ion-item class="item-icon-left" href="#/menu/goals">
+        <ion-item class="item-icon-left item-text-wrap" href="#/menu/goals">
           <i class="icon ion-ribbon-a"></i>
           <h2>Today's Goals</h2>
+        </ion-item>
+        <ion-item>
           <p ng-repeat="item in date.goals">{{ item.goal }}</p>
+        </ion-item>
+        <ion-item ng-show="!date.goals.length" href="#/menu/goals">
+          <p>No goals for today. Tap here to add one</p>
         </ion-item>
       </div>
 
@@ -26,7 +31,7 @@
             <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
         </ion-item>
         <ion-item ng-show="!day.entries.length" class="item-text-wrap">
-          <p>No entries added today. Click the button below to add an entry.</p>
+          <p>No entries added today. Tap the button below to add an entry.</p>
         </ion-item>
       </div>
     </ion-list>
