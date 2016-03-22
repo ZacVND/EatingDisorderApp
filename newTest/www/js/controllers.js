@@ -8,91 +8,76 @@ angular.module('starter.controllers', ['starter.services', 'ngCordova'])
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   }
+
+  $scope.menuItems = [
+    {title:"Home",icon:"home",page:"home"},
+    {title:"Logs",icon:"clipboard",page:"logs"},
+    {title:"Goals",icon:"ribbon-b",page:"goals"},
+    {title:"Settings",icon:"gear-a",page:"settings"},
+    {title:"Help",icon:"help-buoy",page:"help"}
+  ];
 })
 
-.controller('MyCtrl', function($scope, Camera) {
+.controller('inputCtrl', ['$scope', '$state', function($scope, $state) {
+  $scope.meals = ["Breakfast","Morning Snack","Lunch","Afternoon Snack","Dinner","Evening Snack"];
 
-   $scope.takePicture = function (options) {
-  
-      var options = {
-         quality : 75,
-         targetWidth: 200,
-         targetHeight: 200,
-         sourceType: 1
-      };
+  $scope.timeButtons = ["10 mins ago", "30 mins ago", "Other"];
 
-      Camera.getPicture(options).then(function(imageData) {
-         $scope.picture = imageData;;
-      }, function(err) {
-         console.log(err);
-      });
-    
-   };
+  $scope.activeButton = 0;
+  $scope.setActiveButton = function(index) {
+    $scope.activeButton = index;
+  };
 
-})
+  $scope.timeOther = false;
+  $scope.setTimeOther = function(index) {
+    if(index < 2) {
+      $scope.timeOther = false;
+    } else {
+      $scope.timeOther = true;
+    }
+  };
 
-.controller('namesCtrl', ['$scope', '$state', '$http', function($scope, $state, $http) {
+  $scope.getCurrentTime = function() {
+    var t = new moment();
+    return t.format('HH:mm');
+  };
+
+  $scope.locations = ["Home","School, college, uni","Work","Friend's House","Restaurant, cafe, etc.","Other"];
+
+  $scope.people = ["Alone","Parents","Friends","Other"];
+}])
+
+
+
+.controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.whichEntry = $state.params.aId;
 
-    $scope.clinician =  {
-        "name": "Dr. John Watson",
-        "address": "14B Baker Street",
-        "Landline": "1234567",
-        "mobile": "0283124893275",
-        "office": "Weekdays only",
-        "email": "j.watson69@yahoo.com"
-    };
-
     $http.get('js/data.json').success(function(data) {
-      $scope.logs = data;
+      $scope.logs = data.logs;
+      var d = new moment();
+      if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
+        $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
+      }
+      data.logs = JSON.stringify($scope.logs);
     });
 
-    // $scope.logs = [
-
-    //     {date:'2015/01/15',entries:[
-    //       {id:'150115b',time:'07:06',meal:'Breakfast',food:'Cereal, milk, orange juice',thoughts:'Feeling quite nervous',location:'Home',people:'Alone', complete:true},
-    //       {id:'150115l',time:'13:25',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'School, college, uni',people:'Friends', complete:true},
-    //       {id:'150115d',time:'19:02',meal:'Dinner',food:'Pasta and pesto',thoughts:'Proud of myself for eating 3 meals today',location:'Home',people:'Parents', complete:false}
-    //     ]},
-
-    //     {date:'2016/02/28',entries:[
-    //       {id:'280216b',time:'07:06',meal:'Breakfast',food:'Cereal, milk, orange juice',thoughts:'Feeling quite nervous',location:'Home',people:'Alone', complete:true},
-    //       {id:'280216l',time:'13:25',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'Home',people:'Alone', complete:false},
-    //       {id:'280216d',time:'19:02',meal:'Dinner',food:'Pasta and pesto',thoughts:'Proud of myself for eating 3 meals today',location:'Restaurant, cafe', complete:true},
-    //       {id:'280216a',time:'15:59',meal:'Afternoon Snack',food:'Packet of crisps', complete:true}
-    //     ]},
-
-    //     {date:'2016/02/27',entries:[
-    //       {id:'270216b',time:'09:15',meal:'Breakfast',food:'Toast, jam, milk',thoughts:'So tired',location:'Home',people:'Alone', complete:true},
-    //       {id:'270216d',time:'17:39',meal:'Dinner',food:'Pizza and chips',thoughts:'Feel so bad',location:'Friend\'s House',people:'Friends',purge:true, complete:true}
-    //     ]},
-
-    //     {date:'2016/02/25',entries:[
-    //       {id:'250216b',time:'08:42',meal:'Breakfast',food:'Pancakes with butter',thoughts:'Upset I had a big breakfast',location:'Home',people:'Parents', complete:false},
-    //       {id:'250216a',time:'17:39',meal:'Afternoon Snack',food:'6 sausage rolls',thoughts:'Feel like a pig for having so many sausage rolls',location:'Outside',people:'Alone',binge:true, complete:true}
-    //     ]},
-
-    //     {date:'2016/03/09',entries:[
-    //       {id:'090316b',time:'07:06',meal:'Breakfast',food:'Cereal, milk, orange juice',thoughts:'Feeling quite nervous',location:'Home',people:'Alone', complete:true},
-    //       {id:'090316l',time:'13:25',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'Home',people:'Alone', complete:true},
-    //       {id:'090316d',time:'19:02',meal:'Dinner',food:'Pasta and pesto',thoughts:'Proud of myself for eating 3 meals today',location:'Restaurant, cafe', complete:true},
-    //       {id:'090316a',time:'15:59',meal:'Afternoon Snack',food:'Packet of crisps', complete:false}
-    //     ]}   
-    // ];
-
     $scope.goals = [
-          {id:'today',meal:'Breakfast',food:'Cereal, milk, orange juice',location:'Home',people:'Alone'},
-          {id:'today',meal:'Lunch',food:'Ham sandwich, crisps, apple',location:'School, college, uni',people:'Friends'},
-          {id:'today',meal:'Dinner',food:'Pasta and pesto',location:'Home',people:'Parents'}
+          {"date":"2016/03/21","goals":[
+            {"id":"20160318g1","goal":"Eat my 5 a day","completed":"false"},
+            {"id":"20160318g2","goal":"No binges today","completed":"false"}
+          ]},
+          {"date":"2016/03/06","goals":[
+            {"id":"20160306g1","goal":"Don't make myself throw up after dinner","completed":"true"}
+          ]}
     ];
-
+    
     $scope.sumMeals = function() {
       var total = 0;
         for(var i = 0; i <= $scope.goals.length; i++){
             total = i;
         }
       return total;
-    };
+    }
 
     $scope.todaysDate = function(separator) {
       var d = new moment();
