@@ -134,4 +134,7 @@ angular.module('starter.controllers', ['starter.services', 'ngCordova'])
     $scope.submit = function() { 
       $state.go('menu.goals'); 
     };
+    $scope.cancel = function() { 
+      $state.go('menu.settings'); 
+    };
 }]);
