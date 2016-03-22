@@ -75,6 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('menu.success', {
+      cache: false,
       url: '/success',
       views: {
         'menuContent' : { // all pages are part of menuContent
