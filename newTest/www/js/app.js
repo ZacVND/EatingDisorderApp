@@ -49,7 +49,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input.html',
-          controller: 'inputCtrl'
+          controller: 'logsCtrl'
         }
       }
     })
@@ -59,7 +59,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input_thoughts.html',
-          controller: 'inputCtrl'
+          controller: 'logsCtrl'
         }
       }
     })
@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input_purge.html',
-          controller: 'inputCtrl'
+          controller: 'logsCtrl'
         }
       }
     })

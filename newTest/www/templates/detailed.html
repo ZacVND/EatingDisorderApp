@@ -6,19 +6,27 @@
 	<ion-content>
 		<ion-list class="list" ng-repeat="(dayIndex, day) in logs">
 			<div class="list card" ng-repeat="item in day.entries | filter: { id: whichEntry }">
-				<ion-item class="item-icon-left">
+				<!-- If it is a regular meal entry -->
+				<ion-item class="item-icon-left" ng-show="item.meal">
 		          <i class="icon ion-fork"></i>
 		          <h2>{{ item.meal }}</h2>
 		          <p>{{ item.time }}</p>
 		        </ion-item>
-		        	
+		        
+		        <!-- If it is just a thought entry -->
+		        <ion-item class="item-icon-left" ng-show="!item.meal">
+		          <i class="icon ion-chatbubble-working"></i>
+		          <h2>Thought</h2>
+		          <p>{{ item.time }}</p>
+		        </ion-item>
+
 		        <ion-item ng-show="item.food">
 		        	<h3>Food &amp; Drink</h3>
 		        	<p>{{ item.food }}</p>
 		    	</ion-item>
 
 		    	<ion-item ng-show="item.thoughts">
-		        	<h3>Thoughts</h3>
+		        	<h3 ng-show="item.meal || item.purge">Thoughts</h3>
 		        	<p>{{ item.thoughts }}</p>
 		    	</ion-item>
 

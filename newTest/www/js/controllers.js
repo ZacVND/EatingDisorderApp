@@ -14,36 +14,6 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('inputCtrl', ['$scope', '$state', function($scope, $state) {
-  $scope.meals = ["Breakfast","Morning Snack","Lunch","Afternoon Snack","Dinner","Evening Snack"];
-
-  $scope.timeButtons = ["10 mins ago", "30 mins ago", "Other"];
-
-  $scope.activeButton = 0;
-  $scope.setActiveButton = function(index) {
-    $scope.activeButton = index;
-  };
-
-  $scope.timeOther = false;
-  $scope.setTimeOther = function(index) {
-    if(index < 2) {
-      $scope.timeOther = false;
-    } else {
-      $scope.timeOther = true;
-    }
-  };
-
-  $scope.getCurrentTime = function() {
-    var t = new moment();
-    return t.format('HH:mm');
-  };
-
-  $scope.locations = ["Home","School, college, uni","Work","Friend's House","Restaurant, cafe, etc.","Other"];
-
-  $scope.people = ["Alone","Parents","Friends","Other"];
-}])
-
-
 
 .controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.whichEntry = $state.params.aId;
@@ -64,7 +34,7 @@ angular.module('starter.controllers', [])
 
 
     $scope.goals = [
-          {"date":"2016/03/21","goals":[
+          {"date":"2016/03/24","goals":[
             {"id":"20160318g1","goal":"Eat my 5 a day","completed":"false"},
             {"id":"20160318g2","goal":"No binges today","completed":"false"}
           ]},
@@ -117,4 +87,38 @@ angular.module('starter.controllers', [])
     $scope.onItemDelete = function(dayIndex, item) {
       $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
     };
+
+    // Input controls
+    $scope.meals = ["Breakfast","Morning Snack","Lunch","Afternoon Snack","Dinner","Evening Snack"];
+
+    $scope.timeButtons = ["10 mins ago", "30 mins ago", "Other"];
+
+    $scope.activeButton = 0;
+    $scope.setActiveButton = function(index) {
+      $scope.activeButton = index;
+    };
+
+    $scope.timeOther = false;
+    $scope.setTimeOther = function(index) {
+      if(index < 2) {
+        $scope.timeOther = false;
+      } else {
+        $scope.timeOther = true;
+      }
+    };
+
+    $scope.getCurrentTime = function() {
+      var t = new moment();
+      return t.format('HH:mm');
+    };
+
+    $scope.locations = ["Home","School, college, uni","Work","Friend's House","Restaurant, cafe, etc.","Other"];
+
+    $scope.people = ["Alone","Parents","Friends","Other"];
+
+    // To submit an input
+    $scope.submit = function() {
+      var meal = getElementById("mealRadio").value;
+      
+    }
 }]);
