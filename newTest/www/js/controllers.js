@@ -89,7 +89,14 @@ angular.module('starter.controllers', [])
     };
 
     // Input controls
-    $scope.meals = ["Breakfast","Morning Snack","Lunch","Afternoon Snack","Dinner","Evening Snack"];
+    $scope.meals = [
+      {meal:"Breakfast", value:"bf"},
+      {meal:"Morning Snack", value:"ms"},
+      {meal:"Lunch", value:"lu"},
+      {meal:"Afternoon Snack", value:"as"},
+      {meal:"Dinner", value:"di"},
+      {meal:"Evening Snack", value:"es"}
+    ];
 
     $scope.timeButtons = ["10 mins ago", "30 mins ago", "Other"];
 
@@ -112,13 +119,47 @@ angular.module('starter.controllers', [])
       return t.format('HH:mm');
     };
 
+    $scope.timeIndex = 0;
+
+    $scope.setTimeIndex = function(index) {
+      $scope.timeIndex = index;
+    }
+
     $scope.locations = ["Home","School, college, uni","Work","Friend's House","Restaurant, cafe, etc.","Other"];
 
     $scope.people = ["Alone","Parents","Friends","Other"];
 
+    $scope.entry = {
+
+    };
+
+    $scope.selectedTime;
+
+    // To convert time selection into a real time
+    setTimeSelection = function(index) {
+      var b = new moment(); 
+      switch(index) {
+        case 0:
+          b = b.subtract(10, 'minutes').format('HH:mm');
+          $scope.entry.timeOfEntry = b;
+          break;
+        case 1:
+          b = b.subtract(30, 'minutes').format('HH:mm');
+          $scope.entry.timeOfEntry = b;
+          break;
+        case 2:
+          b = new moment($scope.selectedTime).format('HH:mm');
+          $scope.entry.timeOfEntry = b;
+          break;
+      }
+    };
+
     // To submit an input
     $scope.submit = function() {
-      var meal = getElementById("mealRadio").value;
+      //var meal = window.getElementById("mealRadio").value;
+      setTimeSelection($scope.timeIndex);
+      console.log("meal: " + $scope.entry.mealChoice);
+      console.log("time: " + $scope.entry.timeOfEntry);
       
     }
 }]);
