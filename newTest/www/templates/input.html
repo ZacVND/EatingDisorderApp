@@ -10,7 +10,7 @@
 	        	<h2>Which meal did you eat?</h2>
 	     	</div>
 	     	<div id="mealRadio">
-	     		<ion-radio ng-repeat="item in meals" ng-model="entry.mealChoice" ng-value="item.meal" name="meal">{{item.meal}}</ion-radio>
+	     		<ion-radio ng-repeat="item in meals" ng-model="entry.meal" ng-value="item.meal" name="meal">{{item.meal}}</ion-radio>
 	    	</div>
 
 	    	<!-- Time -->
@@ -29,7 +29,7 @@
 	        	<h2>What did you eat and drink?</h2>
 	     	</div>
 	     	<ion-item>
-	     		<textarea ng-model="entry.foodAndDrinkTextArea" rows="2" style="width:100%;"></textarea>
+	     		<textarea ng-model="entry.food" rows="2" style="width:100%;"></textarea>
 	     	</ion-item>
 
 	     	<!-- Binge -->

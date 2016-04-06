@@ -16,21 +16,152 @@ angular.module('starter.controllers', [])
 
 
 .controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
-    $scope.whichEntry = $state.params.aId;
+    $scope.whichEntry = $state.params.aId
 
-    $http.get('js/data.json').success(function(data) {
-      $scope.logs = data.logs;
-      var d = new moment();
-      if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
-        $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
-      }
-      data.logs = JSON.stringify($scope.logs);
-    });
+    // $http.get('js/data.json').success(function(data) {
+    //   console.log($scope.logs);
+    //   $scope.logs = data.logs;
+    //   console.log($scope.logs);
+      
+    //   var d = new moment();
+    //   if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
+    //     $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
+    //   }
+    //   data.logs = JSON.stringify($scope.logs);
+    // });
 
     $http.get('js/cuteanimals.json').success(function(data) {
       $scope.animals = data.photos.photo;
       $scope.photo = $scope.animals[Math.floor(Math.random()*$scope.animals.length)];
     });
+
+    $scope.logs = [   
+      {
+        "date":"2016/02/25",
+        "entries":[
+          {
+            "id":"250216b",
+            "time":"08:42",
+            "meal":"Breakfast",
+            "food":"Pancakes with butter",
+            "thoughts":"Upset I had a big breakfast",
+            "location":"Home",
+            "people":"Parents"
+          },
+          {
+            "id":"250216a",
+            "time":"17:39",
+            "meal":"Afternoon Snack",
+            "food":"6 sausage rolls",
+            "thoughts":"Feel like a pig for having so many sausage rolls",
+            "location":"Outside",
+            "people":"Alone",
+            "binge":"true"
+          }
+        ]
+      },
+      {
+        "date":"2016/02/27",
+        "entries":[
+          {
+            "id":"270216b",
+            "time":"09:15",
+            "meal":"Breakfast",
+            "food":"Toast, jam, milk",
+            "thoughts":"So tired",
+            "location":"Home","people":"Alone"
+          },
+          {
+            "id":"270216d",
+            "time":"17:39",
+            "meal":"Dinner",
+            "food":"Pizza and chips",
+            "thoughts":"Feel so bad",
+            "location":"Friend's House",
+            "people":"Friends",
+            "purge":"true"
+          }
+        ]
+      },
+      {
+        "date":"2016/02/28",
+        "entries":[
+          {
+            "id":"280216b",
+            "time":"07:06",
+            "meal":"Breakfast",
+            "food":"Cereal, milk, orange juice",
+            "thoughts":"Feeling quite nervous",
+            "location":"Home",
+            "people":"Alone"
+          },
+          {
+            "id":"280216l",
+            "time":"13:25",
+            "meal":"Lunch",
+            "food":"Ham sandwich, crisps, apple",
+            "location":"Home",
+            "people":"Alone"
+          },
+          {
+            "id":"280216d",
+            "time":"19:02",
+            "meal":"Dinner",
+            "food":"Pasta and pesto",
+            "thoughts":"Proud of myself for eating 3 meals today",
+            "location":"Restaurant, cafe"
+          },
+          {
+            "id":"280216a",
+            "time":"15:59",
+            "meal":"Afternoon Snack",
+            "food":"Packet of crisps"
+          }
+        ]
+      },
+      {
+        "date":"2016/03/24",
+        "entries":[
+          {
+            "id":"240316b",
+            "time":"07:06",
+            "meal":"Breakfast",
+            "food":"Cereal, milk, orange juice",
+            "thoughts":"Feeling quite nervous",
+            "location":"Home",
+            "people":"Alone"
+          },
+          {
+            "id":"240316l",
+            "time":"13:25",
+            "meal":"Lunch",
+            "food":"Ham sandwich, crisps, apple",
+            "location":"School, college, uni",
+            "people":"Friends"
+          },
+          {
+            "id":"240316d",
+            "time":"19:02",
+            "meal":"Dinner",
+            "food":"Pasta and pesto",
+            "thoughts":"Proud of myself for eating 3 meals today",
+            "location":"Home",
+            "people":"Parents"
+          },
+          {
+            "id":"240316t1",
+            "time":"16:42",
+            "thoughts":"Feeling quite good today"
+          }
+        ]
+      }
+    ]
+
+    var d = new moment();
+    if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
+      $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
+    }
+    // data.logs = JSON.stringify($scope.logs);
 
 
     $scope.goals = [
@@ -41,7 +172,7 @@ angular.module('starter.controllers', [])
           {"date":"2016/03/06","goals":[
             {"id":"20160306g1","goal":"Don't make myself throw up after dinner","completed":"true"}
           ]},
-          {"date":"2016/03/22","goals":[
+          {"date":"2016/04/06","goals":[
           ]}
     ];
     
@@ -85,7 +216,8 @@ angular.module('starter.controllers', [])
     }
 
     $scope.onItemDelete = function(dayIndex, item) {
-      $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
+      console.log("dayIndex: " + dayIndex);
+      $scope.logs[$scope.logs.length - dayIndex - 1].entries.splice($scope.logs[$scope.logs.length - dayIndex - 1].entries.indexOf(item), 1);
     };
 
     // Input controls
@@ -144,11 +276,11 @@ angular.module('starter.controllers', [])
       switch(index) {
         case 0:
           b = b.subtract(10, 'minutes').format('HH:mm');
-          $scope.entry.timeOfEntry = b;
+          $scope.entry.time = b;
           break;
         case 1:
           b = b.subtract(30, 'minutes').format('HH:mm');
-          $scope.entry.timeOfEntry = b;
+          $scope.entry.time = b;
           break;
         case 2:
           //b = new moment($scope.selectedTime).format('HH:mm');
@@ -158,19 +290,40 @@ angular.module('starter.controllers', [])
       }
     };
 
+    createdID = function(meal) {
+      var str = moment().format('DDMMYY');
+      if(meal) {
+        meal = String(meal);
+        str += meal.toLowerCase().substr(0, 1);
+      } else {
+        str += 0
+      }
+      $scope.entry.id = str;
+    };
+
     // To submit an input
     $scope.submit = function() {
-      //var meal = window.getElementById("mealRadio").value;
       setTimeSelection($scope.timeIndex);
+
       console.log($scope.timePickerValue.value);
-      console.log("meal: " + $scope.entry.mealChoice);
-      console.log("time: " + $scope.entry.timeOfEntry);
-      console.log("food and drink: " + $scope.entry.foodAndDrinkTextArea);
+      console.log("meal: " + $scope.entry.meal);
+      console.log("time: " + $scope.entry.time);
+      console.log("food and drink: " + $scope.entry.food);
       console.log("binge: " + $scope.entry.binge);
       console.log("location: " + $scope.entry.location);
       console.log("people: " + $scope.entry.people);
       console.log("purge: " + $scope.entry.purge);
       console.log("thoughts: " + $scope.entry.thoughts);
-      
+
+      createdID($scope.entry.meal);
+      console.log("id: " + $scope.entry.id);
+
+      $scope.logs[$scope.logs.length - 1].entries.push($scope.entry);
+
+      console.log($scope.logs);
+    };
+
+    $scope.printLogs = function() {
+      console.log($scope.logs);
     }
 }]);
