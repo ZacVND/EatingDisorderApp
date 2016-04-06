@@ -123,7 +123,11 @@ angular.module('starter.controllers', [])
 
     $scope.setTimeIndex = function(index) {
       $scope.timeIndex = index;
-    }
+    };
+
+    $scope.timePickerValue = {
+      value: new Date(1970, 0, 1, 0, 0, 0)
+    };
 
     $scope.locations = ["Home","School, college, uni","Work","Friend's House","Restaurant, cafe, etc.","Other"];
 
@@ -133,10 +137,8 @@ angular.module('starter.controllers', [])
 
     };
 
-    $scope.selectedTime;
-
     // To convert time selection into a real time
-    setTimeSelection = function(index) {
+    var setTimeSelection = function(index) {
       var b = new moment(); 
       switch(index) {
         case 0:
@@ -148,8 +150,8 @@ angular.module('starter.controllers', [])
           $scope.entry.timeOfEntry = b;
           break;
         case 2:
-          b = new moment($scope.selectedTime).format('HH:mm');
-          $scope.entry.timeOfEntry = b;
+          //b = new moment($scope.selectedTime).format('HH:mm');
+          $scope.entry.timeOfEntry = $scope.timePickerValue.value;
           break;
       }
     };
@@ -158,6 +160,7 @@ angular.module('starter.controllers', [])
     $scope.submit = function() {
       //var meal = window.getElementById("mealRadio").value;
       setTimeSelection($scope.timeIndex);
+      console.log($scope.timePickerValue.value);
       console.log("meal: " + $scope.entry.mealChoice);
       console.log("time: " + $scope.entry.timeOfEntry);
       
