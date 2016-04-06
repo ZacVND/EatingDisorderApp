@@ -134,7 +134,8 @@ angular.module('starter.controllers', [])
     $scope.people = ["Alone","Parents","Friends","Other"];
 
     $scope.entry = {
-
+      binge: false,
+      purge: false
     };
 
     // To convert time selection into a real time
@@ -151,6 +152,7 @@ angular.module('starter.controllers', [])
           break;
         case 2:
           //b = new moment($scope.selectedTime).format('HH:mm');
+          console.log("time picker value: " + $scope.timePickerValue.value);
           $scope.entry.timeOfEntry = $scope.timePickerValue.value;
           break;
       }
@@ -163,6 +165,12 @@ angular.module('starter.controllers', [])
       console.log($scope.timePickerValue.value);
       console.log("meal: " + $scope.entry.mealChoice);
       console.log("time: " + $scope.entry.timeOfEntry);
+      console.log("food and drink: " + $scope.entry.foodAndDrinkTextArea);
+      console.log("binge: " + $scope.entry.binge);
+      console.log("location: " + $scope.entry.location);
+      console.log("people: " + $scope.entry.people);
+      console.log("purge: " + $scope.entry.purge);
+      console.log("thoughts: " + $scope.entry.thoughts);
       
     }
 }]);

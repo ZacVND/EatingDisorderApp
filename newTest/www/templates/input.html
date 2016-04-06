@@ -15,7 +15,7 @@
 
 	    	<!-- Time -->
 	    	<div class="item item-divider">
-	        	<h2>When did you eat? {{timePickerValue.value | date: "HH:mm"}}</h2>
+	        	<h2>When did you eat?</h2>
 	     	</div>
 	     	<div class="button-bar">
 	     		<a class="button" ng-repeat="time in timeButtons" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index); setTimeIndex($index)">{{time}}</a>
@@ -29,13 +29,13 @@
 	        	<h2>What did you eat and drink?</h2>
 	     	</div>
 	     	<ion-item>
-	     		<textarea rows="2" style="width:100%;"></textarea>
+	     		<textarea ng-model="entry.foodAndDrinkTextArea" rows="2" style="width:100%;"></textarea>
 	     	</ion-item>
 
 	     	<!-- Binge -->
 	     	<ion-item>
 	     		<p class="padding">Would you class this as an excessive amount?</p>
-	     		<ion-toggle toggle-class="toggle-calm">Binge</ion-toggle>
+	     		<ion-toggle ng-model="entry.binge" toggle-class="toggle-calm">Binge</ion-toggle>
 	     	</ion-item>
 	        
 
@@ -44,7 +44,7 @@
 	        	<h2>Where did you eat?</h2>
 	     	</div>
 	     	<div id="locationRadio">
-	     		<ion-radio ng-repeat="location in locations" name="location" ng-value="{{location}}">{{location}}</ion-radio>
+	     		<ion-radio ng-repeat="location in locations" ng-model="entry.location" name="location" ng-value="location">{{location}}</ion-radio>
 	    	</div>
 
 	    	<!-- People -->
@@ -52,21 +52,21 @@
 	        	<h2>Who did you eat with?</h2>
 	     	</div>
 	     	<div id="personRadio">
-	     		<ion-radio ng-repeat="person in people" name="person" value="{{person}}">{{person}}</ion-radio>
+	     		<ion-radio ng-repeat="person in people" ng-model="entry.people" name="person" ng-value="person">{{person}}</ion-radio>
 	    	</div>
 
 	    	<!-- Purge -->
 	     	<div class="item item-divider">
 	        	<h2>Did this meal cause you to purge?</h2>
 	     	</div>
-	     	<ion-toggle toggle-class="toggle-calm">Purge</ion-toggle>
+	     	<ion-toggle ng-model="entry.purge" toggle-class="toggle-calm">Purge</ion-toggle>
 		    
 		    <!-- Thoughts -->
 			<div class="item item-divider">
 	        	<h2>Any thoughts?</h2>
 	     	</div>
 	     	<ion-item>
-	     		<textarea rows="2" style="width:100%;"></textarea>
+	     		<textarea ng-model="entry.thoughts" rows="2" style="width:100%;"></textarea>
 	     	</ion-item>
 		</ion-list>
 
