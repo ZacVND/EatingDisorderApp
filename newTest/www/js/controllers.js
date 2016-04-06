@@ -220,6 +220,11 @@ angular.module('starter.controllers', [])
       $scope.logs[$scope.logs.length - dayIndex - 1].entries.splice($scope.logs[$scope.logs.length - dayIndex - 1].entries.indexOf(item), 1);
     };
 
+    $scope.onItemDeleteDetailed = function(dayIndex, item) {
+      console.log("dayIndex: " + dayIndex);
+      $scope.logs[dayIndex].entries.splice($scope.logs[dayIndex].entries.indexOf(item), 1);
+    };
+
     // Input controls
     $scope.meals = [
       {meal:"Breakfast", value:"bf"},
@@ -322,8 +327,4 @@ angular.module('starter.controllers', [])
 
       console.log($scope.logs);
     };
-
-    $scope.printLogs = function() {
-      console.log($scope.logs);
-    }
 }]);
