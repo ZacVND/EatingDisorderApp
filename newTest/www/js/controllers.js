@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('mainCtrl', function($scope, $ionicSideMenuDelegate) {
   $scope.toggleLeft = function() {
@@ -12,6 +12,48 @@ angular.module('starter.controllers', [])
     {title:"Settings",icon:"gear-a",page:"settings"},
     {title:"Help",icon:"help-buoy",page:"help"}
   ];
+})
+
+.controller('camCtrl', function($scope, $cordovaCamera){
+  $scope.takePhoto = function () {    // This code is for taking the photo and storing it into the phone's gallery
+    var options = {
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: false,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: true
+  };
+
+      $cordovaCamera.getPicture(options).then(function (imageData) {
+          $scope.imgURI = "data:image/jpeg;base64," + imageData;
+      }, function (err) {
+          console.err(err);
+      });
+  }
+
+  $scope.choosePhoto = function () {    //This code is for choosing the photo from the gallery
+    var options = {
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+  };
+
+    $cordovaCamera.getPicture(options).then(function (imageData) {
+        $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    }, function (err) {
+        console.err(err);
+    });
+  }
 })
 
 
