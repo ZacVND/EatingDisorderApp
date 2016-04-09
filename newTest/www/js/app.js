@@ -20,14 +20,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    if(navigator && navigator.splashscreen) {
+      navigator.splashscreen.hide();
+    }
   });
 })
-
-
 
 // Page Routing
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+    .state('intro', {
+      url: '/',
+      templateUrl: 'templates/intro.html',
+      controller: 'IntroCtrl'
+    })
     .state('menu', {
       url: '/menu',
       abstract: true,
@@ -144,5 +150,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         }
       }
     })
-    $urlRouterProvider.otherwise('/menu/home'); // App opens up on the home page
+    $urlRouterProvider.otherwise('/'); // App opens up on the home page
 });

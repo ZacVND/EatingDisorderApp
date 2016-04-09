@@ -56,6 +56,27 @@ angular.module('starter.controllers', ['ngCordova'])
   }
 })
 
+.controller('IntroCtrl', function($scope, $state) {
+  
+  window.localStorage['seenIntro'] = false;
+  $scope.startApp = function() {
+    $state.go('menu.home');
+
+    // Set a flag that we finished the tutorial
+    window.localStorage['seenIntro'] = true;
+  };
+
+  if(window.localStorage['seenIntro'] === "true") {
+    console.log('Skip intro');
+    $state.go('menu.home');
+  }
+  // Move to help page
+  $scope.toHelp = function() {
+    $state.go("menu.help");
+    window.localStorage['seenIntro'] = true;
+  };
+
+})
 
 .controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.whichEntry = $state.params.aId
