@@ -57,8 +57,9 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('IntroCtrl', function($scope, $state) {
-  
+  //delete the line below to prevent the intro page from popping up
   window.localStorage['seenIntro'] = false;
+
   $scope.startApp = function() {
     $state.go('menu.home');
 
