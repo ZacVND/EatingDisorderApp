@@ -18,6 +18,16 @@ angular.module('starter.controllers', [])
 .controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.whichEntry = $state.params.aId
 
+    $scope.insert = function(time, meal, food, thoughts, location, people, binge, purge) {
+      var date = moment().format('YYYY/MM/DD');
+      var query = "INSERT INTO logs (date, time, meal, food, thoughts, location, people, binge, purge) VALUES (?,?,?,?,?,?,?,?,?)";
+      $cordovaSQLite.execute(db, query, [date, time, meal, food, thoughts, location, people, binge, purge]).then(function(res) {
+        console.log("INSERT ID -> " + res.insertId);
+      }, function (err) {
+        console.error(err);
+      });
+    }
+
     // $http.get('js/data.json').success(function(data) {
     //   console.log($scope.logs);
     //   $scope.logs = data.logs;
@@ -29,13 +39,15 @@ angular.module('starter.controllers', [])
     //   }
     //   data.logs = JSON.stringify($scope.logs);
     // });
+    console.log("Start: ");
+    console.log($scope.logs);
 
     $http.get('js/cuteanimals.json').success(function(data) {
       $scope.animals = data.photos.photo;
       $scope.photo = $scope.animals[Math.floor(Math.random()*$scope.animals.length)];
     });
 
-    $scope.logs = [   
+    $scope.logsX = [   
       {
         "date":"2016/02/25",
         "entries":[
@@ -155,11 +167,71 @@ angular.module('starter.controllers', [])
           }
         ]
       }
-    ]
+    ];
+
+    // window.localStorage['name'] = 'Max';
+
+    // $scope.name = window.localStorage['name'] || 'you';
+
+    // $scope.changeName = function() {
+    //   window.localStorage['name'] = 'Al';
+    //   $scope.name = window.localStorage['name'] || 'you';
+    // }
+
+    // $scope.displayName = function() {
+    //   alert('Hello, ' + $scope.name);
+    // }
+
+
+    var logsObj = {
+      logsArray:[
+        {
+          "date":"2016/03/24",
+          "entries":[
+            {
+              "id":"240316b",
+              "time":"07:06",
+              "meal":"Breakfast",
+              "food":"Cereal, milk, orange juice",
+              "thoughts":"Feeling quite nervous",
+              "location":"Home",
+              "people":"Alone"
+            },
+            {
+              "id":"240316l",
+              "time":"13:25",
+              "meal":"Lunch",
+              "food":"Ham sandwich, crisps, apple",
+              "location":"School, college, uni",
+              "people":"Friends"
+            },
+            {
+              "id":"240316d",
+              "time":"19:02",
+              "meal":"Dinner",
+              "food":"Pasta and pesto",
+              "thoughts":"Proud of myself for eating 3 meals today",
+              "location":"Home",
+              "people":"Parents"
+            },
+            {
+              "id":"240316t1",
+              "time":"16:42",
+              "thoughts":"Feeling quite good today"
+            }
+          ]
+        }
+      ]
+    };
+
+
+    window.localStorage['logs'] = JSON.stringify(logsObj);
+
+    $scope.logs = JSON.parse(window.localStorage['logs'] || '{}');
 
     var d = new moment();
     if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
-      $scope.logs.push({date:d.format('YYYY/MM/DD'),entries:[]});
+      $scope.logs.logsArray.push({date:d.format('YYYY/MM/DD'),entries:[]});
     }
     // data.logs = JSON.stringify($scope.logs);
 
@@ -310,21 +382,22 @@ angular.module('starter.controllers', [])
     $scope.submit = function() {
       setTimeSelection($scope.timeIndex);
 
-      console.log($scope.timePickerValue.value);
-      console.log("meal: " + $scope.entry.meal);
-      console.log("time: " + $scope.entry.time);
-      console.log("food and drink: " + $scope.entry.food);
-      console.log("binge: " + $scope.entry.binge);
-      console.log("location: " + $scope.entry.location);
-      console.log("people: " + $scope.entry.people);
-      console.log("purge: " + $scope.entry.purge);
-      console.log("thoughts: " + $scope.entry.thoughts);
-
       createdID($scope.entry.meal);
-      console.log("id: " + $scope.entry.id);
 
-      $scope.logs[$scope.logs.length - 1].entries.push($scope.entry);
+      // $scope.logs.logsArray[$scope.logs.logsArray.length - 1].entries.push($scope.entry);
+      var log = angular.copy($scope.logs);
+      log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
 
+      window.localStorage['logs'] = JSON.stringify(log);
+      logsObj = JSON.parse(window.localStorage['logs'] || '{}');
+
+      $scope.logs = logsObj;
+
+      console.log("Inside submit: ");
       console.log($scope.logs);
+
     };
+
+    console.log("End: ");
+    console.log(JSON.parse(window.localStorage['logs'] || '{}'));
 }]);

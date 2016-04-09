@@ -4,7 +4,7 @@
     </ion-nav-buttons>
 
   <ion-content class="has-header">
-    <ion-list ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:todaysDate('/')">
+    <ion-list ng-repeat="(dayIndex, day) in logs.logsArray | orderBy:'date':true | filter:todaysDate('/')">
 
       <div class="list card" ng-repeat="date in goals | filter:todaysDate('/')">
         <ion-item class="item-icon-left item-text-wrap" href="#/menu/goals">
@@ -35,6 +35,7 @@
         </ion-item>
       </div>
     </ion-list>
+
   </ion-content>
   <div class = "bar" style="position: absolute; bottom: 0px; width: 100%">
     <div class="button-bar">
