@@ -140,7 +140,6 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.onItemDelete = function(dayIndex, item) {
       var index = ($scope.logs.logsArray.length - dayIndex - 1);
-      console.log($scope.logs.logsArray[index].entries);
       $scope.logs.logsArray[index].entries.splice($scope.logs.logsArray[index].entries.indexOf(item), 1);
       window.localStorage['logs'] = JSON.stringify($scope.logs);
     };
