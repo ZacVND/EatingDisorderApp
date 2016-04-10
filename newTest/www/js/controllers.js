@@ -43,15 +43,6 @@ angular.module('starter.controllers', [])
           {"date":"2016/04/06","goals":[
           ]}
     ];
-    
-    $scope.sumMeals = function() {
-      var total = 0;
-        for(var i = 0; i <= $scope.goals.length; i++){
-            total = i;
-        }
-      return total;
-    }
-    
 
     $scope.todaysDate = function(separator) {
       var d = new moment();
