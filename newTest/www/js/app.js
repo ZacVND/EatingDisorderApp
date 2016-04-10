@@ -42,6 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.logs', {
       url: '/logs',
+      cache: false,
       views: {
         'menuContent' : { // menuContent is the name of the nav-view used by the menu
           templateUrl: 'templates/logs.html',
@@ -113,6 +114,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.home', {
       url: '/home',
+      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/home.html',
