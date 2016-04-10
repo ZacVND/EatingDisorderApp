@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('mainCtrl', function($scope, $ionicSideMenuDelegate) {
   $scope.toggleLeft = function() {
@@ -14,6 +14,70 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('camCtrl', function($scope, $cordovaCamera){
+  $scope.takePhoto = function () {    // This code is for taking the photo and storing it into the phone's gallery
+    var options = {
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: false,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: true
+  };
+
+      $cordovaCamera.getPicture(options).then(function (imageData) {
+          $scope.imgURI = "data:image/jpeg;base64," + imageData;
+      }, function (err) {
+          console.err(err);
+      });
+  }
+
+  $scope.choosePhoto = function () {    //This code is for choosing the photo from the gallery
+    var options = {
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+  };
+
+    $cordovaCamera.getPicture(options).then(function (imageData) {
+        $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    }, function (err) {
+        console.err(err);
+    });
+  }
+})
+
+.controller('IntroCtrl', function($scope, $state) {
+  //delete the line below to prevent the intro page from popping up
+  window.localStorage['seenIntro'] = false;
+
+  $scope.startApp = function() {
+    $state.go('menu.home');
+
+    // Set a flag that we finished the tutorial
+    window.localStorage['seenIntro'] = true;
+  };
+
+  if(window.localStorage['seenIntro'] === "true") {
+    console.log('Skip intro');
+    $state.go('menu.home');
+  }
+  // Move to help page
+  $scope.toHelp = function() {
+    $state.go("menu.help");
+    window.localStorage['seenIntro'] = true;
+  };
+
+})
 
 .controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.whichEntry = $state.params.aId
