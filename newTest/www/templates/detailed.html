@@ -4,7 +4,7 @@
 
 <ion-view title="Entry">
 	<ion-content>
-		<ion-list class="list" ng-repeat="(dayIndex, day) in logs">
+		<ion-list class="list" ng-repeat="(dayIndex, day) in logs.logsArray">
 			<div class="list card" ng-repeat="item in day.entries | filter: { id: whichEntry }">
 				<!-- If it is a regular meal entry -->
 				<ion-item class="item-icon-left" ng-show="item.meal">
