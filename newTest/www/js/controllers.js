@@ -146,7 +146,6 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.onItemDeleteDetailed = function(dayIndex, item) {
-      console.log("dayIndex: " + dayIndex);
       $scope.logs.logsArray[dayIndex].entries.splice($scope.logs.logsArray[dayIndex].entries.indexOf(item), 1);
     };
 
@@ -245,12 +244,6 @@ angular.module('starter.controllers', ['ngCordova'])
       logsObj = JSON.parse(window.localStorage['logs'] || '{}');
 
       $scope.logs = logsObj;
-
-      console.log("Inside submit: ");
-      console.log($scope.logs);
-
     };
 
-    console.log("End: ");
-    console.log(JSON.parse(window.localStorage['logs'] || '{}'));
 }]);
