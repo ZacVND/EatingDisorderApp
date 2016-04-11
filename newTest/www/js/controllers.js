@@ -212,7 +212,6 @@ angular.module('starter.controllers', ['ngCordova'])
           $scope.entry.time = b;
           break;
         case 2:
-          //b = new moment($scope.selectedTime).format('HH:mm');
           console.log("time picker value: " + $scope.timePickerValue.value);
           $scope.entry.timeOfEntry = $scope.timePickerValue.value;
           break;
@@ -225,23 +224,44 @@ angular.module('starter.controllers', ['ngCordova'])
         meal = String(meal);
         str += meal.toLowerCase().substr(0, 1);
       } else {
-        str += 0
+        str += 'o';
+        var i = 0;
+        do {
+          console.log($scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries);
+          console.log("str + i: " + str + i);
+          var testId = str + i;
+          if(JSON.stringify($scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries).indexOf(testId) == - 1) {
+            str += i;
+            break;
+          } else {
+            i++;
+          }
+        } while (true);
       }
-      $scope.entry.id = str;
+      return str;
     };
 
     // To submit an input
-    $scope.submit = function() {
-      setTimeSelection($scope.timeIndex);
+    $scope.submit = function(indexedTime, purge) {
+      if(indexedTime) {
+        setTimeSelection($scope.timeIndex);
+      } else {
+        $scope.entry.time = moment().format('HH:mm');
+      }
 
-      createdID($scope.entry.meal);
+      if(purge) {
+        console.log("This post was a purge");
+        $scope.entry.purge = true;
+      }      
 
-      // $scope.logs.logsArray[$scope.logs.logsArray.length - 1].entries.push($scope.entry);
+      $scope.entry.id = createdID($scope.entry.meal);
+      console.log("ID: " + $scope.entry.id);
+      
       var log = angular.copy($scope.logs);
       log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
 
       window.localStorage['logs'] = JSON.stringify(log);
-      logsObj = JSON.parse(window.localStorage['logs'] || '{}');
+      logsObj = JSON.parse(window.localStorage['logs']);
 
       $scope.logs = logsObj;
     };

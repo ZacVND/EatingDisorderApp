@@ -13,7 +13,7 @@
 	        	<h2>Any thoughts?</h2>
 	     	</div>
 	     	<ion-item>
-	     		<textarea rows="3" style="width:100%;"></textarea>
+	     		<textarea ng-model="entry.thoughts" rows="3" style="width:100%;"></textarea>
 	     	</ion-item>
 		</ion-list>
 
@@ -22,7 +22,7 @@
 	</ion-content>
 	<!-- Submit -->
 		<div class="padding" style="position: absolute; bottom: 0px; width: 100%">
-			<a class="button button-block button-positive" href="#/menu/success">
+			<a class="button button-block button-positive" ng-click="submit(false, false)" href="#/menu/success">
 				Submit
 			</a>
 		</div>

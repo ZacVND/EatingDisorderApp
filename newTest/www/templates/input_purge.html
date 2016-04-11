@@ -10,26 +10,27 @@
 	        	<h2>When did you purge?</h2>
 	     	</div>
 	     	<div class="button-bar">
-	     		<a class="button" ng-repeat="time in timeButtons" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index)">{{time}}</a>
+	     		<a class="button" ng-repeat="time in timeButtons" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index); setTimeIndex($index)">{{time}}</a>
 			</div>
 			<label class="item-input-wrapper" ng-show="timeOther==true">
 		     	<i class="icon ion-clock placeholder-icon"></i>
-		     	<input type="time" id="timePicker" min="00:00" max="getCurrentTime()">
+		     	<input type="time" ng-model="timePickerValue.value" name="timeInput" id="timePicker" placeholder="HH:mm" min="00:00" max="getCurrentTime()" />
 		    </label>
+
 		    
 		    <!-- Thoughts -->
 			<div class="item item-divider">
 	        	<h2>Any thoughts?</h2>
 	     	</div>
 	     	<ion-item>
-	     		<textarea rows="2" style="width:100%;"></textarea>
+	     		<textarea rows="2" ng-model="entry.thoughts" style="width:100%;"></textarea>
 	     	</ion-item>
 		</ion-list>		
 	</ion-content>
 
 	<!-- Submit -->
 		<div class="padding" style="position: absolute; bottom: 0px; width: 100%">
-			<a class="button button-block button-positive" href="#/menu/success">
+			<a class="button button-block button-positive" ng-click="submit(true, true)" href="#/menu/success">
 				Submit
 			</a>
 		</div>

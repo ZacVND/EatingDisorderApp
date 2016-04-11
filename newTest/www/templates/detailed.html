@@ -14,10 +14,16 @@
 		        </ion-item>
 		        
 		        <!-- If it is just a thought entry -->
-		        <ion-item class="item-icon-left" ng-show="!item.meal">
+		        <ion-item class="item-icon-left" ng-show="!(item.meal || item.purge)">
 		          <i class="icon ion-chatbubble-working"></i>
 		          <h2>Thought</h2>
 		          <p>{{ item.time }}</p>
+		        </ion-item>
+
+		        <!-- If it is just a purge entry -->
+		        <ion-item class="item-icon-left" ng-show="!(item.meal || !item.purge)">
+		          <i class="icon ion-alert"></i>
+		          <h2>Purge</h2>
 		        </ion-item>
 
 		        <ion-item ng-show="item.food">
@@ -44,7 +50,7 @@
 		        	<p><i class="ion-alert"></i> Binge</p>
 		    	</ion-item>
 
-		    	<ion-item ng-show="item.purge">
+		    	<ion-item ng-show="!(!item.purge || !item.meal)">
 		        	<p><i class="ion-alert"></i> Purge</p>
 		    	</ion-item>
 
