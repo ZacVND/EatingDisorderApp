@@ -146,6 +146,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.onItemDeleteDetailed = function(dayIndex, item) {
       $scope.logs.logsArray[dayIndex].entries.splice($scope.logs.logsArray[dayIndex].entries.indexOf(item), 1);
+      window.localStorage['logs'] = JSON.stringify($scope.logs);
     };
 
     // Input controls
