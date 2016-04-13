@@ -135,6 +135,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.goals', {
       url: '/goals',
+      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/goals.html',

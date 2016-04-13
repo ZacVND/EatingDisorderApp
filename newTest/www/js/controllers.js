@@ -98,18 +98,13 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.logs.logsArray.push({date:d.format('YYYY/MM/DD'),entries:[]});
     }
 
+    $scope.goals = JSON.parse(window.localStorage['goals'] || '[]');
 
-    $scope.goals = [
-          {"date":"2016/03/24","goals":[
-            {"id":"20160318g1","goal":"Eat my 5 a day","completed":"false"},
-            {"id":"20160318g2","goal":"No binges today","completed":"false"}
-          ]},
-          {"date":"2016/03/06","goals":[
-            {"id":"20160306g1","goal":"Don't make myself throw up after dinner","completed":"true"}
-          ]},
-          {"date":"2016/04/06","goals":[
-          ]}
-    ];
+    // $scope.goals = [
+    //   {"id":"20160318g1","date":"2016/04/24","goal":"Eat my 5 a day","completed":"false"},
+    //   {"id":"20160318g2","date":"2016/04/24","goal":"No binges today","completed":"false"},       
+    //   {"id":"20160306g1","date":"2016/03/06","goal":"Don't make myself throw up after dinner","completed":"true"}
+    // ];
 
     $scope.todaysDate = function(separator) {
       var d = new moment();
@@ -202,6 +197,12 @@ angular.module('starter.controllers', ['ngCordova'])
       purge: false
     };
 
+    $scope.goalDates = ["Today", "Tomorrow", "Other"];
+
+    $scope.goalEntry = {
+      completed: false
+    };
+
     // To convert time selection into a real time
     var setTimeSelection = function(index) {
       var b = new moment(); 
@@ -221,6 +222,28 @@ angular.module('starter.controllers', ['ngCordova'])
       }
     };
 
+    var setDateSelection = function(index) {
+      console.log(index);
+      var b = new moment(); 
+      switch(index) {
+        case 0:
+          b = b.format('YYYY/MM/DD');
+          $scope.goalEntry.date = b;
+          break;
+        case 1:
+          b = b.add(1, 'days').format('YYYY/MM/DD');
+          $scope.goalEntry.date = b;
+          break;
+        case 2:
+          var date = String($scope.goalDatePicker);
+          b = new moment(date).format('YYYY/MM/DD');
+          $scope.goalEntry.date = b;
+          console.log(String($scope.goalDatePicker));
+          console.log($scope.goalEntry.date);
+          break;
+      }
+    };
+
     createdID = function(meal) {
       var str = moment().format('DDMMYY');
       if(meal) {
@@ -230,8 +253,6 @@ angular.module('starter.controllers', ['ngCordova'])
         str += 'o';
         var i = 0;
         do {
-          console.log($scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries);
-          console.log("str + i: " + str + i);
           var testId = str + i;
           if(JSON.stringify($scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries).indexOf(testId) == - 1) {
             str += i;
@@ -244,7 +265,18 @@ angular.module('starter.controllers', ['ngCordova'])
       return str;
     };
 
-    // To submit an input
+    goalID = function() {
+      var i = 0;
+        do {
+          if(JSON.stringify($scope.goals).indexOf(i) == - 1) {
+            return i;
+          } else {
+            i++;
+          }
+        } while (true);
+    };
+
+    // To submit an entry
     $scope.submit = function(indexedTime, purge) {
       if(indexedTime) {
         setTimeSelection($scope.timeIndex);
@@ -264,9 +296,20 @@ angular.module('starter.controllers', ['ngCordova'])
       log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
 
       window.localStorage['logs'] = JSON.stringify(log);
-      logsObj = JSON.parse(window.localStorage['logs']);
+      // var logsObj = JSON.parse(window.localStorage['logs']);
 
-      $scope.logs = logsObj;
+      $scope.logs = JSON.parse(window.localStorage['logs']);
     };
+
+    // To submit a goal
+    $scope.submitGoal = function() {
+      var goal = angular.copy($scope.goals);
+      setDateSelection($scope.timeIndex);
+      $scope.goalEntry.id = goalID();
+
+      goal.push($scope.goalEntry);
+      window.localStorage['goals'] = JSON.stringify(goal);
+      $scope.goals = JSON.parse(window.localStorage['goals']);
+    }
 
 }]);

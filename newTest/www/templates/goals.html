@@ -3,13 +3,41 @@
     	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
 	<div class = "bar bar-subheader">
-		<button class="button button-block button-positive" ng-click="goalIn()">Add a new goal</button>
+		<button class="button button-block button-positive" ng-click="goalIn()"><i class="icon ion-plus"></i> Add a new goal</button>
 	</div>
 	<ion-content class="has-subheader">
-		<div class = "item item-divider center-text">
-	    	<h3>Today's Goal: Eat {{ sumMeals() }} Meals</h3>
-   		</div>
-		<ion-list class = "list-inset">
+    <ion-list>
+      <!-- Upcoming Goals -->
+      <div class="list card">
+        <ion-item class="item-icon-left">
+          <i class="icon ion-ribbon-a"></i>
+          <h2>Upcoming Goals</h2>
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-repeat="item in goals" ng-if="item.date >= todaysDate('/')">
+          <h2>{{ item.goal }}</h2>
+          <p>{{ getDisplayDate(item.date) }}</p>
+          <ion-option-button class="button-calm ion-edit">
+          <ion-option-button class="button-assertive ion-trash-b">
+        </ion-item>
+      </div>
+
+      <!-- Past Goals -->
+      <div class="list card">
+        <ion-item class="item-icon-left">
+          <i class="icon ion-clock"></i>
+          <h2>Past Goals</h2>
+        </ion-item>
+        <ion-item class="item-icon-right item-text-wrap" ng-repeat="item in goals" ng-if="item.date < todaysDate('/')">
+          <h2>{{ item.goal }}</h2>
+          <p>{{ getDisplayDate(day.date) }}</p>
+          <i ng-show="item.completed" class="icon ion-checkmark balanced"></i>
+          <i ng-show="!item.completed" class="icon ion-close assertive"></i>
+          <ion-option-button ng-show="!item.completed" class="button-balanced ion-checkmark" ng-click="item.completed=true">
+          <ion-option-button ng-show="item.completed" class="button-assertive ion-close" ng-click="item.completed=false">
+        </ion-item>
+      </div>
+    </ion-list>
+		<!-- <ion-list class = "list-inset">
 			<ion-item class = "item-text-wrap" ng-repeat = "item in goals">
 				<h2>{{ "Your meal: " + item.meal }}</h2>
 				<p>{{ "You should eat: " + item.food }}</p>
@@ -20,7 +48,7 @@
 		<div class = "item item-divider center-text">
 	    	<h3>Past Goals</h3>
    		</div>
-   		<!-- Display the past goals using fake data -->
+   		
    		<ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:dateFilter()">
       <div class="item item-divider">
         <div class="row">
@@ -42,9 +70,9 @@
           <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
           <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/input';">
           <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
-          <!-- this needs fixing -->
+          
           </ion-delete-button>
       </ion-item>
-    </ion-list>
+    </ion-list> -->
 	</ion-content>
 </ion-view>
