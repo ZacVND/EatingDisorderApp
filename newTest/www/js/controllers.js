@@ -82,6 +82,9 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.whichEntry = $state.params.aId
 
+    $scope.goalIn = function() {
+      $state.go('menu.goals_input')
+    }
 
     $http.get('js/cuteanimals.json').success(function(data) {
       $scope.animals = data.photos.photo;

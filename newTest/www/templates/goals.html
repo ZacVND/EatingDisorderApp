@@ -2,7 +2,13 @@
 	<ion-nav-buttons side="left">
     	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-	<ion-content class="has-header">
+	<div class = "bar bar-subheader">
+		<button class="button button-block button-positive" ng-click="goalIn()">Add a new goal</button>
+	</div>
+	<ion-content class="has-subheader">
+		<div class = "item item-divider center-text">
+	    	<h3>Today's Goal: Eat {{ sumMeals() }} Meals</h3>
+   		</div>
 		<ion-list class = "list-inset">
 			<ion-item class = "item-text-wrap" ng-repeat = "item in goals">
 				<h2>{{ "Your meal: " + item.meal }}</h2>
@@ -11,5 +17,34 @@
 				<p>{{ "You should eat at: " + item.location }}</p>
 			</ion-item>
 		</ion-list>
+		<div class = "item item-divider center-text">
+	    	<h3>Past Goals</h3>
+   		</div>
+   		<!-- Display the past goals using fake data -->
+   		<ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:dateFilter()">
+      <div class="item item-divider">
+        <div class="row">
+          <div class="col-75">
+            {{ getDisplayDate(day.date) }}
+          </div>
+          <div class="col-25">
+            <p style="text-align:right;">{{getTimeAgo(day.date)}}</p>
+          </div>
+        </div>
+      </div>
+      <ion-item ng-repeat="item in day.entries | orderBy:'time'" href="#/menu/logs/{{item.id}}">
+
+          <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
+          <p>{{ item.food }}</p>
+          <span class="badge badge-balanced" ng-show = "{{item.complete == true}}">Complete</span>
+          <span class="badge badge-assertive" ng-show = "{{item.complete == false}}">Failed</span>
+		 
+          <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
+          <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/input';">
+          <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
+          <!-- this needs fixing -->
+          </ion-delete-button>
+      </ion-item>
+    </ion-list>
 	</ion-content>
 </ion-view>

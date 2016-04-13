@@ -147,7 +147,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       url: '/goals',
       views: {
         'menuContent' : {
-          templateUrl: 'templates/goals.html',
+          templateUrl: 'templates/goals_input.html',
           controller: 'logsCtrl'
         }
       }
