@@ -81,6 +81,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       }
     })
 
+    .state('menu.edit_input', {
+      url: '/input/:bId',
+      views: {
+        'menuContent' : { // all pages are part of menuContent
+          templateUrl: 'templates/edit_input.html',
+          controller: 'logsCtrl'
+        }
+      }
+    })
+
     .state('menu.success', {
       //cache: false,
       url: '/success',
@@ -94,6 +104,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.detailed', {
       url: '/logs/:aId',
+      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/detailed.html',

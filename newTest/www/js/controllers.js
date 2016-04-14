@@ -80,7 +80,9 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
-    $scope.whichEntry = $state.params.aId
+    $scope.whichEntry = $state.params.aId;
+
+    $scope.editWhich = $state.params.bId;
 
     $scope.goalIn = function() {
       $state.go('menu.goals_input')
@@ -92,6 +94,18 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 
     $scope.logs = JSON.parse(window.localStorage['logs'] || '{"logsArray":[]}');
+
+    var getEntryByID = function(id) {
+       $scope.logs.logsArray.forEach(function(day) {
+        day.entries.forEach(function(entry) {
+          if(entry.id == id) {
+            $scope.editEntry = entry;
+          }
+        });
+      });
+    }
+
+    getEntryByID($scope.editWhich);
 
     var d = new moment();
     if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
@@ -317,6 +331,19 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.updateGoals = function() {
       window.localStorage['goals'] = JSON.stringify($scope.goals);
+    };
+
+    $scope.submitEdit = function() {
+      $scope.logs.logsArray.forEach(function(day) {
+        day.entries.forEach(function(entry) {
+          if(entry.id == $scope.editWhich) {
+            entry = $scope.editEntry;
+          }
+        });
+      });
+
+      window.localStorage['logs'] = JSON.stringify($scope.logs);
+
     };
 
 }]);

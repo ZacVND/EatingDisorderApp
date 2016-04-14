@@ -1,0 +1,70 @@
+<ion-header-bar class="bar-positive">
+	
+</ion-header-bar>
+
+<ion-view title="Edit Entry">
+	<ion-content>
+		<ion-list class="list">
+			<!-- Meal -->
+			<div class="item item-divider">
+	        	<h2>Which meal did you eat?</h2>
+	     	</div>
+	     	<div id="mealRadio">
+	     		<ion-radio ng-repeat="item in meals" ng-model="editEntry.meal" ng-value="item.meal" name="meal">{{item.meal}}</ion-radio>
+	    	</div>
+
+		    <!-- Food and drink -->
+			<div class="item item-divider">
+	        	<h2>What did you eat and drink?</h2>
+	     	</div>
+	     	<ion-item>
+	     		<textarea ng-model="editEntry.food" rows="2" style="width:100%;"></textarea>
+	     	</ion-item>
+
+	     	<!-- Binge -->
+	     	<ion-item>
+	     		<p class="padding">Would you class this as an excessive amount?</p>
+	     		<ion-toggle ng-model="editEntry.binge" toggle-class="toggle-calm">Binge</ion-toggle>
+	     	</ion-item>
+	        
+
+	     	<!-- Location -->
+	     	<div class="item item-divider">
+	        	<h2>Where did you eat?</h2>
+	     	</div>
+	     	<div id="locationRadio">
+	     		<ion-radio ng-repeat="location in locations" ng-model="editEntry.location" name="location" ng-value="location">{{location}}</ion-radio>
+	    	</div>
+
+	    	<!-- People -->
+	     	<div class="item item-divider">
+	        	<h2>Who did you eat with?</h2>
+	     	</div>
+	     	<div id="personRadio">
+	     		<ion-radio ng-repeat="person in people" ng-model="editEntry.people" name="person" ng-value="person">{{person}}</ion-radio>
+	    	</div>
+
+	    	<!-- Purge -->
+	     	<div class="item item-divider">
+	        	<h2>Did this meal cause you to purge?</h2>
+	     	</div>
+	     	<ion-toggle ng-model="editEntry.purge" toggle-class="toggle-calm">Purge</ion-toggle>
+		    
+		    <!-- Thoughts -->
+			<div class="item item-divider">
+	        	<h2>Any thoughts?</h2>
+	     	</div>
+	     	<ion-item>
+	     		<textarea ng-model="editEntry.thoughts" rows="2" style="width:100%;"></textarea>
+	     	</ion-item>
+		</ion-list>
+
+		<!-- Submit -->
+		<div class="padding">
+			<a class="button button-block button-positive" ng-click="submitEdit(true, false)" href="#/menu/success">
+				Submit
+			</a>
+		</div>
+		
+	</ion-content>
+</ion-view>
