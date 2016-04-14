@@ -112,6 +112,10 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.logs.logsArray.push({date:d.format('YYYY/MM/DD'),entries:[]});
     }
 
+    $scope.changePageToEdit = function(id) {
+      document.location.href = "#/menu/input/" + id;
+    }
+
     $scope.goals = JSON.parse(window.localStorage['goals'] || '[]');
 
     $scope.todayHasGoals = function() {
