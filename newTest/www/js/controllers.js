@@ -160,7 +160,9 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.getDisplayDate = function(date) {
-      var d = new moment(date);
+      var res = date.split("/");
+      var str = res[0] + " " + res[1] + " " + res[2];
+      var d = new moment(str, "YYYY MM DD");
 
       if(d.year() != moment().year()) {
         return d.format('dddd Do MMMM YYYY');
