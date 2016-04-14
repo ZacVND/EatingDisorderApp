@@ -11,19 +11,14 @@
 	     	
 	    	<!-- Date -->
 	    	<div class="item item-divider">
-	        	<h2>When?</h2>
+	        	<h2>When? {{ goalDatePicker }}</h2>
 	     	</div>
-	     	<!-- <div class="button-bar">
-				<a class="button button-assertive" ng-click="timeOther=false">Today</a>
-				<a class="button button-balanced" ng-click="timeOther=false">Tomorrow</a>
-				<a class="button button-royal" ng-click="timeOther=true">Other</a>
-			</div> -->
 			<div class="button-bar">
 	     		<a class="button" ng-repeat="date in goalDates" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index); setTimeIndex($index);">{{date}}</a>
 			</div>
 			<label class="item item-input" ng-show="timeOther==true">
 		     	<i class="icon ion-calendar placeholder-icon"></i>
-  				<input type="date" ng-model="goalDatePicker" min="{{ todaysDate('-') }}">
+  				<input type="date" id="goalDate" ng-model="goalDatePicker" min="{{ todaysDate('-') }}">
 		    </label>
 		</ion-list>
 	</ion-list>

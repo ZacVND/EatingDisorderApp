@@ -100,19 +100,14 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.goals = JSON.parse(window.localStorage['goals'] || '[]');
 
-    // $scope.goals = [
-    //   {"id":"20160318g1","date":"2016/04/24","goal":"Eat my 5 a day","completed":"false"},
-    //   {"id":"20160318g2","date":"2016/04/24","goal":"No binges today","completed":"false"},       
-    //   {"id":"20160306g1","date":"2016/03/06","goal":"Don't make myself throw up after dinner","completed":"true"}
-    // ];
-
     $scope.todaysDate = function(separator) {
       var d = new moment();
       return d.format('YYYY' + separator + 'MM' + separator + 'DD');
     }
 
-    $scope.dateFilter = function() {
-      var date = String($scope.selectedDate);
+    $scope.dateFilter = function(date) {
+      //var date = String($scope.selectedDate);
+      date = String(date);
       if(date == "undefined" || date == "null")
       {
         return "";
@@ -145,6 +140,11 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.onItemDeleteDetailed = function(dayIndex, item) {
       $scope.logs.logsArray[dayIndex].entries.splice($scope.logs.logsArray[dayIndex].entries.indexOf(item), 1);
       window.localStorage['logs'] = JSON.stringify($scope.logs);
+    };
+
+    $scope.deleteGoal = function(item) {
+      $scope.goals.splice($scope.goals.indexOf(item), 1);
+      window.localStorage['goals'] = JSON.stringify($scope.goals);
     };
 
     // Input controls
@@ -235,10 +235,16 @@ angular.module('starter.controllers', ['ngCordova'])
           $scope.goalEntry.date = b;
           break;
         case 2:
-          var date = String($scope.goalDatePicker);
-          b = new moment(date).format('YYYY/MM/DD');
-          $scope.goalEntry.date = b;
-          console.log(String($scope.goalDatePicker));
+          // var date = $scope.goalDatePicker;
+          // console.log($scope.goalDatePicker);
+          // date = date.slice(1, 11);
+          // console.log(date);
+          // b = new moment(date).format('YYYY/MM/DD');
+          // $scope.goalEntry.date = b;
+          // console.log($scope.goalDatePicker);
+          // console.log($scope.goalEntry.date);
+          console.log($scope.dateFilter($scope.goalDatePicker));
+          $scope.goalEntry.date = $scope.dateFilter($scope.goalDatePicker);
           console.log($scope.goalEntry.date);
           break;
       }
@@ -296,7 +302,6 @@ angular.module('starter.controllers', ['ngCordova'])
       log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
 
       window.localStorage['logs'] = JSON.stringify(log);
-      // var logsObj = JSON.parse(window.localStorage['logs']);
 
       $scope.logs = JSON.parse(window.localStorage['logs']);
     };
@@ -310,6 +315,10 @@ angular.module('starter.controllers', ['ngCordova'])
       goal.push($scope.goalEntry);
       window.localStorage['goals'] = JSON.stringify(goal);
       $scope.goals = JSON.parse(window.localStorage['goals']);
-    }
+    };
+
+    $scope.updateGoals = function() {
+      window.localStorage['goals'] = JSON.stringify($scope.goals);
+    };
 
 }]);

@@ -16,8 +16,9 @@
         <ion-item class="item-text-wrap" ng-repeat="item in goals" ng-if="item.date >= todaysDate('/')">
           <h2>{{ item.goal }}</h2>
           <p>{{ getDisplayDate(item.date) }}</p>
+          <!-- Need to implement these -->
           <ion-option-button class="button-calm ion-edit">
-          <ion-option-button class="button-assertive ion-trash-b">
+          <ion-option-button class="button-assertive ion-trash-b" ng-click="deleteGoal(item)">
         </ion-item>
       </div>
 
@@ -32,47 +33,11 @@
           <p>{{ getDisplayDate(day.date) }}</p>
           <i ng-show="item.completed" class="icon ion-checkmark balanced"></i>
           <i ng-show="!item.completed" class="icon ion-close assertive"></i>
-          <ion-option-button ng-show="!item.completed" class="button-balanced ion-checkmark" ng-click="item.completed=true">
-          <ion-option-button ng-show="item.completed" class="button-assertive ion-close" ng-click="item.completed=false">
+          <!-- Need to make these work with localStorage -->
+          <ion-option-button ng-show="!item.completed" class="button-balanced ion-checkmark" ng-click="item.completed=true;updateGoals()">
+          <ion-option-button ng-show="item.completed" class="button-assertive ion-close" ng-click="item.completed=false;updateGoals()">
         </ion-item>
       </div>
     </ion-list>
-		<!-- <ion-list class = "list-inset">
-			<ion-item class = "item-text-wrap" ng-repeat = "item in goals">
-				<h2>{{ "Your meal: " + item.meal }}</h2>
-				<p>{{ "You should eat: " + item.food }}</p>
-				<p>{{ "You should eat with: " + item.people }}</p>
-				<p>{{ "You should eat at: " + item.location }}</p>
-			</ion-item>
-		</ion-list>
-		<div class = "item item-divider center-text">
-	    	<h3>Past Goals</h3>
-   		</div>
-   		
-   		<ion-list show-delete="logs.entries.showDelete" ng-repeat="(dayIndex, day) in logs | orderBy:'date':true | filter:dateFilter()">
-      <div class="item item-divider">
-        <div class="row">
-          <div class="col-75">
-            {{ getDisplayDate(day.date) }}
-          </div>
-          <div class="col-25">
-            <p style="text-align:right;">{{getTimeAgo(day.date)}}</p>
-          </div>
-        </div>
-      </div>
-      <ion-item ng-repeat="item in day.entries | orderBy:'time'" href="#/menu/logs/{{item.id}}">
-
-          <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
-          <p>{{ item.food }}</p>
-          <span class="badge badge-balanced" ng-show = "{{item.complete == true}}">Complete</span>
-          <span class="badge badge-assertive" ng-show = "{{item.complete == false}}">Failed</span>
-		 
-          <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
-          <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/input';">
-          <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
-          
-          </ion-delete-button>
-      </ion-item>
-    </ion-list> -->
 	</ion-content>
 </ion-view>
