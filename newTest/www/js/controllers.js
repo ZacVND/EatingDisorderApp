@@ -100,13 +100,21 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.goals = JSON.parse(window.localStorage['goals'] || '[]');
 
+    $scope.todayHasGoals = function() {
+      var d = new moment().format('YYYY/MM/DD');
+      if(JSON.stringify($scope.goals).indexOf(d) == - 1) {
+        return false;
+      } else {
+        return true;
+      }
+    };
+
     $scope.todaysDate = function(separator) {
       var d = new moment();
       return d.format('YYYY' + separator + 'MM' + separator + 'DD');
-    }
+    };
 
     $scope.dateFilter = function(date) {
-      //var date = String($scope.selectedDate);
       date = String(date);
       if(date == "undefined" || date == "null")
       {
@@ -115,7 +123,7 @@ angular.module('starter.controllers', ['ngCordova'])
       var d = new moment(date);
 
       return d.format('YYYY/MM/DD');
-    }
+    };
 
     $scope.getDisplayDate = function(date) {
       var d = new moment(date);
@@ -124,12 +132,12 @@ angular.module('starter.controllers', ['ngCordova'])
         return d.format('dddd Do MMMM YYYY');
       }
       return d.format('dddd Do MMMM');
-    }
+    };
 
     $scope.getTimeAgo = function(date) {
       var d = moment($scope.todaysDate('-'));
       return moment(date, "YYYY/MM/DD").from(d);
-    }
+    };
 
     $scope.onItemDelete = function(dayIndex, item) {
       var index = ($scope.logs.logsArray.length - dayIndex - 1);
@@ -216,14 +224,13 @@ angular.module('starter.controllers', ['ngCordova'])
           $scope.entry.time = b;
           break;
         case 2:
-          console.log("time picker value: " + $scope.timePickerValue.value);
-          $scope.entry.timeOfEntry = $scope.timePickerValue.value;
+          var x = document.getElementById("timePicker").value;
+          $scope.entry.time = x;
           break;
       }
     };
 
     var setDateSelection = function(index) {
-      console.log(index);
       var b = new moment(); 
       switch(index) {
         case 0:
@@ -235,17 +242,8 @@ angular.module('starter.controllers', ['ngCordova'])
           $scope.goalEntry.date = b;
           break;
         case 2:
-          // var date = $scope.goalDatePicker;
-          // console.log($scope.goalDatePicker);
-          // date = date.slice(1, 11);
-          // console.log(date);
-          // b = new moment(date).format('YYYY/MM/DD');
-          // $scope.goalEntry.date = b;
-          // console.log($scope.goalDatePicker);
-          // console.log($scope.goalEntry.date);
-          console.log($scope.dateFilter($scope.goalDatePicker));
-          $scope.goalEntry.date = $scope.dateFilter($scope.goalDatePicker);
-          console.log($scope.goalEntry.date);
+          var x = document.getElementById("goalDate").value;
+          $scope.goalEntry.date = new moment(x).format('YYYY/MM/DD');
           break;
       }
     };
