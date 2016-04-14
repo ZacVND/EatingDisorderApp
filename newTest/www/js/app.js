@@ -156,7 +156,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     })
 
     .state('menu.goals_input', {
-      url: '/goals',
+      url: '/goals_input',
       views: {
         'menuContent' : {
           templateUrl: 'templates/goals_input.html',
@@ -164,5 +164,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         }
       }
     })
+
+    .state('menu.edit_goals_input', {
+      url: '/goals_input/:cId',
+      views: {
+        'menuContent' : {
+          templateUrl: 'templates/edit_goals_input.html',
+          controller: 'logsCtrl'
+        }
+      }
+    })
+
     $urlRouterProvider.otherwise('/'); // App opens up on the home page
 });

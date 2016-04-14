@@ -17,7 +17,7 @@
           <h2>{{ item.goal }}</h2>
           <p>{{ getDisplayDate(item.date) }}</p>
           <!-- Need to implement these -->
-          <ion-option-button class="button-calm ion-edit">
+          <ion-option-button class="button-calm ion-edit" ng-click="changePageToEditGoal(item.id)">
           <ion-option-button class="button-assertive ion-trash-b" ng-click="deleteGoal(item)">
         </ion-item>
       </div>

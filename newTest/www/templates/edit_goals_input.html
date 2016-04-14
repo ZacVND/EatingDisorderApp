@@ -1,0 +1,16 @@
+<ion-view view-title="Edit goal">
+  <ion-content>
+	<ion-list class = "list">
+
+			<div class="item item-divider">
+	        	<h2>What is your goal?</h2>
+	     	</div>
+	     	<ion-item>
+	     		<textarea rows="3" ng-model="editGoal.goal" style="width:100%;"></textarea>
+	     	</ion-item>
+		</ion-list>
+	</ion-list>
+
+  	<a class="button button-block button-positive" href="#/menu/success" ng-click="submitGoalEdit()">Submit</a>
+  </ion-content>
+</ion-view>

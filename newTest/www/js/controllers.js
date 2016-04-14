@@ -84,6 +84,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.editWhich = $state.params.bId;
 
+    $scope.editWhichGoal = $state.params.cId;
+
     $scope.goalIn = function() {
       $state.go('menu.goals_input')
     }
@@ -114,9 +116,23 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.changePageToEdit = function(id) {
       document.location.href = "#/menu/input/" + id;
-    }
+    };
+
+    $scope.changePageToEditGoal = function(id) {
+      document.location.href = "#/menu/goals_input/" + id;
+    };
 
     $scope.goals = JSON.parse(window.localStorage['goals'] || '[]');
+
+    var getGoalByID = function(id) {
+      $scope.goals.forEach(function(goal) {
+        if(goal.id == id) {
+          $scope.editGoal = goal;
+        }
+      });
+    }
+
+    getGoalByID($scope.editWhichGoal);
 
     $scope.todayHasGoals = function() {
       var d = new moment().format('YYYY/MM/DD');
@@ -266,7 +282,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
     };
 
-    createdID = function(meal) {
+    var createdID = function(meal) {
       var str = moment().format('DDMMYY');
       if(meal) {
         meal = String(meal);
@@ -287,7 +303,7 @@ angular.module('starter.controllers', ['ngCordova'])
       return str;
     };
 
-    goalID = function() {
+    var goalID = function() {
       var i = 0;
         do {
           if(JSON.stringify($scope.goals).indexOf(i) == - 1) {
@@ -345,9 +361,16 @@ angular.module('starter.controllers', ['ngCordova'])
           }
         });
       });
-
       window.localStorage['logs'] = JSON.stringify($scope.logs);
+    };
 
+    $scope.submitGoalEdit = function() {
+      $scope.goals.forEach(function(goal) {
+        if(goal.id == $scope.editWhichGoal) {
+          goal = $scope.editGoal;
+        }
+      });
+      window.localStorage['goals'] = JSON.stringify($scope.goals);
     };
 
 }]);
