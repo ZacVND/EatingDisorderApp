@@ -4,7 +4,7 @@
     </ion-nav-buttons>
   <ion-content>
     <ion-list>
-    <ion-toggle>
+    <ion-toggle ng-model = "notifications.checked" ng-change = "notificationsOn()">
         Push Notifications
     </ion-toggle>
     </ion-list>
@@ -19,6 +19,9 @@
     		Device: Browser
     		</br>
     		Something... something...
+
+            <p>{{dt}}</p>
+            <p>{{notifications.checked}}</p>
     	</div>
     </div>
 

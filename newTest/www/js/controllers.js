@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('logsCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
+.controller('logsCtrl', ['$scope', '$http', '$state', '$cordovaLocalNotification', function($scope, $http, $state, $cordovaLocalNotification) {
     $scope.whichEntry = $state.params.aId;
 
     $scope.editWhich = $state.params.bId;
@@ -316,6 +316,58 @@ angular.module('starter.controllers', ['ngCordova'])
         } while (true);
     };
 
+    //This is the variable that is binded to ng-model
+    $scope.notifications = { checked : false };
+   //This is the function which schedules all of the notifications
+    $scope.notificationsOn = function() {
+      if ($scope.notifications.checked) {
+        var alarmTime = new Date();
+        alarmTime.setMinutes(alarmTime.getMinutes() + 1);
+        $cordovaLocalNotification.schedule({
+          id: 0,
+          date: alarmTime,
+          message: "You haven't recorded anything for a week. Is everything alright?",
+          title: "You haven't been recording your meals",
+          autoCancel: false
+        }).then(function() {
+          console.log("The notification has been sent");
+        });
+        var noon = new Date().setHours(11);
+        var afternoon = new Date().setHours(16);
+        var night = new Date().setHours(22);
+        $cordovaLocalNotification.schedule([{
+            id: 3,
+            message: "You haven't eaten or forgot to log Dinner. Please do so ASAP",
+            firstAt: night,
+            every: "minute",
+            autoCancel: false
+          },{
+            id: 2,
+            message: "You haven't eaten or forgot to log Lunch. Please do so ASAP",
+            firstAt: afternoon,
+            every: "minute",
+            autoCancel: false
+          },{
+            id: 1,
+            message: "You haven't eaten or forgot to log Breakfast. Please do so ASAP",
+            firstAt: noon,
+            every: "minute",
+            autoCancel: false
+        }]);
+      }
+      else {
+        $cordovaLocalNotification.cancelAll();
+      }
+    };
+
+    //This code will set the details of the clinician. Submit function in clinician details page
+    $scope.changeClin = function () {
+
+    };
+    
+    $scope.dt = new Date().setHours(12);
+
+
     // To submit an entry
     $scope.submit = function(indexedTime, purge) {
       if(indexedTime) {
@@ -331,6 +383,17 @@ angular.module('starter.controllers', ['ngCordova'])
 
       $scope.entry.id = createdID($scope.entry.meal);
       console.log("ID: " + $scope.entry.id);
+      
+      // This is the part which will cancel the scheduled notifications
+      if ($scope.entry.meal == "Breakfast") {
+        $cordovaLocalNotification.cancel(1);
+      }
+      else if ($scope.entry.meal == "Lunch") {
+        $cordovaLocalNotification.cancel(2);
+      }
+      else if ($scope.entry.meal == "Dinner") {
+        $cordovaLocalNotification.cancel(3);
+      };
       
       var log = angular.copy($scope.logs);
       log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
@@ -376,3 +439,112 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
 }]);
+
+
+//     //This is the variable that is binded to ng-model
+//     $scope.notifications = { checked : false };
+//    //This is the function which schedules all of the notifications
+//     $scope.notificationsOn = function() {
+//       if ($scope.notifications.checked) {
+//         var alarmTime = new Date();
+//         alarmTime.setMinutes(alarmTime.getMinutes() + 1);
+//         $cordovaLocalNotification.schedule({
+//           id: 0,
+//           date: alarmTime,
+//           message: "You haven't recorded anything for a week. Is everything alright?",
+//           title: "You haven't been recording your meals",
+//           autoCancel: false
+//         }).then(function() {
+//           console.log("The notification has been sent");
+//         });
+//         var noon = new Date().setHours(11);
+//         var afternoon = new Date().setHours(16);
+//         var night = new Date().setHours(22);
+//         $cordovaLocalNotification.schedule([{
+//             id: 3,
+//             message: "You haven't eaten or forgot to log Dinner. Please do so ASAP",
+//             firstAt: night,
+//             every: "minute",
+//             autoCancel: false
+//           },{
+//             id: 2,
+//             message: "You haven't eaten or forgot to log Lunch. Please do so ASAP",
+//             firstAt: afternoon,
+//             every: "minute",
+//             autoCancel: false
+//           },{
+//             id: 1,
+//             message: "You haven't eaten or forgot to log Breakfast. Please do so ASAP",
+//             firstAt: noon,
+//             every: "minute",
+//             autoCancel: false
+//         }]);
+//       }
+//       else {
+//         $cordovaLocalNotification.cancelAll();
+//       }
+//     };
+
+//     //This code will set the details of the clinician. Submit function in clinician details page
+//     $scope.changeClin = function () {
+
+//     };
+    
+//     $scope.dt = new Date().setHours(12);
+//     // To submit an entry
+//     $scope.submit = function(indexedTime, purge) {
+//       if(indexedTime) {
+//         setTimeSelection($scope.timeIndex);
+//       } else {
+//         $scope.entry.time = moment().format('HH:mm');
+//       }
+
+//       if(purge) {
+//         console.log("This post was a purge");
+//         $scope.entry.purge = true;
+//       }      
+
+//       $scope.entry.id = createdID($scope.entry.meal);
+//       console.log("ID: " + $scope.entry.id);
+      
+//       // This is the part which will cancel the scheduled notifications
+//       if ($scope.entry.meal == "Breakfast") {
+//         $cordovaLocalNotification.cancel(1);
+//       }
+//       else if ($scope.entry.meal == "Lunch") {
+//         $cordovaLocalNotification.cancel(2);
+//       }
+//       else if ($scope.entry.meal == "Dinner") {
+//         $cordovaLocalNotification.cancel(3);
+//       };
+      
+//       var log = angular.copy($scope.logs);
+//       log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
+
+//       window.localStorage['logs'] = JSON.stringify(log);
+
+//       $scope.logs = JSON.parse(window.localStorage['logs']);
+
+//       alarmTime = new Date(now + 120*1000);
+//     };
+
+
+
+
+//     // To submit a goal
+//     $scope.submitGoal = function() {
+//       var goal = angular.copy($scope.goals);
+//       setDateSelection($scope.timeIndex);
+//       $scope.goalEntry.id = goalID();
+
+//       goal.push($scope.goalEntry);
+//       window.localStorage['goals'] = JSON.stringify(goal);
+//       $scope.goals = JSON.parse(window.localStorage['goals']);
+
+//     };
+
+//     $scope.updateGoals = function() {
+//       window.localStorage['goals'] = JSON.stringify($scope.goals);
+//     };
+
+// }]);
