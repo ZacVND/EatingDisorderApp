@@ -10,7 +10,7 @@
 	        	<h2>When did you purge?</h2>
 	     	</div>
 	     	<div class="button-bar">
-	     		<a class="button" ng-repeat="time in timeButtons" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index); setTimeIndex($index)">{{time}}</a>
+	     		<a class="button time-button" ng-repeat="time in timeButtons" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index); setTimeIndex($index)">{{time}}</a>
 			</div>
 			<label class="item-input-wrapper" ng-show="timeOther==true">
 		     	<i class="icon ion-clock placeholder-icon"></i>
