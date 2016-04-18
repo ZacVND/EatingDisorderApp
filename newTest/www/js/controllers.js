@@ -299,24 +299,19 @@ angular.module('starter.controllers', ['ngCordova'])
       }
     };
 
-    var createdID = function(meal) {
+    var createdID = function() {
       var str = moment().format('DDMMYY');
-      if(meal) {
-        meal = String(meal);
-        str += meal.toLowerCase().substr(0, 1);
-      } else {
-        str += 'o';
-        var i = 0;
-        do {
-          var testId = str + i;
-          if(JSON.stringify($scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries).indexOf(testId) == - 1) {
-            str += i;
-            break;
-          } else {
-            i++;
-          }
-        } while (true);
-      }
+      str += 'e';
+      var i = 0;
+      do {
+        var testId = str + i;
+        if(JSON.stringify($scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries).indexOf(testId) == - 1) {
+          str += i;
+          break;
+        } else {
+          i++;
+        }
+      } while (true);
       return str;
     };
 
@@ -387,9 +382,9 @@ angular.module('starter.controllers', ['ngCordova'])
     
     $scope.dt = new Date().setHours(12);
 
-    var validateEntry = function() {
+    var validateEntry = function(entry) {
       // Meal selected but no food or drink entered
-      if($scope.entry.meal && !$scope.entry.food) {
+      if(entry.meal && !entry.food) {
         var alertPopup = $ionicPopup.alert({
           title: 'Almost there!',
           template: 'Don\'t forget to add what you ate and drank'
@@ -398,7 +393,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
 
       // Food and drink entered but no meal selected
-      if(!$scope.entry.meal && $scope.entry.food) {
+      if(!entry.meal && entry.food) {
         var alertPopup = $ionicPopup.alert({
           title: 'Almost there!',
           template: 'Don\'t forget to select which meal this was'
@@ -407,7 +402,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
 
       // Classified as a binge but no food added or not selected meal
-      if(($scope.entry.binge && !$scope.entry.food) || ($scope.entry.binge && !$scope.entry.food)) {
+      if((entry.binge && !entry.food) || (entry.binge && !entry.food)) {
         var alertPopup = $ionicPopup.alert({
           title: 'Almost there!',
           template: 'Don\'t forget to select the meal and add what you ate and drank as part of this binge'
@@ -416,7 +411,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
 
       // Added a location but no food added or not selected meal
-      if(($scope.entry.location && !$scope.entry.food) || ($scope.entry.location && !$scope.entry.food)) {
+      if((entry.location && !entry.food) || (entry.location && !entry.food)) {
         var alertPopup = $ionicPopup.alert({
           title: 'Almost there!',
           template: 'Don\'t forget to select the meal and add what you ate and drank'
@@ -425,7 +420,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
 
       // Added people but no food added or not selected meal
-      if(($scope.entry.people && !$scope.entry.food) || ($scope.entry.people && !$scope.entry.food)) {
+      if((entry.people && !entry.food) || (entry.people && !entry.food)) {
         var alertPopup = $ionicPopup.alert({
           title: 'Almost there!',
           template: 'Don\'t forget to select the meal and add what you ate and drank'
@@ -445,13 +440,15 @@ angular.module('starter.controllers', ['ngCordova'])
 
       // A meal of this type has already been added today
       var notRepeat = true;
-      $scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries.forEach(function(entry) {
-        if(entry.meal == $scope.entry.meal) {
-          var alertPopup = $ionicPopup.alert({
-            title: 'Not so fast!',
-            template: 'You\'ve already added an entry for this meal today. Perhaps you meant to select a different meal or you want to edit the other entry'
-          });
-          notRepeat = false;
+      $scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries.forEach(function(logsEntry) {
+        if(logsEntry.meal == entry.meal) {
+          if(entry.id != logsEntry.id) {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Are you sure?',
+              template: 'You\'ve already added an entry for this meal today. Perhaps you meant to select a different meal or you want to edit the other entry'
+            });
+            notRepeat = false;
+          }
         }
       });
       return notRepeat;
@@ -470,10 +467,10 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.entry.purge = true;
       }
 
-      var valid = validateEntry();
+      var valid = validateEntry($scope.entry);
 
       if(valid) {
-        $scope.entry.id = createdID($scope.entry.meal);
+        $scope.entry.id = createdID();
         console.log("ID: " + $scope.entry.id);
         
         // // This is the part which will cancel the scheduled notifications
@@ -514,14 +511,17 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.submitEdit = function() {
-      $scope.logs.logsArray.forEach(function(day) {
-        day.entries.forEach(function(entry) {
-          if(entry.id == $scope.editWhich) {
-            entry = $scope.editEntry;
-          }
+      if(validateEntry($scope.editEntry)) {
+        $scope.logs.logsArray.forEach(function(day) {
+          day.entries.forEach(function(entry) {
+            if(entry.id == $scope.editWhich) {
+              
+            }
+          });
         });
-      });
-      window.localStorage['logs'] = JSON.stringify($scope.logs);
+        window.localStorage['logs'] = JSON.stringify($scope.logs);
+        $state.go('menu.logs');
+      }
     };
 
     $scope.submitGoalEdit = function() {
