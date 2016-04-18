@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,7 +27,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 })
 
 // Page Routing
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.views.maxCache(0);
   $stateProvider
     .state('intro', {
       url: '/',
@@ -42,7 +43,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.logs', {
       url: '/logs',
-      cache: false,
       views: {
         'menuContent' : { // menuContent is the name of the nav-view used by the menu
           templateUrl: 'templates/logs.html',
@@ -108,7 +108,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.detailed', {
       url: '/logs/:aId',
-      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/detailed.html',
@@ -129,7 +128,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.home', {
       url: '/home',
-      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/home.html',
@@ -143,14 +141,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' : {
           templateUrl: 'templates/settings.html',
-          controller: 'logsCtrl'
+          controller: 'ClinCtrl'
+        }
+      }
+    })
+
+    .state('menu.settingsEdit', {
+      url: '/settingsEdit',
+      views: {
+        'menuContent' : {
+          templateUrl: 'templates/settingsEdit.html',
+          controller: 'ClinCtrl'
         }
       }
     })
 
     .state('menu.goals', {
       url: '/goals',
-      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/goals.html',

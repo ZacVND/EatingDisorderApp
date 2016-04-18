@@ -56,6 +56,25 @@ angular.module('starter.controllers', ['ngCordova'])
   }
 })
 
+.controller('PDFController', ['$scope', '$ionicModal', 'PDFService', function(){
+  
+}])
+
+.controller('ClinCtrl', ['$scope','$state','$localstorage', function($scope, $state, $localstorage){
+
+  $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');
+
+  $scope.edit = function() {
+    $state.go('menu.settingsEdit');
+  };
+
+  $scope.submit = function(clinician) {
+    $localstorage.setObject('clinician', $scope.clinician).then(function(){
+      $state.go('menu.settings');
+    });
+  };
+}])
+
 .controller('IntroCtrl', function($scope, $state) {
   //delete the line below to prevent the intro page from popping up
   window.localStorage['seenIntro'] = false;
@@ -79,7 +98,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('logsCtrl', ['$scope', '$http', '$state', '$cordovaLocalNotification', function($scope, $http, $state, $cordovaLocalNotification) {
+.controller('logsCtrl', ['$scope', '$http', '$state', '$cordovaLocalNotification','$localstorage', function($scope, $http, $state, $cordovaLocalNotification, $localstorage) {
     $scope.whichEntry = $state.params.aId;
 
     $scope.editWhich = $state.params.bId;
@@ -134,7 +153,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     getGoalByID($scope.editWhichGoal);
 
-    $scope.notifications = JSON.parse(window.localStorage['notifications'] || {"checked":false});
+    // $scope.notifications = JSON.parse(window.localStorage['notifications'] || {"checked":false});
 
     $scope.todayHasGoals = function() {
       var d = new moment().format('YYYY/MM/DD');
@@ -319,7 +338,13 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     // $scope.notificationsChanged = function(bool) {
+<<<<<<< HEAD
     //   $scope.notifications = {"checked":bool};
+=======
+    //   console.log(bool);
+    //   $scope.notifications = {"checked":bool};
+    //   console.log($scope.notifications.checked);
+>>>>>>> d891ee4858660afdaf0acd78b9ea16943b1ce3e7
     //   window.localStorage['notifications'] = JSON.stringify($scope.notifications);
     // }
 
@@ -364,11 +389,11 @@ angular.module('starter.controllers', ['ngCordova'])
     // }
 
     //This code will set the details of the clinician. Submit function in clinician details page
-    $scope.changeClin = function () {
+    // $scope.changeClin = function () {
 
-    };
+    // };
     
-    $scope.dt = new Date().setHours(12);
+    // $scope.dt = new Date().setHours(12);
 
 
     // To submit an entry
@@ -387,7 +412,11 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.entry.id = createdID($scope.entry.meal);
       console.log("ID: " + $scope.entry.id);
       
+<<<<<<< HEAD
       // // This is the part which will cancel the scheduled notifications
+=======
+      // This is the part which will cancel the scheduled notifications
+>>>>>>> d891ee4858660afdaf0acd78b9ea16943b1ce3e7
       // if ($scope.entry.meal == "Breakfast") {
       //   $cordovaLocalNotification.cancel(1);
       // }

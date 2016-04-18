@@ -1,0 +1,35 @@
+<ion-view view-title="Clinician">
+  <ion-content>
+   <ion-list>
+        <div class = "item item-divider item-button-right">Details
+        </div>
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">Name</span>
+            <input type="text" ng-model = "clinician.name" placeholder="{{clinician.name}}">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Address</span>
+            <input type="text" ng-model = "clinician.address" placeholder="{{clinician.address}}">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Landline</span>
+            <input type="text" ng-model = "clinician.landline" placeholder="{{clinician.landline}}">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Mobile</span>
+            <input type="tel" ng-model = "clinician.mobile" placeholder="{{clinician.mobile}}">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Email</span>
+            <input type="email"ng-model = "clinician.email" placeholder="{{clinician.email}}">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Office Hours</span>
+            <input type="text" ng-model = "clinician.office" placeholder="{{clinician.office}}">
+          </label>
+          <a class = "button button-block button-positive" ng-click = "submit(clinician)" href = "#/menu/settings">Submit</a>
+        </div>
+    </ion-list>
+  </ion-content>
+</ion-view>
