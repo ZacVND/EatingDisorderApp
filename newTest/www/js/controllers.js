@@ -9,6 +9,7 @@ angular.module('starter.controllers', ['ngCordova'])
     {title:"Home",icon:"home",page:"home"},
     {title:"Logs",icon:"clipboard",page:"logs"},
     {title:"Goals",icon:"ribbon-b",page:"goals"},
+    {title:"Saved Quotes",icon:"heart",page:"saved_quotes"},
     {title:"Settings",icon:"gear-a",page:"settings"},
     {title:"Help",icon:"help-buoy",page:"help"}
   ];
@@ -92,6 +93,24 @@ angular.module('starter.controllers', ['ngCordova'])
 
 }])
 
+.controller('successCtrl', ['$scope', '$http', '$localstorage', function($scope, $http, $localstorage) {
+  $http.get('js/quotes.json').success(function(data) {
+    $scope.quotes = data.quotesArray;
+    $scope.quote = $scope.quotes[Math.floor(Math.random()*$scope.quotes.length)];
+  });
+
+  $scope.savedQuotes = JSON.parse(window.localStorage['savedQuotes'] || '{"array":[]}');
+  // $scope.savedQuotes = $localstorage.getObject('savedQuotes', '{"array":[]}');
+
+  $scope.saveQuote = function(quoteToSave) {
+    if(JSON.stringify($scope.savedQuotes).indexOf(quoteToSave) == -1) {
+      $scope.savedQuotes.array.push(quoteToSave);
+      $localstorage.setObject('savedQuotes', $scope.savedQuotes);
+    }
+  }
+
+}])
+
 .controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification) {
     $scope.whichEntry = $state.params.aId;
 
@@ -102,11 +121,6 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.goalIn = function() {
       $state.go('menu.goals_input')
     }
-
-    $http.get('js/cuteanimals.json').success(function(data) {
-      $scope.animals = data.photos.photo;
-      $scope.photo = $scope.animals[Math.floor(Math.random()*$scope.animals.length)];
-    });
 
     $scope.logs = JSON.parse(window.localStorage['logs'] || '{"logsArray":[]}');
 

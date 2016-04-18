@@ -96,7 +96,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/success.html',
-          controller: 'logsCtrl'
+          controller: 'successCtrl'
+        }
+      }
+    })
+
+    .state('menu.saved_quotes', {
+      url: '/saved_quotes',
+      views: {
+        'menuContent' : { // all pages are part of menuContent
+          templateUrl: 'templates/saved_quotes.html',
+          controller: 'successCtrl'
         }
       }
     })

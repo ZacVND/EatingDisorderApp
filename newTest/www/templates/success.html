@@ -3,7 +3,23 @@
     	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
 	<ion-content class="has-header padding">
-		<p>Thanks for adding an entry</p>
-		<img src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}.jpg" style="width:100%;" alt="Cute pic">
+
+		<div class="list card">
+
+			<ion-item class="item-icon-left item-text-wrap" href="#/menu/goals">
+		        <i class="icon ion-heart"></i>
+		        <h2>Daily Motivation</h2>
+		    </ion-item>
+			<ion-item class="item item-text-wrap">
+			  	<h2>"{{ quote.quote }}"</h2>
+			  	<p ng-show="quote.author" align="right">- {{ quote.author}}</p>
+			</ion-item>
+
+			<a class="item item-icon-left positive" ng-click="saveQuote(quote)">
+			    <i class="icon ion-thumbsup"></i>
+			    Add to liked quotes
+			</a>
+
+		</div>
 	</ion-content>
 </ion-view>
