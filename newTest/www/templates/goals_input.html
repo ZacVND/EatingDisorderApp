@@ -14,7 +14,7 @@
 	        	<h2>When?</h2>
 	     	</div>
 			<div class="button-bar">
-	     		<a class="button" ng-repeat="date in goalDates" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index); setTimeIndex($index);">{{date}}</a>
+	     		<a class="button time-button" ng-repeat="date in goalDates" ng-class="{'active': activeButton == $index}" ng-click="setActiveButton($index); setTimeOther($index); setTimeIndex($index);">{{date}}</a>
 			</div>
 			<label class="item item-input" ng-show="timeOther==true">
 		     	<i class="icon ion-calendar placeholder-icon"></i>

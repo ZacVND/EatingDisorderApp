@@ -53,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.input', {
       url: '/input',
+      cache: false,
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input.html',
@@ -63,6 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.input_thoughts', {
       url: '/input_thoughts',
+      cache: false,
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input_thoughts.html',
@@ -73,6 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.input_purge', {
       url: '/input_purge',
+      cache: false,
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/input_purge.html',
@@ -83,6 +86,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     .state('menu.edit_input', {
       url: '/input/:bId',
+      cache: false,
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/edit_input.html',
@@ -92,8 +96,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     })
 
     .state('menu.success', {
-      //cache: false,
       url: '/success',
+      cache: false,
       views: {
         'menuContent' : { // all pages are part of menuContent
           templateUrl: 'templates/success.html',

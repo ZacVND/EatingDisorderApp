@@ -16,6 +16,14 @@
 	padding: 0px 30px 60px 30px;
 }
 
+.input-button {
+	font-size: 0.8em;
+}
+
+.time-button {
+	font-size: 1em;
+}
+
 textarea {
 	resize:none;
 }

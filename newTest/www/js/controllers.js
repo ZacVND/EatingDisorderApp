@@ -318,14 +318,12 @@ angular.module('starter.controllers', ['ngCordova'])
         } while (true);
     };
 
-    $scope.notificationsChanged = function(bool) {
-      console.log(bool);
-      $scope.notifications = {"checked":bool};
-      console.log($scope.notifications.checked);
-      window.localStorage['notifications'] = JSON.stringify($scope.notifications);
-    }
+    // $scope.notificationsChanged = function(bool) {
+    //   $scope.notifications = {"checked":bool};
+    //   window.localStorage['notifications'] = JSON.stringify($scope.notifications);
+    // }
 
-    //This is the function which schedules all of the notifications
+    // //This is the function which schedules all of the notifications
     // if ($scope.notifications.checked) {
     //   var alarmTime = new Date();
     //   alarmTime.setMinutes(alarmTime.getMinutes() + 1);
@@ -389,16 +387,16 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.entry.id = createdID($scope.entry.meal);
       console.log("ID: " + $scope.entry.id);
       
-      // This is the part which will cancel the scheduled notifications
-      if ($scope.entry.meal == "Breakfast") {
-        $cordovaLocalNotification.cancel(1);
-      }
-      else if ($scope.entry.meal == "Lunch") {
-        $cordovaLocalNotification.cancel(2);
-      }
-      else if ($scope.entry.meal == "Dinner") {
-        $cordovaLocalNotification.cancel(3);
-      };
+      // // This is the part which will cancel the scheduled notifications
+      // if ($scope.entry.meal == "Breakfast") {
+      //   $cordovaLocalNotification.cancel(1);
+      // }
+      // else if ($scope.entry.meal == "Lunch") {
+      //   $cordovaLocalNotification.cancel(2);
+      // }
+      // else if ($scope.entry.meal == "Dinner") {
+      //   $cordovaLocalNotification.cancel(3);
+      // };
 
       var log = angular.copy($scope.logs);
       log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
