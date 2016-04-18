@@ -79,7 +79,20 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('logsCtrl', ['$scope', '$ionicPopup' '$http', '$state', '$cordovaLocalNotification', function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification) {
+.controller('ClinCtrl', ['$scope','$state','$localstorage', function($scope, $state, $localstorage) {
+  $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');
+  $scope.edit = function() {
+    $state.go('menu.settingsEdit');
+  };
+  $scope.submit = function(clinician) {
+    $localstorage.setObject('clinician', $scope.clinician).then(function(){
+      $state.go('menu.settings');
+    });
+  };
+
+}])
+
+.controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification) {
     $scope.whichEntry = $state.params.aId;
 
     $scope.editWhich = $state.params.bId;
@@ -401,6 +414,47 @@ angular.module('starter.controllers', ['ngCordova'])
         });
         return false;
       }
+
+      // Added a location but no food added or not selected meal
+      if(($scope.entry.location && !$scope.entry.food) || ($scope.entry.location && !$scope.entry.food)) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Almost there!',
+          template: 'Don\'t forget to select the meal and add what you ate and drank'
+        });
+        return false;
+      }
+
+      // Added people but no food added or not selected meal
+      if(($scope.entry.people && !$scope.entry.food) || ($scope.entry.people && !$scope.entry.food)) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Almost there!',
+          template: 'Don\'t forget to select the meal and add what you ate and drank'
+        });
+        return false;
+      }
+
+      // Inputted a time in the future
+      d = new moment().format('HH:mm');
+      if($scope.entry.time > d) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Not so fast!',
+          template: 'You can\'t select a time in the future'
+        });
+        return false;
+      }
+
+      // A meal of this type has already been added today
+      var notRepeat = true;
+      $scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries.forEach(function(entry) {
+        if(entry.meal == $scope.entry.meal) {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Not so fast!',
+            template: 'You\'ve already added an entry for this meal today. Perhaps you meant to select a different meal or you want to edit the other entry'
+          });
+          notRepeat = false;
+        }
+      });
+      return notRepeat;
     }
 
     // To submit an entry
@@ -411,37 +465,37 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.entry.time = moment().format('HH:mm');
       }
 
-      validateEntry();
-
-      
-
       if(purge) {
         console.log("This post was a purge");
         $scope.entry.purge = true;
+      }
+
+      var valid = validateEntry();
+
+      if(valid) {
+        $scope.entry.id = createdID($scope.entry.meal);
+        console.log("ID: " + $scope.entry.id);
+        
+        // // This is the part which will cancel the scheduled notifications
+
+        // if ($scope.entry.meal == "Breakfast") {
+        //   $cordovaLocalNotification.cancel(1);
+        // }
+        // else if ($scope.entry.meal == "Lunch") {
+        //   $cordovaLocalNotification.cancel(2);
+        // }
+        // else if ($scope.entry.meal == "Dinner") {
+        //   $cordovaLocalNotification.cancel(3);
+        // };
+
+        var log = angular.copy($scope.logs);
+        log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
+
+        window.localStorage['logs'] = JSON.stringify(log);
+
+        $scope.logs = JSON.parse(window.localStorage['logs']);
+        $state.go('menu.success');
       }      
-
-      $scope.entry.id = createdID($scope.entry.meal);
-      console.log("ID: " + $scope.entry.id);
-      
-      // // This is the part which will cancel the scheduled notifications
-
-      // if ($scope.entry.meal == "Breakfast") {
-      //   $cordovaLocalNotification.cancel(1);
-      // }
-      // else if ($scope.entry.meal == "Lunch") {
-      //   $cordovaLocalNotification.cancel(2);
-      // }
-      // else if ($scope.entry.meal == "Dinner") {
-      //   $cordovaLocalNotification.cancel(3);
-      // };
-
-      var log = angular.copy($scope.logs);
-      log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
-
-      window.localStorage['logs'] = JSON.stringify(log);
-
-      $scope.logs = JSON.parse(window.localStorage['logs']);
-      $state.go('menu.success');
     };
 
     // To submit a goal
