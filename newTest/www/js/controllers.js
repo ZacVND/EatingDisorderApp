@@ -319,7 +319,11 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     // $scope.notificationsChanged = function(bool) {
+
+    //   console.log(bool);
     //   $scope.notifications = {"checked":bool};
+    //   console.log($scope.notifications.checked);
+
     //   window.localStorage['notifications'] = JSON.stringify($scope.notifications);
     // }
 
@@ -419,7 +423,11 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.entry.id = createdID($scope.entry.meal);
       console.log("ID: " + $scope.entry.id);
       
+<<<<<<< HEAD
       // // This is the part which will cancel the scheduled notifications
+=======
+      // This is the part which will cancel the scheduled notifications
+>>>>>>> 38261ae03ea9d12020466aae750411c837e76519
       // if ($scope.entry.meal == "Breakfast") {
       //   $cordovaLocalNotification.cancel(1);
       // }
