@@ -61,6 +61,7 @@ angular.module('starter.controllers', ['ngCordova'])
 }])
 
 .controller('ClinCtrl', ['$scope','$state','$localstorage', function($scope, $state, $localstorage){
+
   $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');
 
   $scope.edit = function() {
@@ -68,8 +69,9 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 
   $scope.submit = function(clinician) {
-    $localstorage.setObject('clinician', $scope.clinician);
-    $state.go('menu.settings');
+    $localstorage.setObject('clinician', $scope.clinician).then(function(){
+      $state.go('menu.settings');
+    });
   };
 }])
 

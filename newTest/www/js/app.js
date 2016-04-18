@@ -27,7 +27,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
 })
 
 // Page Routing
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.views.maxCache(0);
   $stateProvider
     .state('intro', {
       url: '/',
@@ -42,7 +43,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
 
     .state('menu.logs', {
       url: '/logs',
-      cache: false,
       views: {
         'menuContent' : { // menuContent is the name of the nav-view used by the menu
           templateUrl: 'templates/logs.html',
@@ -104,7 +104,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
 
     .state('menu.detailed', {
       url: '/logs/:aId',
-      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/detailed.html',
@@ -125,7 +124,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
 
     .state('menu.home', {
       url: '/home',
-      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/home.html',
@@ -156,7 +154,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
 
     .state('menu.goals', {
       url: '/goals',
-      cache: false,
       views: {
         'menuContent' : {
           templateUrl: 'templates/goals.html',
