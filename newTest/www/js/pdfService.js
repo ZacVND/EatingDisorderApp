@@ -11,9 +11,9 @@ function PDFService($q,$cordovaFile) {
 
                 var pathFile = "";
                 if (ionic.Platform.isIOS()) {
-                    var pathFile = cordova.file.documentsDirectory
+                    var pathFile = cordova.file.documentsDirectory;
                 } else {
-                    var pathFile = cordova.file.externalDataDirectory
+                    var pathFile = cordova.file.DataDirectory;
                 }
 
                 $cordovaFile.writeFile(pathFile, "report.pdf", binaryArray, true)
