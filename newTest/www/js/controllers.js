@@ -57,6 +57,7 @@ angular.module('starter.controllers', ['ngCordova'])
   }
 })
 
+
 .controller('IntroCtrl', function($scope, $state) {
   //delete the line below to prevent the intro page from popping up
   $scope.seenIntro = window.localStorage['seenIntro'] || false;
@@ -85,12 +86,12 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.edit = function() {
     $state.go('menu.settingsEdit');
   };
+  var logs = $localstorage.getObject('logs');
   $scope.submit = function(clinician) {
-    $localstorage.setObject('clinician', $scope.clinician).then(function(){
-      $state.go('menu.settings');
-    });
+    $localstorage.setObject('clinician', $scope.clinician);
+    $state.go('menu.settings');
+    console.log(logs.logsArray);
   };
-
 }])
 
 .controller('successCtrl', ['$scope', '$http', '$localstorage', function($scope, $http, $localstorage) {
@@ -161,7 +162,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     getGoalByID($scope.editWhichGoal);
 
-    $scope.notifications = JSON.parse(window.localStorage['notifications'] || {"checked":false});
+    // $scope.notifications = JSON.parse(window.localStorage['notifications'] || {"checked":false});
 
     $scope.todayHasGoals = function() {
       var d = new moment().format('YYYY/MM/DD');
@@ -388,13 +389,6 @@ angular.module('starter.controllers', ['ngCordova'])
     // else {
     //   $cordovaLocalNotification.cancelAll();
     // }
-
-    //This code will set the details of the clinician. Submit function in clinician details page
-    $scope.changeClin = function () {
-
-    };
-    
-    $scope.dt = new Date().setHours(12);
 
     var validateEntry = function(entry) {
       // Meal selected but no food or drink entered
