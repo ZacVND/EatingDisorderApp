@@ -81,7 +81,9 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('ClinCtrl', ['$scope','$state','$localstorage', '$cordovaFile', '$cordovaEmailComposer', function($scope, $state, $localstorage, $cordovaFile, $cordovaEmailComposer) {
+.controller('ClinCtrl', ['$scope','$state','$localstorage', '$cordovaFile', '$cordovaEmailComposer', 
+  function($scope, $state, $localstorage, $cordovaFile, $cordovaEmailComposer) {
+
   $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');
   $scope.edit = function() {
     $state.go('menu.settingsEdit');
@@ -139,7 +141,9 @@ angular.module('starter.controllers', ['ngCordova'])
     };  
 }])
 
-.controller('successCtrl', ['$scope', '$http', '$localstorage', function($scope, $http, $localstorage) {
+.controller('successCtrl', ['$scope', '$http', '$localstorage', 
+  function($scope, $http, $localstorage) {
+
   $http.get('js/quotes.json').success(function(data) {
     $scope.quotes = data.quotesArray;
     $scope.quote = $scope.quotes[Math.floor(Math.random()*$scope.quotes.length)];
@@ -156,7 +160,9 @@ angular.module('starter.controllers', ['ngCordova'])
   }
 }])
 
-.controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification) {
+.controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', '$localstorage',
+ function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification, $localstorage) {
+
     $scope.whichEntry = $state.params.aId;
 
     $scope.editWhich = $state.params.bId;
@@ -184,7 +190,7 @@ angular.module('starter.controllers', ['ngCordova'])
     var d = new moment();
     if(JSON.stringify($scope.logs).indexOf(d.format('YYYY/MM/DD')) == -1) {
       $scope.logs.logsArray.push({date:d.format('YYYY/MM/DD'),entries:[]});
-    }
+    };
 
     $scope.changePageToEdit = function(id) {
       document.location.href = "#/menu/input/" + id;
@@ -202,16 +208,18 @@ angular.module('starter.controllers', ['ngCordova'])
           $scope.editGoal = goal;
         }
       });
-    }
+    };
 
     getGoalByID($scope.editWhichGoal);
 
-    $scope.notifications = JSON.parse(window.localStorage['notifications'] || '{"checked":false}');
 
     //This is the function which schedules all of the notifications
-    $scope.notificationsChanged = function(value) {
-      console.log(value);
-        if (value) {
+    $scope.notifications = JSON.parse(window.localStorage['notifications'] || 'false');
+
+    $scope.notificationsChanged = function() {
+      console.log($scope.notifications);
+      $localstorage.setObject('notifications', $scope.notifications);
+        if ($localstorage.getObject('notifications')) {
           var alarmTime = new Date();
           alarmTime.setMinutes(alarmTime.getMinutes() + 1);
           $cordovaLocalNotification.schedule({
@@ -221,7 +229,7 @@ angular.module('starter.controllers', ['ngCordova'])
             title: "You haven't been recording your meals",
             autoCancel: false
           }).then(function() {
-            console.log("The notification has been sent");
+            
           });
           var noon = new Date().setHours(11);
           var afternoon = new Date().setHours(16);
