@@ -16,7 +16,6 @@
 
         vm.createReport = function () {
             var report = getDummyData($localstorage, $window);
-            console.log(report);
 
             PDFService.createPdf(report)
                 .then(function (pdf) {

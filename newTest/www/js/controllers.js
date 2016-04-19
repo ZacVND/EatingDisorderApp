@@ -81,7 +81,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('ClinCtrl', ['$scope','$state','$localstorage', function($scope, $state, $localstorage) {
+.controller('ClinCtrl', ['$scope','$state','$localstorage', '$cordovaFile', '$cordovaEmailComposer', function($scope, $state, $localstorage, $cordovaFile, $cordovaEmailComposer) {
   $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');
   $scope.edit = function() {
     $state.go('menu.settingsEdit');
@@ -92,6 +92,51 @@ angular.module('starter.controllers', ['ngCordova'])
     $state.go('menu.settings');
     console.log(logs.logsArray);
   };
+
+  $scope.sendEmail = function() {
+        console.log("email function executed");
+        var bodyText = "<h3>Hi, this is my Self-monitoring sheet of the last 50 meals</h3>";
+        var attach;
+        var pathFile = '';
+        if(ionic.Platform.isIOS()) {
+          pathFile = cordova.file.documentsDirectory;
+        }
+        else {
+          pathFile = cordova.file.externalDataDirectory;
+        }
+
+        $cordovaFile.checkFile(pathFile, "report.pdf")
+         .then(function (success) {
+            attach = ['' + cordova.file.documentsDirectory.replace('file://','') + "report.pdf"];
+          }, function (error) {
+            attach = [];
+            //Should these code be included?
+            // $ionicPopup.alert({
+            //    title: 'No Attachment available',
+            //    template: 'Please create a report'
+            // });
+          });
+        // ['' + cordova.file.documentsDirectory.replace('file://','') + "report.pdf"]
+        $cordovaEmailComposer.isAvailable().then(function() {
+           // is available
+           var toC = $localstorage.getObject('clinician');
+            var email = {
+              to: toC.email,
+              cc: '',
+              bcc: '',
+              attachments: attach,
+              subject: 'My Self Monitoring Sheet',
+              body: bodyText,
+              isHtml: true
+            };
+
+          $cordovaEmailComposer.open(email).then(null, function () {
+             // user cancelled email
+          });
+         }, function () {
+           // not available
+         });
+    };  
 }])
 
 .controller('successCtrl', ['$scope', '$http', '$localstorage', function($scope, $http, $localstorage) {
@@ -109,7 +154,6 @@ angular.module('starter.controllers', ['ngCordova'])
       $localstorage.setObject('savedQuotes', $scope.savedQuotes);
     }
   }
-
 }])
 
 .controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification) {

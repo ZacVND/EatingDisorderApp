@@ -26,10 +26,11 @@
             <h2>Version: Pre-Alpha</h2>
             <h2>Created by: Zac and Alasdair</h2>
         </ion-item>
+        <button ng-controller = "ClinCtrl" ng-click="sendEmail(clinician.email)" class="button button-icon icon ion-email">
+            Send mail
+        </button>
         <button class = "button button-block button-outline button-royal" ng-click="vm.createReport()">Create Report</button>
     </ion-list>
-    <!-- 
-    <button class ="button button-block button-assertive" ng-click = "wipeStorage()">Wipe Data</button> -->
   </ion-content>
 </ion-view>
 

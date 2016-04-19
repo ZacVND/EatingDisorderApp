@@ -1,6 +1,6 @@
-(function () {angular.module('starter').factory('PDFService', ['$q', '$cordovaFile', PDFService]);
+(function () {angular.module('starter').factory('PDFService', ['$q', '$cordovaFile', '$ionicPlatform', '$ionicPopup', PDFService]);
 
-function PDFService($q,$cordovaFile) {
+function PDFService($q,$cordovaFile,$ionicPlatform,$ionicPopup) {
     function createPdf(report) {
         return $q(function (resolve, reject) {
             var dd = createDocumentDefinition(report);
@@ -19,8 +19,12 @@ function PDFService($q,$cordovaFile) {
                 $cordovaFile.writeFile(pathFile, "report.pdf", binaryArray, true)
                 .then(function (success) {
                     console.log("pdf created");
-                    alert("report created");
+                    $ionicPopup.alert({
+                       title: 'Self-monitoring Sheet Created',
+                       template: 'A Self-monitoring Sheet containing your last 50 meals has been created'
+                    });
                 }, function (error) {
+                    alert("Nothing");
                      console.log("error");
                 });
             });
