@@ -206,7 +206,50 @@ angular.module('starter.controllers', ['ngCordova'])
 
     getGoalByID($scope.editWhichGoal);
 
-    // $scope.notifications = JSON.parse(window.localStorage['notifications'] || {"checked":false});
+    $scope.notifications = JSON.parse(window.localStorage['notifications'] || '{"checked":false}');
+
+    //This is the function which schedules all of the notifications
+    $scope.notificationsChanged = function(value) {
+      console.log(value);
+        if (value) {
+          var alarmTime = new Date();
+          alarmTime.setMinutes(alarmTime.getMinutes() + 1);
+          $cordovaLocalNotification.schedule({
+            id: 0,
+            date: alarmTime,  
+            message: "You haven't recorded anything for a week. Is everything alright?",
+            title: "You haven't been recording your meals",
+            autoCancel: false
+          }).then(function() {
+            console.log("The notification has been sent");
+          });
+          var noon = new Date().setHours(11);
+          var afternoon = new Date().setHours(16);
+          var night = new Date().setHours(22);
+          $cordovaLocalNotification.schedule([{
+              id: 3,
+              message: "You haven't eaten or forgot to log Dinner. Please do so ASAP",
+              firstAt: night,
+              every: "minute",
+              autoCancel: false
+            },{
+              id: 2,
+              message: "You haven't eaten or forgot to log Lunch. Please do so ASAP",
+              firstAt: afternoon,
+              every: "minute",
+              autoCancel: false
+            },{
+              id: 1,
+              message: "You haven't eaten or forgot to log Breakfast. Please do so ASAP",
+              firstAt: noon,
+              every: "minute",
+              autoCancel: false
+          }]);
+      }
+      else {
+        $cordovaLocalNotification.cancelAll();
+      }
+    }
 
     $scope.todayHasGoals = function() {
       var d = new moment().format('YYYY/MM/DD');
@@ -385,54 +428,6 @@ angular.module('starter.controllers', ['ngCordova'])
         } while (true);
     };
 
-    // $scope.notificationsChanged = function(bool) {
-
-    //   console.log(bool);
-    //   $scope.notifications = {"checked":bool};
-    //   console.log($scope.notifications.checked);
-
-    //   window.localStorage['notifications'] = JSON.stringify($scope.notifications);
-    // }
-
-    // //This is the function which schedules all of the notifications
-    // if ($scope.notifications.checked) {
-    //   var alarmTime = new Date();
-    //   alarmTime.setMinutes(alarmTime.getMinutes() + 1);
-    //   $cordovaLocalNotification.schedule({
-    //     id: 0,
-    //     date: alarmTime,
-    //     message: "You haven't recorded anything for a week. Is everything alright?",
-    //     title: "You haven't been recording your meals",
-    //     autoCancel: false
-    //   }).then(function() {
-    //     console.log("The notification has been sent");
-    //   });
-    //   var noon = new Date().setHours(11);
-    //   var afternoon = new Date().setHours(16);
-    //   var night = new Date().setHours(22);
-    //   $cordovaLocalNotification.schedule([{
-    //       id: 3,
-    //       message: "You haven't eaten or forgot to log Dinner. Please do so ASAP",
-    //       firstAt: night,
-    //       every: "minute",
-    //       autoCancel: false
-    //     },{
-    //       id: 2,
-    //       message: "You haven't eaten or forgot to log Lunch. Please do so ASAP",
-    //       firstAt: afternoon,
-    //       every: "minute",
-    //       autoCancel: false
-    //     },{
-    //       id: 1,
-    //       message: "You haven't eaten or forgot to log Breakfast. Please do so ASAP",
-    //       firstAt: noon,
-    //       every: "minute",
-    //       autoCancel: false
-    //   }]);
-    // }
-    // else {
-    //   $cordovaLocalNotification.cancelAll();
-    // }
 
     var validateEntry = function(entry) {
       // Meal selected but no food or drink entered
@@ -527,15 +522,15 @@ angular.module('starter.controllers', ['ngCordova'])
         
         // // This is the part which will cancel the scheduled notifications
 
-        // if ($scope.entry.meal == "Breakfast") {
-        //   $cordovaLocalNotification.cancel(1);
-        // }
-        // else if ($scope.entry.meal == "Lunch") {
-        //   $cordovaLocalNotification.cancel(2);
-        // }
-        // else if ($scope.entry.meal == "Dinner") {
-        //   $cordovaLocalNotification.cancel(3);
-        // };
+        if ($scope.entry.meal == "Breakfast") {
+          $cordovaLocalNotification.cancel(1);
+        }
+        else if ($scope.entry.meal == "Lunch") {
+          $cordovaLocalNotification.cancel(2);
+        }
+        else if ($scope.entry.meal == "Dinner") {
+          $cordovaLocalNotification.cancel(3);
+        };
 
         var log = angular.copy($scope.logs);
         log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
