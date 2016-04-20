@@ -69,11 +69,6 @@ angular.module('starter.controllers', ['ngCordova'])
             attach = ['' + cordova.file.documentsDirectory.replace('file://','') + "report.pdf"];
           }, function (error) {
             attach = [];
-            //Should these code be included?
-            // $ionicPopup.alert({
-            //    title: 'No Attachment available',
-            //    template: 'Please create a report'
-            // });
           });
         // ['' + cordova.file.documentsDirectory.replace('file://','') + "report.pdf"]
         $cordovaEmailComposer.isAvailable().then(function() {
