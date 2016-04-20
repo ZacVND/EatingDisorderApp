@@ -8,7 +8,7 @@
       <input type="date" id="datePicker" ng-model="selectedDate" min="2015-01-01" max="{{ todaysDate('-') }}">
     </label>
   </div>
-  <ion-content class="has-subheader">
+  <ion-content class="has-subheader padding">
     <ion-list >
       <div class="list card" ng-show="day.entries.length" ng-repeat="(dayIndex, day) in logs.logsArray | orderBy:'date':true | filter:dateFilter(selectedDate)">
         <ion-item class="item-icon-left">
@@ -24,6 +24,7 @@
             <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
         </ion-item>
       </div>
+      <p ng-show="!logs.logsArray.length">You haven't logged anything yet.</p>
 
       
     </ion-list>

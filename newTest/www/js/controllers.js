@@ -157,7 +157,12 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.savedQuotes.array.push(quoteToSave);
       $localstorage.setObject('savedQuotes', $scope.savedQuotes);
     }
-  }
+  };
+
+  $scope.deleteQuote = function(index) {
+    $scope.savedQuotes.splice(index, 1);
+    $localstorage.setObject('savedQuotes', $scope.savedQuotes);
+  };
 }])
 
 .controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', '$localstorage',
