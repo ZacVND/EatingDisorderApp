@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.newtest259968" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Eating Disorder</name>
+  <name>My Food Diary</name>
   <description>
-        An Ionic Framework and Cordova project.
+        An application that improves Self-monitoring, a treatment to cure eating disorders
     </description>
   <author email="zac.luong.15@ucl.ac.uk">
       Team 35

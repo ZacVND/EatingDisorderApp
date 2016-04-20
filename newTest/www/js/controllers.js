@@ -66,7 +66,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $cordovaFile.checkFile(pathFile, "report.pdf")
          .then(function (success) {
-            attach = ['' + cordova.file.documentsDirectory.replace('file://','') + "report.pdf"];
+            attach = ['' + pathFile.replace('file://','') + "report.pdf"];
           }, function (error) {
             attach = [];
           });
