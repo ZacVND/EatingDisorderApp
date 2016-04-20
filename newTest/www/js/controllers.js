@@ -15,49 +15,6 @@ angular.module('starter.controllers', ['ngCordova'])
   ];
 })
 
-.controller('camCtrl', function($scope, $cordovaCamera){
-  $scope.takePhoto = function () {    // This code is for taking the photo and storing it into the phone's gallery
-    var options = {
-      quality: 100,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.CAMERA,
-      allowEdit: false,
-      encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 300,
-      targetHeight: 300,
-      popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: true
-  };
-
-      $cordovaCamera.getPicture(options).then(function (imageData) {
-          $scope.imgURI = "data:image/jpeg;base64," + imageData;
-      }, function (err) {
-          console.err(err);
-      });
-  }
-
-  $scope.choosePhoto = function () {    //This code is for choosing the photo from the gallery
-    var options = {
-      quality: 100,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      allowEdit: true,
-      encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 300,
-      targetHeight: 300,
-      popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false
-  };
-
-    $cordovaCamera.getPicture(options).then(function (imageData) {
-        $scope.imgURI = "data:image/jpeg;base64," + imageData;
-    }, function (err) {
-        console.err(err);
-    });
-  }
-})
-
-
 .controller('IntroCtrl', function($scope, $state) {
   //delete the line below to prevent the intro page from popping up
   $scope.seenIntro = window.localStorage['seenIntro'] || false;
