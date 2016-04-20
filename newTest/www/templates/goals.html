@@ -16,9 +16,11 @@
         <ion-item class="item-text-wrap" ng-repeat="item in goals | orderBy:'date'" ng-if="item.date >= todaysDate('/')">
           <h2>{{ item.goal }}</h2>
           <p>{{ getDisplayDate(item.date) }}</p>
-          <!-- Need to implement these -->
           <ion-option-button class="button-calm ion-edit" ng-click="changePageToEditGoal(item.id)">
           <ion-option-button class="button-assertive ion-trash-b" ng-click="deleteGoal(item)">
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-show="!hasUpcomingGoals()">
+          <p>You have no upcoming goals. Be sure to add some using the button above.</p>
         </ion-item>
       </div>
 
@@ -33,9 +35,11 @@
           <p>{{ getDisplayDate(item.date) }}</p>
           <i ng-show="item.completed" class="icon ion-checkmark balanced"></i>
           <i ng-show="!item.completed" class="icon ion-close assertive"></i>
-          <!-- Need to make these work with localStorage -->
           <ion-option-button ng-show="!item.completed" class="button-balanced ion-checkmark" ng-click="item.completed=true;updateGoals()">
           <ion-option-button ng-show="item.completed" class="button-assertive ion-close" ng-click="item.completed=false;updateGoals()">
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-show="!hasPastGoals()">
+          <p>You have no past goals yet. When you do, come back here so you can select whether a goal was completed or not.</p>
         </ion-item>
       </div>
     </ion-list>

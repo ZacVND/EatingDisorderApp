@@ -9,26 +9,23 @@
     </label>
   </div>
   <ion-content class="has-subheader">
-    <ion-list show-delete="logs.entries.showDelete" ng-show="day.entries.length" ng-repeat="(dayIndex, day) in logs.logsArray | orderBy:'date':true | filter:dateFilter(selectedDate)">
-      <div class="item item-divider">
-        <div class="row">
-          <div class="col-75">
-            {{ getDisplayDate(day.date) }}
-          </div>
-          <div class="col-25">
-            <p style="text-align:right;">{{getTimeAgo(day.date)}}</p>
-          </div>
-        </div>
+    <ion-list >
+      <div class="list card" ng-show="day.entries.length" ng-repeat="(dayIndex, day) in logs.logsArray | orderBy:'date':true | filter:dateFilter(selectedDate)">
+        <ion-item class="item-icon-left">
+          <i class="icon ion-calendar"></i>
+          <h2>{{ getDisplayDate(day.date) }}</h2>
+          <p>{{getTimeAgo(day.date)}}</p>
+        </ion-item>
+        <ion-item ng-repeat="item in day.entries | orderBy:'time'" href="#/menu/logs/{{item.id}}">
+            <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
+            <p>{{ item.food }}</p>
+            <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
+            <ion-option-button class="button-calm ion-edit" ng-click="changePageToEdit(item.id)">
+            <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
+        </ion-item>
       </div>
-      <ion-item ng-repeat="item in day.entries | orderBy:'time'" href="#/menu/logs/{{item.id}}">
 
-          <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
-          <p>{{ item.food }}</p>
-          <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
-          <!-- <ion-option-button class="button-calm ion-edit" onclick="window.location.href='#/menu/input/';"> -->
-          <ion-option-button class="button-calm ion-edit" ng-click="changePageToEdit(item.id)">
-          <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
-      </ion-item>
+      
     </ion-list>
   </ion-content>
 </ion-view>
