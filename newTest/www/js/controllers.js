@@ -268,6 +268,28 @@ angular.module('starter.controllers', ['ngCordova'])
       }
     };
 
+    $scope.hasUpcomingGoals = function() {
+      var d = new moment().format('YYYY/MM/DD');
+      var returnVal = false;
+      $scope.goals.forEach(function(entry) {
+        if(entry.date >= d) {
+          returnVal = true;
+        }
+      });
+      return returnVal;
+    };
+
+    $scope.hasPastGoals = function() {
+      var d = new moment().format('YYYY/MM/DD');
+      var returnVal = false;
+      $scope.goals.forEach(function(entry) {
+        if(entry.date < d) {
+          returnVal = true;
+        }
+      });
+      return returnVal;
+    };
+
     $scope.todaysDate = function(separator) {
       var d = new moment();
       return d.format('YYYY' + separator + 'MM' + separator + 'DD');
@@ -507,7 +529,18 @@ angular.module('starter.controllers', ['ngCordova'])
         }
       });
       return notRepeat;
-    }
+    };
+
+    var validateGoalEntry = function (goalEntry) {
+      if(!goalEntry.goal) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Almost there!',
+          template: 'Don\'t forget to enter a goal'
+        });
+        return false;
+      }
+      return true;
+    };
 
     // To submit an entry
     $scope.submit = function(indexedTime, purge) {
@@ -566,12 +599,15 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.submitGoal = function() {
       var goal = angular.copy($scope.goals);
       setDateSelection($scope.timeIndex);
-      $scope.goalEntry.id = goalID();
-
-      goal.push($scope.goalEntry);
-      window.localStorage['goals'] = JSON.stringify(goal);
-      $scope.goals = JSON.parse(window.localStorage['goals']);
+      if(validateGoalEntry($scope.goalEntry)) {
+        $scope.goalEntry.id = goalID();
+        goal.push($scope.goalEntry);
+        window.localStorage['goals'] = JSON.stringify(goal);
+        $scope.goals = JSON.parse(window.localStorage['goals']);
+        $state.go('menu.goals');
+      }
     };
+      
 
     $scope.updateGoals = function() {
       window.localStorage['goals'] = JSON.stringify($scope.goals);
@@ -582,7 +618,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.logs.logsArray.forEach(function(day) {
           day.entries.forEach(function(entry) {
             if(entry.id == $scope.editWhich) {
-              
+              entry = $scope.editEntry;
             }
           });
         });
@@ -592,12 +628,15 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.submitGoalEdit = function() {
-      $scope.goals.forEach(function(goal) {
-        if(goal.id == $scope.editWhichGoal) {
-          goal = $scope.editGoal;
-        }
-      });
-      window.localStorage['goals'] = JSON.stringify($scope.goals);
+      if(validateGoalEntry($scope.editGoal)) {
+        $scope.goals.forEach(function(goal) {
+          if(goal.id == $scope.editWhichGoal) {
+            goal = $scope.editGoal;
+          }
+        });
+        window.localStorage['goals'] = JSON.stringify($scope.goals);
+        $state.go('menu.goals');
+      }
     };
 
 }]);
