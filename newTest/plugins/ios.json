@@ -7,6 +7,12 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.ionicframework.newtest259968"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.newtest259968"
+        },
         "cordova-plugin-email-composer": {
             "PACKAGE_NAME": "com.ionicframework.newtest259968"
         },
@@ -15,17 +21,7 @@
         },
         "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "com.ionicframework.newtest259968"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.newtest259968"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.ionicframework.newtest259968"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-app-event": {
-            "PACKAGE_NAME": "com.ionicframework.newtest259968"
-        }
-    }
+    "dependent_plugins": {}
 }

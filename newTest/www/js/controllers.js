@@ -17,19 +17,13 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('IntroCtrl', function($scope, $state) {
   //delete the line below to prevent the intro page from popping up
-  $scope.seenIntro = window.localStorage['seenIntro'] || false;
-
-  $scope.startApp = function() {
-    $state.go('menu.home');
-
-    // Set a flag that we finished the tutorial
-    window.localStorage['seenIntro'] = true;
-  };
 
   if(window.localStorage['seenIntro'] === "true") {
-    console.log('Skip intro');
     $state.go('menu.home');
-  }
+    console.log('Skip intro');
+  };
+
+  $scope.seenIntro = window.localStorage['seenIntro'] || false;
   // Move to help page
   $scope.toHelp = function() {
     $state.go("menu.help");
@@ -175,8 +169,12 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.notificationsChanged = function() {
       console.log($scope.notifications);
+      var noon = new Date().setHours(11);
+      // var alarmTime = new Date();
+      //     console.log(alarmTime.setMinutes(alarmTime.getMinutes() + 1));
+      console.log(noon);
       $localstorage.setObject('notifications', $scope.notifications);
-        if ($localstorage.getObject('notifications')) {
+        if ($localstorage.getObject('notifications') == true) {
           var alarmTime = new Date();
           alarmTime.setMinutes(alarmTime.getMinutes() + 1);
           $cordovaLocalNotification.schedule({
@@ -195,19 +193,19 @@ angular.module('starter.controllers', ['ngCordova'])
               id: 3,
               message: "Time to record your Dinner log",
               firstAt: night,
-              every: "minute",
+              every: "hour",
               autoCancel: false
             },{
               id: 2,
               message: "Time to record your Lunch log",
               firstAt: afternoon,
-              every: "minute",
+              every: "hour",
               autoCancel: false
             },{
               id: 1,
               message: "Time to record your Breakfast log",
               firstAt: noon,
-              every: "minute",
+              every: "hour",
               autoCancel: false
           }]);
       }
@@ -531,17 +529,19 @@ angular.module('starter.controllers', ['ngCordova'])
         };
 
         // Re-schedule the notification
-        var newTime = new Date();
-        newTime.setMinutes(newTime.getMinutes() + 2);
-        $cordovaLocalNotification.schedule({
-            id: 0,
-            date: newTime,  
-            message: "You haven't recorded anything for a week. Is everything alright?",
-            title: "You haven't been recording your meals",
-            autoCancel: false
-          }).then(function() {
-            
-          });
+        if ($localstorage.getObject('notifications') == true) {
+          var newTime = new Date();
+          newTime.setMinutes(newTime.getMinutes() + 2);
+          $cordovaLocalNotification.schedule({
+              id: 0,
+              date: newTime,  
+              message: "You haven't recorded anything for a week. Is everything alright?",
+              title: "You haven't been recording your meals",
+              autoCancel: false
+            }).then(function() {
+              
+            });
+        };
 
         var log = angular.copy($scope.logs);
         log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);

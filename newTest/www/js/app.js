@@ -192,5 +192,15 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    $urlRouterProvider.otherwise('/'); // App opens up on the home page
+    var landing;
+    if (window.localStorage['seenIntro'] === "true") {
+      landing = 'menu/home';
+    }
+    else {
+      landing = '/';
+    };
+    console.log(window.localStorage['seenIntro']);
+    console.log(landing);
+
+    $urlRouterProvider.otherwise(landing); // App opens up on the home page
 });
