@@ -5,31 +5,37 @@
   <ion-content ng-controller = "PDFController as vm">
     <ion-list>
     <ion-toggle ng-controller="logsCtrl" ng-model="notifications" ng-click="notificationsChanged()">
-        Push Notifications
+         Notifications
+    </ion-toggle>
+    <ion-toggle ng-controller="logsCtrl" ng-model="pin" ng-click="notificationsChanged()">
+         Require Pin
     </ion-toggle>
     </ion-list>
 
    <ion-list>
-        <div class = "item item-divider item-button-right">Clinician Details
+        <div class = "item item-divider item-button-right">
+            Clinician Details
         </div>
         <ion-item ng-click="edit()">
-            <h3>{{ "Name:   " + clinician.name }}</h3>
-            <h3>{{ "Address:   " + clinician.address }}</h3>
-            <h3>{{ "Landline:   " + clinician.landline }}</h3>
-            <h3>{{ "Mobile:   " + clinician.mobile }}</h3>
-            <h3>{{ "Email:  " + clinician.email}}</h3>
-            <h3>{{ "Office Hours:  " + clinician.office }}</h3>
+            <h2>{{ "Name:   " + clinician.name }}</h2>
+            <h2>{{ "Address:   " + clinician.address }}</h2>
+            <h2>{{ "Landline:   " + clinician.landline }}</h2>
+            <h2>{{ "Mobile:   " + clinician.mobile }}</h2>
+            <h2>{{ "Email:  " + clinician.email}}</h2>
+            <h2>{{ "Office Hours:  " + clinician.office }}</h2>
             <ion-option-button class="button-calm ion-edit" ng-click="edit()">
         </ion-item>
+        <button class = "button icon ion-clipboard button-block button-outline button-royal" ng-click="vm.createReport()">
+            New Self-monitoring Sheet
+        </button>
+        <button ng-controller = "ClinCtrl" ng-click="sendEmail(clinician.email)" class="button button-positive button-block button-outline icon ion-email">
+            Send mail
+        </button>
         <div class = "item item-divider">App Details</div>
         <ion-item>
             <h2>Version: Pre-Alpha</h2>
             <h2>Created by: Zac and Alasdair</h2>
         </ion-item>
-        <button ng-controller = "ClinCtrl" ng-click="sendEmail(clinician.email)" class="button button-icon icon ion-email">
-            Send mail
-        </button>
-        <button class = "button button-block button-outline button-royal" ng-click="vm.createReport()">Create Report</button>
     </ion-list>
   </ion-content>
 </ion-view>

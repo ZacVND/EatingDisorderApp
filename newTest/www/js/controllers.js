@@ -518,7 +518,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.entry.id = createdID();
         console.log("ID: " + $scope.entry.id);
         
-        // // This is the part which will cancel the scheduled notifications
+        // This is the part which will cancel the scheduled notifications
 
         if ($scope.entry.meal == "Breakfast") {
           $cordovaLocalNotification.cancel(1);
@@ -530,6 +530,7 @@ angular.module('starter.controllers', ['ngCordova'])
           $cordovaLocalNotification.cancel(3);
         };
 
+        // Re-schedule the notification
         var newTime = new Date();
         newTime.setMinutes(newTime.getMinutes() + 2);
         $cordovaLocalNotification.schedule({

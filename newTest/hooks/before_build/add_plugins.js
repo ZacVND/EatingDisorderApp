@@ -8,7 +8,6 @@
 var pluginlist = [
     "cordova-plugin-file",
     "https://github.com/katzer/cordova-plugin-local-notifications",
-    "org.apache.cordova.camera",
     "https://github.com/katzer/cordova-plugin-email-composer.git",
     "cordova-plugin-device"
 ];
