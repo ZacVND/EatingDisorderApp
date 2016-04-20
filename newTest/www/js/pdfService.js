@@ -43,7 +43,7 @@ function PDFService($q,$cordovaFile,$ionicPlatform,$ionicPopup) {
 function createDocumentDefinition(report) {
 
     var items = report.Items.map(function (item) {
-        return [item.date, item.time, item.food, item.location, item.binge, item.purge, item.thoughts];
+        return [item.date, item.time, item.food, item.location, String(item.binge), String(item.purge), item.thoughts];
     });
 
     var dd = {
