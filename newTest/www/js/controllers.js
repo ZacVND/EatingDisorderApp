@@ -112,7 +112,7 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 
   $scope.deleteQuote = function(index) {
-    $scope.savedQuotes.splice(index, 1);
+    $scope.savedQuotes.array.splice(index, 1);
     $localstorage.setObject('savedQuotes', $scope.savedQuotes);
   };
 }])
