@@ -236,19 +236,19 @@ angular.module('starter.controllers', ['ngCordova'])
           var night = new Date().setHours(22);
           $cordovaLocalNotification.schedule([{
               id: 3,
-              message: "You haven't eaten or forgot to log Dinner. Please do so ASAP",
+              message: "Time to record your Dinner log",
               firstAt: night,
               every: "minute",
               autoCancel: false
             },{
               id: 2,
-              message: "You haven't eaten or forgot to log Lunch. Please do so ASAP",
+              message: "Time to record your Lunch log",
               firstAt: afternoon,
               every: "minute",
               autoCancel: false
             },{
               id: 1,
-              message: "You haven't eaten or forgot to log Breakfast. Please do so ASAP",
+              message: "Time to record your Breakfast log",
               firstAt: noon,
               every: "minute",
               autoCancel: false
