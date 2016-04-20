@@ -540,6 +540,18 @@ angular.module('starter.controllers', ['ngCordova'])
           $cordovaLocalNotification.cancel(3);
         };
 
+        var newTime = new Date();
+        newTime.setMinutes(newTime.getMinutes() + 2);
+        $cordovaLocalNotification.schedule({
+            id: 0,
+            date: newTime,  
+            message: "You haven't recorded anything for a week. Is everything alright?",
+            title: "You haven't been recording your meals",
+            autoCancel: false
+          }).then(function() {
+            
+          });
+
         var log = angular.copy($scope.logs);
         log.logsArray[log.logsArray.length - 1].entries.push($scope.entry);
 
