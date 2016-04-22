@@ -143,6 +143,10 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.logs.logsArray.push({date:d.format('YYYY/MM/DD'),entries:[]});
     };
 
+    $scope.logsPageAddLog = function() {
+      $state.go('menu.input');
+    }
+
     $scope.changePageToEdit = function(id) {
       document.location.href = "#/menu/input/" + id;
     };

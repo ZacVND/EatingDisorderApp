@@ -2,14 +2,17 @@
   <ion-nav-buttons side="left">
       <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+      <button class="button button-icon icon ion-plus" ng-click="logsPageAddLog()"></button>
+  </ion-nav-buttons>
   <div class="bar bar-subheader item-input-inset bar-light">
     <label class="item-input-wrapper">
       <i class="icon ion-calendar placeholder-icon"></i>
-      <input type="date" id="datePicker" ng-model="selectedDate" min="2015-01-01" max="{{ todaysDate('-') }}">
+      <input type="date" id="datePicker" ng-model="selectedDate" min="2016-01-01" max="{{ todaysDate('-') }}">
     </label>
   </div>
   <ion-content class="has-subheader padding">
-    <ion-list >
+    <ion-list >  
       <div class="list card" ng-show="day.entries.length" ng-repeat="(dayIndex, day) in logs.logsArray | orderBy:'date':true | filter:dateFilter(selectedDate)">
         <ion-item class="item-icon-left">
           <i class="icon ion-calendar"></i>
@@ -24,9 +27,11 @@
             <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
         </ion-item>
       </div>
-      <p ng-show="!logs.logsArray.length">You haven't logged anything yet.</p>
-
-      
+      <div class="list card" ng-show="!logs.logsArray.length">
+        <ion-item>
+          <p>You haven't logged anything yet.</p>
+        </ion-item>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>
