@@ -344,7 +344,12 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.entry = {
       binge: false,
-      purge: false
+      purge: false,
+      thoughts: "",
+      food: "",
+      location: "",
+      people: "",
+      meal: ""
     };
 
     $scope.goalDates = ["Today", "Tomorrow", "Other"];
