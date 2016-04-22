@@ -482,7 +482,7 @@ angular.module('starter.controllers', ['ngCordova'])
       // A meal of this type has already been added today
       var notRepeat = true;
       $scope.logs.logsArray[($scope.logs.logsArray.length - 1)].entries.forEach(function(logsEntry) {
-        if(logsEntry.meal == entry.meal) {
+        if((logsEntry.meal == entry.meal) && entry.meal) {
           if(entry.id != logsEntry.id) {
             var alertPopup = $ionicPopup.alert({
               title: 'Are you sure?',
