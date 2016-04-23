@@ -147,7 +147,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       views: {
         'menuContent' : {
           templateUrl: 'templates/settings.html',
-          controller: 'ClinCtrl'
+          controller: 'SettingsCtrl'
         }
       }
     })
@@ -157,7 +157,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       views: {
         'menuContent' : {
           templateUrl: 'templates/settingsEdit.html',
-          controller: 'ClinCtrl'
+          controller: 'SettingsCtrl'
         }
       }
     })

@@ -32,7 +32,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('ClinCtrl', ['$scope','$state','$localstorage', '$cordovaFile', '$cordovaEmailComposer', 
+.controller('SettingsCtrl', ['$scope','$state','$localstorage', '$cordovaFile', '$cordovaEmailComposer', 
   function($scope, $state, $localstorage, $cordovaFile, $cordovaEmailComposer) {
 
   $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');
@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['ngCordova'])
           pathFile = cordova.file.documentsDirectory;
         }
         else {
-          pathFile = cordova.file.externalDataDirectory;
+          pathFile = cordova.file.dataDirectory;
         }
 
         $cordovaFile.checkFile(pathFile, "report.pdf")
@@ -64,7 +64,6 @@ angular.module('starter.controllers', ['ngCordova'])
           }, function (error) {
             attach = [];
           });
-        // ['' + cordova.file.documentsDirectory.replace('file://','') + "report.pdf"]
         $cordovaEmailComposer.isAvailable().then(function() {
            // is available
            var toC = $localstorage.getObject('clinician');
