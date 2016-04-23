@@ -1,54 +1,25 @@
 (function () {
-    angular.module('starter').controller('PDFController', ['$scope', '$ionicModal', 'PDFService', '$localstorage', '$window', PDFController]);
+    angular.module('starter').controller('PDFController', ['$scope', 'PDFService', '$localstorage', '$window', '$ionicPopup', PDFController]);
 
-    function PDFController($scope, $ionicModal, PDFService, $localstorage, $window) {
+    function PDFController($scope, PDFService, $localstorage, $window, $ionicPopup) {
         var vm = this;
 
-        setDefaultsForPdfViewer($scope);
-
-        // Initialize the modal view.
-        $ionicModal.fromTemplateUrl('pdf-viewer.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            vm.modal = modal;
-        });
-
         vm.createReport = function () {
-            var report = getDummyData($localstorage, $window);
-
-            PDFService.createPdf(report)
-                .then(function (pdf) {
-                    var blob = new Blob([pdf], { type: 'application/pdf' });
-                    $scope.pdfUrl = URL.createObjectURL(blob);
-                    // Display the modal view
-                    vm.modal.show();
+            var logs = $localstorage.getObject('logs');
+            console.log(logs.logsArray);
+            if(logs.logsArray){
+                var report = getDummyData($localstorage, $window);
+                PDFService.createPdf(report);    
+            }
+            else {
+                $ionicPopup.alert({
+                   title: 'No Data Available',
+                   template: 'Please add some entries before creating a Self-Monitoring Sheet'
                 });
+            }
         };
-
-        // Clean up the modal view.
-        $scope.$on('$destroy', function () {
-            vm.modal.remove();
-        });
 
         return vm;
-    }
-
-    function setDefaultsForPdfViewer($scope) {
-        $scope.scroll = 0;
-        $scope.loading = 'loading';
-
-        $scope.onError = function (error) {
-            console.error(error);
-        };
-
-        $scope.onLoad = function () {
-            $scope.loading = '';
-        };
-
-        $scope.onProgress = function (progress) {
-            console.log(progress);
-        };
     }
 
     function getDummyData($localstorage, $window) {

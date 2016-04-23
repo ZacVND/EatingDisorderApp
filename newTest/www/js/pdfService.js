@@ -4,7 +4,6 @@ function PDFService($q,$cordovaFile,$ionicPlatform,$ionicPopup) {
     function createPdf(report) {
         return $q(function (resolve, reject) {
             var dd = createDocumentDefinition(report);
-            console.log(dd);
             var pdf = pdfMake.createPdf(dd).getBuffer(function (buffer) {
                 var utf8 = new Uint8Array(buffer); // Convert to UTF-8... 
                 binaryArray = utf8.buffer; // Convert to Binary...
@@ -24,8 +23,7 @@ function PDFService($q,$cordovaFile,$ionicPlatform,$ionicPopup) {
                        template: 'A Self-monitoring Sheet containing your last 50 meals has been created'
                     });
                 }, function (error) {
-                    alert("Nothing");
-                     console.log("error");
+                    console.log("error");
                 });
             });
 
