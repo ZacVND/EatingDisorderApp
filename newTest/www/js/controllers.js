@@ -177,11 +177,11 @@ angular.module('starter.controllers', ['ngCordova'])
       console.log(noon);
       $localstorage.setObject('notifications', $scope.notifications);
         if ($localstorage.getObject('notifications') == true) {
-          var alarmTime = new Date();
-          alarmTime.setMinutes(alarmTime.getMinutes() + 1);
+          var weekTime = new Date();
+          weekTime.setDate(weekTime.getDate() + 7);
           $cordovaLocalNotification.schedule({
             id: 0,
-            date: alarmTime,  
+            date: weekTime,  
             message: "You haven't recorded anything for a week. Is everything alright?",
             title: "You haven't been recording your meals",
             autoCancel: false
@@ -537,11 +537,11 @@ angular.module('starter.controllers', ['ngCordova'])
 
         // Re-schedule the notification
         if ($localstorage.getObject('notifications') == true) {
-          var newTime = new Date();
-          newTime.setMinutes(newTime.getMinutes() + 2);
+          var newWeekTime = new Date();
+          newWeekTime.setDate(newWeekTime.getDate() + 7);
           $cordovaLocalNotification.schedule({
               id: 0,
-              date: newTime,  
+              date: newWeekTime,  
               message: "You haven't recorded anything for a week. Is everything alright?",
               title: "You haven't been recording your meals",
               autoCancel: false
