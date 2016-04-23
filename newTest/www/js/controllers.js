@@ -195,19 +195,19 @@ angular.module('starter.controllers', ['ngCordova'])
               id: 3,
               message: "Time to record your Dinner log",
               firstAt: night,
-              every: "hour",
+              every: "day",
               autoCancel: false
             },{
               id: 2,
               message: "Time to record your Lunch log",
               firstAt: afternoon,
-              every: "hour",
+              every: "day",
               autoCancel: false
             },{
               id: 1,
               message: "Time to record your Breakfast log",
               firstAt: noon,
-              every: "hour",
+              every: "day",
               autoCancel: false
           }]);
       }
