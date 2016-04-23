@@ -13,13 +13,13 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.newtest259968"
         },
-        "cordova-plugin-email-composer": {
-            "PACKAGE_NAME": "com.ionicframework.newtest259968"
-        },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.newtest259968"
         },
         "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.newtest259968"
+        },
+        "cordova-plugin-email": {
             "PACKAGE_NAME": "com.ionicframework.newtest259968"
         }
     },

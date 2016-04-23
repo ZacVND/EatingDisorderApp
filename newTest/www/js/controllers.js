@@ -70,8 +70,6 @@ angular.module('starter.controllers', ['ngCordova'])
            var toC = $localstorage.getObject('clinician');
             var email = {
               to: toC.email,
-              cc: '',
-              bcc: '',
               attachments: attach,
               subject: 'My Self Monitoring Sheet',
               body: bodyText,
