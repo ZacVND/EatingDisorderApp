@@ -1,12 +1,12 @@
 # EatingDisorderApp
-<h1>For UCL Computer Science 1st year module COMP103P</h1> </br>
+<h3>For UCL Computer Science 1st year module COMP103P</h3> </br>
 <b>Author</b>: Vu Luong and Alasdair Hall (Team 35) </br>
 <b>Supervisor</b>: Dr. Harry Strange and Dr. Yun Fu </br>
 <b>Client</b>: Surrey and Borders Partnership NHS Foundation Trust </br>
 <b>App Project</b>: Adult Eating Disorders </br>
 <b>App Name</b>: My Food Diary </br></br>
 
-<h1>Installation:</h1>
+<h2>Installation:</h2>
 If you want to start developing/testing this app, follow the steps below:
 Firstly, install Ionic to your device, please follow this official guide: 
       http://ionicframework.com/getting-started/
@@ -23,7 +23,7 @@ After you've got Ionic installed on your machine, follow these steps:
 3. Build the app in order to get all necessary plugins:
       ionic build <platform>
       
-Running:
+<h2>Running:</h2>
 1. To run the app on the emulator you have installed:
       ionic emulate <platform>
   If you are running Mac OSX, the iOS emulator should already come with XCode.
