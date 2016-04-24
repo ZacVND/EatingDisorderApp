@@ -20,7 +20,7 @@ After you've got Ionic installed on your machine, follow these steps:
       
       2. Add the desired platform by using: 
             ionic platform add <platform>
-  Where "<platform>" is your desired platform. </br>
+  Where \<platform> is your desired platform. </br>
   For example, to add android as the platform: ionic platform add android
   
       3. Build the app in order to get all necessary plugins:
