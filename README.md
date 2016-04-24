@@ -10,7 +10,9 @@
 
 ## Installation:
 If you want to start developing/testing this app, follow the steps below:
+
 Firstly, install Ionic to your device, please follow this official guide: 
+
       http://ionicframework.com/getting-started/
       
 After you've got Ionic installed on your machine, follow these steps:
