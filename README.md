@@ -28,7 +28,7 @@ After you've got Ionic installed on your machine, follow these steps:
             ionic build <platform>
       
 ## Running:
-If you are running Mac OSX, the iOS emulator should already come with XCode.
+If you are running Mac OSX, the iOS emulator should already come with XCode.</br>
 If you want to emulate Android, <b>please install the emulator first.</b>
   
       1. To run the app on the emulator you have installed:
