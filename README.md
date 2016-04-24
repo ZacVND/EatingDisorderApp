@@ -1,5 +1,4 @@
-# EatingDisorderApp
-### UCL Computer Science 1st year module COMP103P </br>
+## UCL Computer Science 1st year module COMP103P </br>
 <b>Author</b>:          Vu Luong and Alasdair Hall (Team 35) </br>
 <b>Supervisor</b>:      Dr. Harry Strange and Dr. Yun Fu </br>
 <b>Client</b>:          Surrey and Borders Partnership NHS Foundation Trust </br>
