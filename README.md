@@ -1,5 +1,5 @@
 # EatingDisorderApp
-<h3>For UCL Computer Science 1st year module COMP103P</h3> </br>
+### UCL Computer Science 1st year module COMP103P </br>
 <b>Author</b>:          Vu Luong and Alasdair Hall (Team 35) </br>
 <b>Supervisor</b>:      Dr. Harry Strange and Dr. Yun Fu </br>
 <b>Client</b>:          Surrey and Borders Partnership NHS Foundation Trust </br>
@@ -8,7 +8,7 @@
 
 <b>This app has been tested and working on iPhone 6 with iOS 9 and HTC One M8 with Android 6</b>
 
-<h2>Installation:</h2>
+## Installation:
 If you want to start developing/testing this app, follow the steps below:
 Firstly, install Ionic to your device, please follow this official guide: 
       http://ionicframework.com/getting-started/
@@ -25,7 +25,7 @@ After you've got Ionic installed on your machine, follow these steps:
 3. Build the app in order to get all necessary plugins:
       ionic build <platform>
       
-<h2>Running:</h2>
+## Running:
 1. To run the app on the emulator you have installed:
       ionic emulate <platform>
   If you are running Mac OSX, the iOS emulator should already come with XCode.
