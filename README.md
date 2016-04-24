@@ -1,10 +1,10 @@
 # EatingDisorderApp
 <h3>For UCL Computer Science 1st year module COMP103P</h3> </br>
-<b>Author</b>: Vu Luong and Alasdair Hall (Team 35) </br>
-<b>Supervisor</b>: Dr. Harry Strange and Dr. Yun Fu </br>
-<b>Client</b>: Surrey and Borders Partnership NHS Foundation Trust </br>
-<b>App Project</b>: Adult Eating Disorders </br>
-<b>App Name</b>: My Food Diary </br>
+<b>Author</b>:          Vu Luong and Alasdair Hall (Team 35) </br>
+<b>Supervisor</b>:      Dr. Harry Strange and Dr. Yun Fu </br>
+<b>Client</b>:          Surrey and Borders Partnership NHS Foundation Trust </br>
+<b>App Project</b>:     Adult Eating Disorders </br>
+<b>App Name</b>:        My Food Diary </br>
 
 <b>This app has been tested and working on iPhone 6 with iOS 9 and HTC One M8 with Android 6</b>
 
