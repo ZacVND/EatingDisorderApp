@@ -1,12 +1,12 @@
 # EatingDisorderApp
-For UCL Computer Science 1st year module: COMP103P </br>
-Author: Vu Luong and Alasdair Hall (Team 35)
-Supervisor: Dr. Harry Strange and Dr. Yun Fu
-Client: Surrey and Borders Partnership NHS Foundation Trust
-App Project: Adult Eating Disorders
-App Name: My Food Diary
+<h1>For UCL Computer Science 1st year module COMP103P</h1> </br>
+<b>Author</b>: Vu Luong and Alasdair Hall (Team 35) </br>
+<b>Supervisor</b>: Dr. Harry Strange and Dr. Yun Fu </br>
+<b>Client</b>: Surrey and Borders Partnership NHS Foundation Trust </br>
+<b>App Project</b>: Adult Eating Disorders </br>
+<b>App Name</b>: My Food Diary </br></br>
 
-Installation:
+<h1>Installation:</h1>
 If you want to start developing/testing this app, follow the steps below:
 Firstly, install Ionic to your device, please follow this official guide: 
       http://ionicframework.com/getting-started/
