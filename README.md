@@ -4,7 +4,9 @@
 <b>Supervisor</b>: Dr. Harry Strange and Dr. Yun Fu </br>
 <b>Client</b>: Surrey and Borders Partnership NHS Foundation Trust </br>
 <b>App Project</b>: Adult Eating Disorders </br>
-<b>App Name</b>: My Food Diary </br></br>
+<b>App Name</b>: My Food Diary </br>
+
+<b>This app has been tested and working on iPhone 6 with iOS 9 and HTC One M8 with Android 6</b>
 
 <h2>Installation:</h2>
 If you want to start developing/testing this app, follow the steps below:
@@ -32,6 +34,4 @@ After you've got Ionic installed on your machine, follow these steps:
 2. To run the app on your device:
   Connect your device via USB and run this command:
       ionic run <platform>
-
-This app has been tested and working on iPhone 6 with iOS 9 and HTC One M8 with Android 6
 
