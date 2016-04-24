@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['ngCordova'])
           pathFile = cordova.file.documentsDirectory;
         }
         else {
-          pathFile = cordova.file.dataDirectory;
+          pathFile = cordova.file.externalRootDirectory;
         }
 
         $cordovaFile.checkFile(pathFile, "report.pdf")
@@ -64,6 +64,8 @@ angular.module('starter.controllers', ['ngCordova'])
           }, function (error) {
             attach = [];
           });
+
+
         $cordovaEmailComposer.isAvailable().then(function() {
            // is available
            var toC = $localstorage.getObject('clinician');
