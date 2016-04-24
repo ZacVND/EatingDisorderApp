@@ -32,6 +32,7 @@ If you want to emulate Android, <b>please install the emulator first.</b>
   
       1. To run the app on the emulator you have installed:
             ionic emulate <platform>
+            
       2. To run the app on your device, connect your device via USB and run this command:
             ionic run <platform>
 
