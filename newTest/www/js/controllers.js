@@ -473,6 +473,15 @@ angular.module('starter.controllers', ['ngCordova'])
         return false;
       }
 
+      // Nothing entered
+      if(!entry.meal && !entry.food && !entry.thoughts) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Not so fast!',
+          template: 'You must add something before you can submit'
+        });
+        return false;
+      }
+
       // Inputted a time in the future
       d = new moment().format('HH:mm');
       if($scope.entry.time > d) {
