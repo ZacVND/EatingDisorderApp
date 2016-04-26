@@ -27,3 +27,7 @@
 textarea {
 	resize:none;
 }
+
+.Cdetails{
+    white-space:pre;
+}

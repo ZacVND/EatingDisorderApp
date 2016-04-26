@@ -14,12 +14,12 @@
             Clinician Details
         </div>
         <ion-item ng-click="edit()">
-            <h2>{{ "Name:   " + clinician.name }}</h2>
-            <h2>{{ "Address:   " + clinician.address }}</h2>
-            <h2>{{ "Landline:   " + clinician.landline }}</h2>
-            <h2>{{ "Mobile:   " + clinician.mobile }}</h2>
-            <h2>{{ "Email:  " + clinician.email}}</h2>
-            <h2>{{ "Office Hours:  " + clinician.office }}</h2>
+            <h2><pre>Name:           {{clinician.name}}</pre></h2>
+            <h2><pre>Address:        {{clinician.address}}</pre></h2>
+            <h2><pre>Landline:       {{clinician.landline}}</pre></h2>
+            <h2><pre>Mobile:         {{clinician.mobile}}</pre></h2>
+            <h2><pre>Email:          {{clinician.email}}</pre></h2>
+            <h2><pre>Office Hours:   {{clinician.office}}</pre></h2>
             <ion-option-button class="button-calm ion-edit" ng-click="edit()">
         </ion-item>
         <button class = "button icon ion-clipboard button-block button-outline button-royal" ng-click="vm.createReport()">
