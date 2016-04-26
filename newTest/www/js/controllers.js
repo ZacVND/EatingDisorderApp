@@ -51,6 +51,12 @@ angular.module('starter.controllers', ['ngCordova'])
         var bodyText = "<h3>Hi, this is my Self-monitoring sheet of the last 50 meals</h3>";
         var attach;
         var pathFile = '';
+         // var filename = 'report.pdf';
+         // var attachmentBase64 = '';
+
+         // var base64parts = attachmentBase64.split(',');
+         // base64parts[0] = "base64:" + escape(filename) + "//";
+         // var compatibleAttachment = base64parts.join("");
         if(ionic.Platform.isIOS()) {
           pathFile = cordova.file.documentsDirectory;
         }
@@ -64,7 +70,6 @@ angular.module('starter.controllers', ['ngCordova'])
           }, function (error) {
             attach = [];
           });
-
 
         $cordovaEmailComposer.isAvailable().then(function() {
            // is available
