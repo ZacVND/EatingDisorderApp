@@ -106,6 +106,9 @@ angular.module('starter.controllers', ['ngCordova'])
     if(JSON.stringify($scope.savedQuotes).indexOf(quoteToSave) == -1) {
       $scope.savedQuotes.array.push(quoteToSave);
       $localstorage.setObject('savedQuotes', $scope.savedQuotes);
+
+      $ionicAnalytics.track('Quote saved', {
+      });
     }
   };
 
@@ -115,8 +118,8 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 }])
 
-.controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', '$localstorage',
- function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification, $localstorage) {
+.controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', '$localstorage', '$ionicAnalytics',
+ function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification, $localstorage, $ionicAnalytics) {
 
     $scope.whichEntry = $state.params.aId;
 
@@ -474,7 +477,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
 
       // Nothing entered
-      if(!entry.meal && !entry.food && !entry.thoughts) {
+      if(!entry.meal && !entry.food && !entry.thoughts & !entry.purge) {
         var alertPopup = $ionicPopup.alert({
           title: 'Not so fast!',
           template: 'You must add something before you can submit'
@@ -570,6 +573,10 @@ angular.module('starter.controllers', ['ngCordova'])
 
         window.localStorage['logs'] = JSON.stringify(log);
 
+        $ionicAnalytics.track('Entry added', {
+          meal: $scope.entry.meal
+        });
+
         $scope.logs = JSON.parse(window.localStorage['logs']);
         $state.go('menu.success');
       }      
@@ -583,6 +590,10 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.goalEntry.id = goalID();
         goal.push($scope.goalEntry);
         window.localStorage['goals'] = JSON.stringify(goal);
+
+        $ionicAnalytics.track('Goal added', {
+        });
+
         $scope.goals = JSON.parse(window.localStorage['goals']);
         $state.go('menu.goals');
       }
@@ -602,6 +613,10 @@ angular.module('starter.controllers', ['ngCordova'])
             }
           });
         });
+
+        $ionicAnalytics.track('Entry edited', {
+        });
+
         window.localStorage['logs'] = JSON.stringify($scope.logs);
         $state.go('menu.logs');
       }

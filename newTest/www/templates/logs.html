@@ -23,6 +23,8 @@
             <h2>{{ item.meal }} <span class="subtle">{{ item.time }}</span></h2>
             <p>{{ item.food }}</p>
             <p ng-show="item.thoughts"><span class="subtle">Thoughts: {{ item.thoughts }}</span></p>
+            <p ng-show="item.binge"><i class="ion-alert"></i> Binge</p>
+            <p ng-show="item.purge"><i class="ion-alert"></i> Purge</p>
             <ion-option-button class="button-calm ion-edit" ng-click="changePageToEdit(item.id)">
             <ion-option-button class="button-assertive ion-trash-b" ng-click="onItemDelete(dayIndex, item)">
         </ion-item>
