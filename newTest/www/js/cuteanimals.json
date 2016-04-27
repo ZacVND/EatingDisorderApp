@@ -1,3 +1,5 @@
+// This used to be use for implementing background images
+
 { "photos": { "page": 1, "pages": "3629", "perpage": 100, "total": "362882", 
     "photo": [
       { "id": "25354039954", "owner": "129328360@N02", "secret": "55578c8067", "server": "1555", "farm": 2, "title": "Irka . Labrador Retriever", "ispublic": 1, "isfriend": 0, "isfamily": 0 },

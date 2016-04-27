@@ -9,26 +9,26 @@ function PDFService($q,$cordovaFile,$ionicPlatform,$ionicPopup) {
                 binaryArray = utf8.buffer; // Convert to Binary...
 
                 var pathFile = "";
-                if (ionic.Platform.isIOS()) {
-                    var pathFile = cordova.file.documentsDirectory;
+                if (ionic.Platform.isIOS()) {   // Determine the directory to store the PDF based on OS
+                    var pathFile = cordova.file.documentsDirectory; // iOS
                 } else {
-                    var pathFile = cordova.file.externalRootDirectory;
+                    var pathFile = cordova.file.externalRootDirectory; // Android
                 }
 
                 $cordovaFile.writeFile(pathFile, "report.pdf", binaryArray, true)
-                .then(function (success) {
+                .then(function (success) {      // If file is successfully created, have a pop up to notify the user
                     console.log("pdf created");
                     $ionicPopup.alert({
                        title: 'Self-monitoring Sheet Created',
                        template: 'A Self-monitoring Sheet containing your last 50 meals has been created'
                     });
                 }, function (error) {
-                    console.log("error");
+                    console.log("error");   // If not then log error, code to notify user that file creation unsuccessful is in pdfController.js
                 });
             });
 
             pdf.getBase64(function (output) {
-                resolve(base64ToUint8Array(output));
+                resolve(base64ToUint8Array(output));    // Encode file
             });
         });
     }
@@ -38,7 +38,7 @@ function PDFService($q,$cordovaFile,$ionicPlatform,$ionicPopup) {
     };
 }
 
-function createDocumentDefinition(report) {
+function createDocumentDefinition(report) {     // Mark up PDF file using Javascript with PDFMake
 
     var items = report.Items.map(function (item) {
         return [item.date, item.time, item.food, item.location, String(item.binge), String(item.purge), item.thoughts];
@@ -98,7 +98,7 @@ function createDocumentDefinition(report) {
     return dd;
 }
 
-function base64ToUint8Array(base64) {
+function base64ToUint8Array(base64) {   // Encode
     var raw = atob(base64);
     var uint8Array = new Uint8Array(raw.length);
     for (var i = 0; i < raw.length; i++) {
