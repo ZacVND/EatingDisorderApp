@@ -1,10 +1,12 @@
 angular.module('starter.controllers', ['ngCordova'])
 
+// Controller for the side menu
 .controller('mainCtrl', function($scope, $ionicSideMenuDelegate) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   }
 
+  // These are the items which populate the menu
   $scope.menuItems = [
     {title:"Home",icon:"home",page:"home"},
     {title:"Logs",icon:"clipboard",page:"logs"},
@@ -14,6 +16,7 @@ angular.module('starter.controllers', ['ngCordova'])
     {title:"Help",icon:"help-buoy",page:"help"}
   ];
 })
+
 
 .controller('IntroCtrl', function($scope, $state) {
   //delete the line below to prevent the intro page from popping up
