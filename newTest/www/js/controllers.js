@@ -1,11 +1,12 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('mainCtrl', function($scope, $ionicSideMenuDelegate) {
+.controller('mainCtrl', function($scope, $ionicSideMenuDelegate) { 
+  //Controller for the side menu
   $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
+    $ionicSideMenuDelegate.toggleLeft();  // Toggle the side menu
   }
 
-  $scope.menuItems = [
+  $scope.menuItems = [  // Items on the side menu
     {title:"Home",icon:"home",page:"home"},
     {title:"Logs",icon:"clipboard",page:"logs"},
     {title:"Goals",icon:"ribbon-b",page:"goals"},
@@ -16,9 +17,10 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('IntroCtrl', function($scope, $state) {
-  //delete the line below to prevent the intro page from popping up
+  // Controller for the Intro page
 
-  if(window.localStorage['seenIntro'] === "true") {
+  if(window.localStorage['seenIntro'] === "true") { 
+  // Create a variable in local storage to keep track of whether or not the user has seen the intro page
     $state.go('menu.home');
     console.log('Skip intro');
   };
@@ -34,29 +36,25 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('SettingsCtrl', ['$scope','$state','$localstorage', '$cordovaFile', '$cordovaEmailComposer', 
   function($scope, $state, $localstorage, $cordovaFile, $cordovaEmailComposer) {
+    // Controller for the Settings Page
 
-  $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');
+  $scope.clinician = JSON.parse(window.localStorage['clinician'] || '{}');  // Create an object called clinician
   $scope.edit = function() {
-    $state.go('menu.settingsEdit');
+    $state.go('menu.settingsEdit'); // go to the page to edit clinician details
   };
   var logs = $localstorage.getObject('logs');
   $scope.submit = function(clinician) {
     $localstorage.setObject('clinician', $scope.clinician);
     $state.go('menu.settings');
-    console.log(logs.logsArray);
   };
 
-  $scope.sendEmail = function() {
+  $scope.sendEmail = function() { // Email function
         console.log("email function executed");
-        var bodyText = "<h3>Hi, this is my Self-monitoring sheet of the last 50 meals</h3>";
-        var attach;
-        var pathFile = '';
-         // var filename = 'report.pdf';
-         // var attachmentBase64 = '';
+        var bodyText = "<h4>Hi, this is my Self-monitoring sheet of the last 50 meals</h4>"; // Pre filled email body
+        var attach; // variable to hold path to attachment file
+        var pathFile = ''; // variable to hold the directory path
 
-         // var base64parts = attachmentBase64.split(',');
-         // base64parts[0] = "base64:" + escape(filename) + "//";
-         // var compatibleAttachment = base64parts.join("");
+        // This code is to determine the directory path based on OS
         if(ionic.Platform.isIOS()) {
           pathFile = cordova.file.documentsDirectory;
         }
@@ -64,22 +62,25 @@ angular.module('starter.controllers', ['ngCordova'])
           pathFile = cordova.file.externalRootDirectory;
         }
 
+        // Check if file exists
         $cordovaFile.checkFile(pathFile, "report.pdf")
          .then(function (success) {
+          // If yes, attach file
             attach = ['' + pathFile.replace('file://','') + "report.pdf"];
           }, function (error) {
+          // If not attach nothing
             attach = [];
           });
 
         $cordovaEmailComposer.isAvailable().then(function() {
            // is available
-           var toC = $localstorage.getObject('clinician');
+           var toC = $localstorage.getObject('clinician');  // get clinician email
             var email = {
-              to: toC.email,
-              attachments: attach,
-              subject: 'My Self Monitoring Sheet',
-              body: bodyText,
-              isHtml: true
+              to: toC.email,  // to: clinician email
+              attachments: attach,  // attachment: path to PDF file
+              subject: 'My Self Monitoring Sheet',  // subject of email
+              body: bodyText, // body of email
+              isHtml: true // Body can be markup with HTML
             };
 
           $cordovaEmailComposer.open(email).then(null, function () {
@@ -115,6 +116,9 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 }])
 
+
+// The biggest contrller which has the most functions
+// because it holds the most important data for main functionality of the App 
 .controller('logsCtrl', ['$scope', '$ionicPopup', '$http', '$state', '$cordovaLocalNotification', '$localstorage',
  function($scope, $ionicPopup, $http, $state, $cordovaLocalNotification, $localstorage) {
 
@@ -171,21 +175,19 @@ angular.module('starter.controllers', ['ngCordova'])
 
     getGoalByID($scope.editWhichGoal);
 
-
-    //This is the function which schedules all of the notifications
+    // Create variable to hold the value of the notifications toggle in the Settings page.
     $scope.notifications = JSON.parse(window.localStorage['notifications'] || 'false');
 
+    //This is the function which schedules all of the notifications
     $scope.notificationsChanged = function() {
       console.log($scope.notifications);
-      var noon = new Date().setHours(11);
-      // var alarmTime = new Date();
-      //     console.log(alarmTime.setMinutes(alarmTime.getMinutes() + 1));
-      console.log(noon);
+      // Change the value of notifications variable
       $localstorage.setObject('notifications', $scope.notifications);
+        // When notifications toggle is on, schedule all notifications
         if ($localstorage.getObject('notifications') == true) {
           var weekTime = new Date();
           weekTime.setDate(weekTime.getDate() + 7);
-          $cordovaLocalNotification.schedule({
+          $cordovaLocalNotification.schedule({  // 1 week inactivity notification
             id: 0,
             date: weekTime,  
             message: "You haven't recorded anything for a week. Is everything alright?",
@@ -194,14 +196,14 @@ angular.module('starter.controllers', ['ngCordova'])
           }).then(function() {
             
           });
-          var noon = new Date().setHours(11);
-          var afternoon = new Date().setHours(16);
-          var night = new Date().setHours(22);
-          $cordovaLocalNotification.schedule([{
+          var noon = new Date().setHours(11);   // These notification will go off
+          var afternoon = new Date().setHours(16);  // If it's already past meal time
+          var night = new Date().setHours(22);  // And the user hasn't entered the respective meal.
+          $cordovaLocalNotification.schedule([{ // Notification for every meal
               id: 3,
               message: "Time to record your Dinner log",
               firstAt: night,
-              every: "day",
+              every: "day", // Reschedule everyday
               autoCancel: false
             },{
               id: 2,
@@ -217,7 +219,7 @@ angular.module('starter.controllers', ['ngCordova'])
               autoCancel: false
           }]);
       }
-      else {
+      else {  // Cancel all notifications if value of "notification" variable is false
         $cordovaLocalNotification.cancelAll();
       }
     }

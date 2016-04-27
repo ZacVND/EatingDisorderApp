@@ -31,7 +31,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.views.maxCache(0);
   $stateProvider
-    .state('intro', {
+    .state('intro', {   // Route to intro page
       url: '/',
       templateUrl: 'templates/intro.html',
       controller: 'IntroCtrl'
@@ -52,7 +52,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.input', {
+    .state('menu.input', {  // Route to Add entry page
       url: '/input',
       views: {
         'menuContent' : { // all pages are part of menuContent
@@ -62,7 +62,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.input_thoughts', {
+    .state('menu.input_thoughts', {   // Route to Add Thoughts
       url: '/input_thoughts',
       views: {
         'menuContent' : { // all pages are part of menuContent
@@ -72,7 +72,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.input_purge', {
+    .state('menu.input_purge', {    // Route to Add Purge
       url: '/input_purge',
       views: {
         'menuContent' : { // all pages are part of menuContent
@@ -82,7 +82,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.edit_input', {
+    .state('menu.edit_input', {   // Route to edit of an entry
       url: '/input/:bId',
       views: {
         'menuContent' : { // all pages are part of menuContent
@@ -92,7 +92,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.success', {
+    .state('menu.success', {    // Route to success page
       url: '/success',
       views: {
         'menuContent' : { // all pages are part of menuContent
@@ -102,7 +102,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.saved_quotes', {
+    .state('menu.saved_quotes', {   // Route to saved quotes
       url: '/saved_quotes',
       views: {
         'menuContent' : { // all pages are part of menuContent
@@ -112,7 +112,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.detailed', {
+    .state('menu.detailed', {   // Route to Detailed view of each entry
       url: '/logs/:aId',
       views: {
         'menuContent' : {
@@ -122,7 +122,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.help', {
+    .state('menu.help', {   // Route to Help page
       url: '/help',
       views: {
         'menuContent' : {
@@ -132,7 +132,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.home', {
+    .state('menu.home', {   // Route to Home page
       url: '/home',
       views: {
         'menuContent' : {
@@ -142,7 +142,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.settings', {
+    .state('menu.settings', {   // Route to Settings page
       url: '/settings',
       views: {
         'menuContent' : {
@@ -152,7 +152,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.settingsEdit', {
+    .state('menu.settingsEdit', {   // Route to Clinician edit page
       url: '/settingsEdit',
       views: {
         'menuContent' : {
@@ -162,7 +162,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.goals', {
+    .state('menu.goals', {    // Route to Goals page
       url: '/goals',
       views: {
         'menuContent' : {
@@ -172,7 +172,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.goals_input', {
+    .state('menu.goals_input', {    // Route to Add Goals page
       url: '/goals_input',
       views: {
         'menuContent' : {
@@ -182,7 +182,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    .state('menu.edit_goals_input', {
+    .state('menu.edit_goals_input', {   // Route to Edit Goals page
       url: '/goals_input/:cId',
       views: {
         'menuContent' : {
@@ -192,12 +192,13 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
       }
     })
 
-    var landing;
+    // Check whether or not the user has used the app before.
+    var landing;      
     if (window.localStorage['seenIntro'] === "true") {
       landing = 'menu/home';
     }
     else {
-      landing = '/';
+      landing = '/';  // Route to intro page
     };
     console.log(window.localStorage['seenIntro']);
     console.log(landing);
